@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naufal Fikri | Junior Full Stack Developer & Web Engineer</title>
+  <meta name="description" content="Portofolio resmi Naufal Fikri - Junior Full Stack Developer & Lulusan Teknik Informatika Universitas Gunadarma. Berpengalaman dalam PHP, Laravel, C# ASP.NET MVC, Next.js, Express.js, PostgreSQL, dan SQL Server.">
+  <meta name="author" content="Naufal Fikri">
+  <meta name="keywords" content="Naufal Fikri, Web Developer, Full Stack Developer, Laravel, ASP.NET MVC, Next.js, Express.js, Cibinong, Gunadarma">
+
+  <meta property="og:title" content="Naufal Fikri | Junior Full Stack Developer">
+  <meta property="og:description" content="Portofolio interaktif Naufal Fikri - 4 aplikasi web full-stack, arsitektur MVC, database relasional, dan IT Support.">
+  <meta property="og:type" content="website">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5' },
+            cyber: { cyan: '#06b6d4', emerald: '#10b981', violet: '#8b5cf6' }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="relative selection:bg-indigo-500 selection:text-white">
+
+  <div id="progress-bar"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <div id="cursor-dot" class="custom-cursor-dot"></div>
+  <div id="cursor-ring" class="custom-cursor-ring"></div>
+
+  <div id="toast-notification">
+    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+    <span id="toast-message" class="text-sm font-medium">Pesan notifikasi</span>
+  </div>
+
+  <div class="fixed bottom-6 left-6 z-40 flex flex-col gap-3">
+    <button id="quick-terminal-float" class="open-terminal-trigger p-3 rounded-full bg-slate-900/90 text-cyan-400 border border-cyan-500/40 shadow-lg hover:scale-110 hover:border-cyan-400 transition-all group backdrop-blur-md" title="Buka Terminal CLI (Ctrl+K)">
+      <i data-lucide="terminal" class="w-5 h-5 group-hover:rotate-6 transition-transform"></i>
+    </button>
+  </div>
+
+  <button id="back-to-top-btn" class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-indigo-600/90 hover:bg-indigo-500 text-white shadow-xl hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none backdrop-blur-md" title="Kembali ke atas">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 glass-nav border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-cyan-500 to-indigo-400 flex items-center justify-center font-mono font-bold text-white shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+          &lt;/&gt;
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-tight text-white group-hover:text-cyan-400 transition-colors">Naufal<span class="text-cyan-400">.dev</span></span>
+          <div class="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Available for Hire</span>
+          </div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-cyan-400 transition-colors">Tentang</a>
+        <a href="#skills" class="hover:text-cyan-400 transition-colors">Keahlian</a>
+        <a href="#projects" class="hover:text-cyan-400 transition-colors">Portofolio</a>
+        <a href="#journey" class="hover:text-cyan-400 transition-colors">Pengalaman</a>
+        <a href="#terminal-section" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-cyan-400 font-mono">
+          <i data-lucide="terminal" class="w-4 h-4"></i> Terminal
+        </a>
+        <a href="#contact" class="hover:text-cyan-400 transition-colors">Kontak</a>
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-3">
+        <button id="sound-toggle-btn" class="p-2.5 rounded-xl border border-slate-700/60 bg-slate-800/50 hover:bg-slate-700 text-slate-400 transition-colors" title="Efek Audio On/Off">
+          <i id="sound-icon" data-lucide="volume-x" class="w-4 h-4"></i>
+        </button>
+        <button id="theme-toggle-btn" class="p-2.5 rounded-xl border border-slate-700/60 bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors" title="Ganti Tema">
+          <i id="theme-icon" data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+        <button class="open-terminal-trigger px-3.5 py-2 rounded-xl border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 text-xs font-mono hover:bg-cyan-900/60 hover:border-cyan-400 transition-all flex items-center gap-2" title="Tekan Ctrl+K">
+          <i data-lucide="terminal" class="w-4 h-4"></i>
+          <span>Ctrl + K</span>
+        </button>
+        <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold shadow-lg shadow-indigo-500/20 hover:scale-105 transition-all flex items-center gap-2">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Download CV</span>
+        </a>
+      </div>
+
+      <button id="mobile-menu-btn" aria-label="Buka menu navigasi" class="md:hidden p-2 rounded-lg bg-slate-800/60 text-slate-300 hover:text-white">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <div id="mobile-nav" class="hidden md:hidden px-4 pt-2 pb-6 bg-slate-900/95 border-b border-slate-800 space-y-3">
+      <a href="#about" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Tentang</a>
+      <a href="#skills" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Keahlian</a>
+      <a href="#projects" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Portofolio</a>
+      <a href="#journey" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Pengalaman</a>
+      <a href="#terminal-section" class="block py-2 text-cyan-400 font-mono">Terminal CLI</a>
+      <a href="#contact" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Kontak</a>
+      <div class="pt-3 border-t border-slate-800 flex items-center justify-between gap-2">
+        <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="flex-1 text-center py-2.5 rounded-lg bg-indigo-600 text-white font-medium text-xs flex items-center justify-center gap-2">
+          <i data-lucide="download" class="w-4 h-4"></i> Unduh CV
+        </a>
+        <button class="open-terminal-trigger py-2.5 px-3 rounded-lg border border-cyan-500/40 text-cyan-400 text-xs font-mono">
+          CLI
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-mono">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Terbuka untuk Full-Time & Freelance Web Developer</span>
+          </div>
+
+          <div class="space-y-2">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+              Halo, Saya <br class="hidden sm:inline">
+              <span class="text-gradient">Naufal Fikri</span>
+            </h1>
+            <div class="text-xl sm:text-2xl font-mono text-cyan-300 flex items-center min-h-[40px]">
+              <span id="typewriter-text"></span><span class="typewriter-cursor">|</span>
+            </div>
+          </div>
+
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+            Lulusan <strong class="text-white">Teknik Informatika Universitas Gunadarma</strong> dengan pengalaman praktis membangun <strong class="text-cyan-300">4 aplikasi web full-stack</strong> berbasis database relasional menggunakan <strong class="text-indigo-300">PHP Native, Laravel, C# ASP.NET MVC</strong>, dan <strong class="text-cyan-300">Next.js / Express.js</strong>.
+          </p>
+
+          <p class="text-sm sm:text-base text-slate-400 max-w-2xl">
+            Berpengalaman merancang arsitektur MVC, normalisasi basis data, dan fungsionalitas CRUD dari nol. Diperkuat dengan rekam jejak <strong>IT Support</strong> yang mengasah ketajaman diagnosa serta kemampuan pemecahan masalah (troubleshooting) secara sistematis.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold text-sm shadow-xl shadow-indigo-600/25 hover:shadow-cyan-500/35 hover:-translate-y-0.5 transition-all flex items-center gap-2 group">
+              <span>Jelajahi Portofolio Proyek</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="px-6 py-3.5 rounded-xl glass-panel border border-slate-700 hover:border-slate-500 text-slate-200 hover:text-white font-semibold text-sm hover:-translate-y-0.5 transition-all flex items-center gap-2">
+              <i data-lucide="file-text" class="w-4 h-4 text-cyan-400"></i>
+              <span>Unduh CV (PDF)</span>
+            </a>
+
+            <button class="open-terminal-trigger px-5 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 font-mono text-xs hover:-translate-y-0.5 transition-all flex items-center gap-2">
+              <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
+              <span>&gt;_ Buka CLI</span>
+            </button>
+          </div>
+
+          <div class="pt-4 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-t border-slate-800/80">
+            <a href="https://wa.me/6287773862920" target="_blank" rel="noopener" class="hover:text-emerald-400 flex items-center gap-1.5 transition-colors">
+              <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i> +62 877-7386-2920
+            </a>
+            <span class="text-slate-700">•</span>
+            <button class="copy-email-btn hover:text-cyan-400 flex items-center gap-1.5 transition-colors" title="Salin email">
+              <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i> naufalfik777@gmail.com
+            </button>
+            <span class="text-slate-700">•</span>
+            <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" rel="noopener" class="hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
+              <i data-lucide="linkedin" class="w-4 h-4 text-indigo-400"></i> LinkedIn
+            </a>
+            <span class="text-slate-700">•</span>
+            <a href="https://github.com/opangganteng" target="_blank" rel="noopener" class="hover:text-slate-200 flex items-center gap-1.5 transition-colors">
+              <i data-lucide="github" class="w-4 h-4 text-slate-300"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center relative">
+          <div class="relative w-full max-w-sm sm:max-w-md">
+            <div class="absolute inset-0 bg-gradient-to-tr from-indigo-600/30 via-cyan-500/20 to-purple-600/30 blur-3xl -z-10 rounded-full"></div>
+
+            <div class="glass-card p-4 sm:p-5 rounded-3xl border border-slate-700/60 shadow-2xl relative">
+              <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/80 shadow-inner group">
+                <img src="assets/images/pas%20foto.jpeg" alt="Foto Profil Naufal Fikri" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+                
+                <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <div class="px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-white/10 text-white text-xs font-semibold">
+                    📍 Cibinong, Bogor
+                  </div>
+                  <div class="px-3 py-1.5 rounded-lg bg-emerald-950/80 backdrop-blur-md border border-emerald-500/40 text-emerald-400 text-xs font-mono font-bold">
+                    ✓ Verified
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 font-mono text-[11px] leading-relaxed text-slate-300">
+                <div><span class="text-purple-400">const</span> <span class="text-cyan-300">developer</span> = {</div>
+                <div class="pl-4"><span class="text-slate-400">name:</span> <span class="text-emerald-300">"Naufal Fikri"</span>,</div>
+                <div class="pl-4"><span class="text-slate-400">education:</span> <span class="text-indigo-300">"S1 Teknik Informatika"</span>,</div>
+                <div class="pl-4"><span class="text-slate-400">projectsBuilt:</span> <span class="text-amber-300">4</span>,</div>
+                <div class="pl-4"><span class="text-slate-400">openToWork:</span> <span class="text-emerald-400">true</span></div>
+                <div>};</div>
+              </div>
+            </div>
+
+            <div class="absolute -top-6 -left-6 hidden sm:flex items-center gap-3 p-3 rounded-2xl glass-card border border-indigo-500/40 shadow-xl animate-float-1">
+              <div class="w-9 h-9 rounded-xl bg-indigo-600/30 flex items-center justify-center text-indigo-400">
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-medium">Lulusan S1</div>
+                <div class="text-xs font-bold text-white">Univ Gunadarma</div>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-6 -right-6 hidden sm:flex items-center gap-3 p-3 rounded-2xl glass-card border border-cyan-500/40 shadow-xl animate-float-2">
+              <div class="w-9 h-9 rounded-xl bg-cyan-600/30 flex items-center justify-center text-cyan-400">
+                <i data-lucide="layers" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-medium">Aplikasi Web</div>
+                <div class="text-xs font-bold text-cyan-300">4 Full-Stack Proyek</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS BANNER -->
+  <section class="border-y border-slate-800 bg-slate-950/60 relative z-10 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold text-gradient">4+</div>
+          <div class="text-xs sm:text-sm text-slate-300 font-medium">Aplikasi Web Full-Stack</div>
+          <div class="text-[11px] text-slate-500">Database-driven end-to-end</div>
+        </div>
+        <div class="space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold text-cyan-400">4</div>
+          <div class="text-xs sm:text-sm text-slate-300 font-medium">Mesin Database</div>
+          <div class="text-[11px] text-slate-500">PostgreSQL, MySQL, SQL Server, Dapper</div>
+        </div>
+        <div class="space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400">100%</div>
+          <div class="text-xs sm:text-sm text-slate-300 font-medium">MVC Architecture</div>
+          <div class="text-[11px] text-slate-500">Pemisahan logika terstruktur</div>
+        </div>
+        <div class="space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold text-purple-400">IT</div>
+          <div class="text-xs sm:text-sm text-slate-300 font-medium">Support & Diagnostics</div>
+          <div class="text-[11px] text-slate-500">Hardware, Network & CCTV</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-400 text-xs font-mono uppercase tracking-wider">
+          <i data-lucide="user" class="w-3.5 h-3.5"></i> Profil & Nilai Unggul
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Memadukan Logika Pemrograman dengan Pemahaman Sistem Komprehensif
+        </h2>
+        <p class="text-slate-400 text-base leading-relaxed">
+          Sebagai sarjana Teknik Informatika dari Universitas Gunadarma, saya memadukan teori ilmu komputer dengan pengalaman praktis membangun sistem berbasis arsitektur MVC, manipulasi basis data tingkat lanjut, serta keahlian analitis dari rekam jejak IT Support.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-indigo-500/50">
+          <div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center">
+            <i data-lucide="layout-grid" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Arsitektur MVC & Clean Code</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Terbiasa memisahkan business logic, presentation view, dan data access layer secara rapih baik pada framework modern (Laravel, ASP.NET MVC) maupun arsitektur PHP Native.
+          </p>
+          <div class="text-xs text-indigo-400 font-mono font-medium">Modular & Maintainable</div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-cyan-500/50">
+          <div class="w-12 h-12 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center">
+            <i data-lucide="database" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Desain Basis Data Relasional</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Menguasai perancangan ERD, normalisasi tabel, integritas foreign key, serta query performa tinggi pada MySQL, PostgreSQL, dan SQL Server.
+          </p>
+          <div class="text-xs text-cyan-400 font-mono font-medium">Optimized Queries & ORM</div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-emerald-500/50">
+          <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="code-2" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Pengembangan End-to-End</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Mampu menangani seluruh siklus: mulai dari antarmuka pengguna responsif (HTML5, Tailwind, Next.js), integrasi REST API, logika backend, hingga konfigurasi database.
+          </p>
+          <div class="text-xs text-emerald-400 font-mono font-medium">Full Stack Integration</div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-amber-500/50">
+          <div class="w-12 h-12 rounded-xl bg-amber-600/20 text-amber-400 flex items-center justify-center">
+            <i data-lucide="wrench" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Troubleshooting & IT Support</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Pengalaman nyata di TMII dan SMK Wijaya Kusuma membentuk mentalitas analitis dalam mendiagnosis kendala software, hardware, konfigurasi LAN/WAN, hingga CCTV.
+          </p>
+          <div class="text-xs text-amber-400 font-mono font-medium">Diagnostic Mindset</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="py-20 bg-slate-950/40 relative z-10 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Stack Teknologi
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Keahlian & Penguasaan Tools</h2>
+          <p class="text-slate-400 text-sm max-w-xl">
+            Bahasa pemrograman modern, framework backend & frontend, mesin basis data, serta kompetensi sistem & jaringan.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button class="skill-filter-btn filter-btn active px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="all">Semua</button>
+          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="backend">Backend & MVC</button>
+          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="frontend">Front-End</button>
+          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="database">Databases & ORM</button>
+          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="tools">Tools & Network</button>
+        </div>
+      </div>
+
+      <div id="skills-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-indigo-500/60" data-category="backend">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-indigo-950/70 border border-indigo-500/30 flex items-center justify-center font-mono font-bold text-indigo-400 text-lg">
+              PHP
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Native & MVC</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">PHP</h4>
+            <p class="text-xs text-slate-400 mt-1">Web native, session management, form handling, dan implementasi CRUD dari nol.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Mahir</span>
+            <span class="text-indigo-400">Used in E-Piket</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-rose-500/60" data-category="backend">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-rose-950/70 border border-rose-500/30 flex items-center justify-center font-mono font-bold text-rose-400 text-lg">
+              Lv
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-rose-500/10 text-rose-400 border border-rose-500/20">Framework</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">Laravel</h4>
+            <p class="text-xs text-slate-400 mt-1">Arsitektur MVC, Blade templating, Eloquent ORM relations, migrasi database.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Kompeten</span>
+            <span class="text-rose-400">Used in JeWePe</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-purple-500/60" data-category="backend">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-purple-950/70 border border-purple-500/30 flex items-center justify-center font-mono font-bold text-purple-400 text-lg">
+              C#
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20">Enterprise MVC</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">C# · ASP.NET MVC</h4>
+            <p class="text-xs text-slate-400 mt-1">Sistem data sekolah, arsitektur MVC, Razor views, dan logika bisnis.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Kompeten</span>
+            <span class="text-purple-400">School Mgmt</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-cyan-500/60" data-category="backend frontend">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center font-mono font-bold text-cyan-400 text-lg">
+              JS
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Full-Stack JS</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">Next.js & Express.js</h4>
+            <p class="text-xs text-slate-400 mt-1">Front-end komponen modern Next.js dan REST API Express.js untuk website kelurahan.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Kompeten</span>
+            <span class="text-cyan-400">Kelurahan Cibubur</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-sky-500/60" data-category="database">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-sky-950/70 border border-sky-500/30 flex items-center justify-center font-mono font-bold text-sky-400 text-lg">
+              PG
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20">RDBMS</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">PostgreSQL</h4>
+            <p class="text-xs text-slate-400 mt-1">Perancangan skema data relasional terstruktur untuk layanan warga kelurahan.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Mahir</span>
+            <span class="text-sky-400">Relational DB</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-blue-500/60" data-category="database">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-blue-950/70 border border-blue-500/30 flex items-center justify-center font-mono font-bold text-blue-400 text-lg">
+              SQL
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">ORM & Server</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">SQL Server & Dapper</h4>
+            <p class="text-xs text-slate-400 mt-1">Dapper lightweight ORM untuk data access layer berkecepatan tinggi ke SQL Server.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Bersertifikat</span>
+            <span class="text-blue-400">High-Speed Queries</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-amber-500/60" data-category="database">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-amber-950/70 border border-amber-500/30 flex items-center justify-center font-mono font-bold text-amber-400 text-lg">
+              My
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">RDBMS</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">MySQL</h4>
+            <p class="text-xs text-slate-400 mt-1">Desain basis data multi-tabel untuk toko bahan bangunan dan sistem piket sekolah.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Mahir</span>
+            <span class="text-amber-400">CRUD & Indexing</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-emerald-500/60" data-category="frontend">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-emerald-950/70 border border-emerald-500/30 flex items-center justify-center font-mono font-bold text-emerald-400 text-lg">
+              UI
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Bersertifikat</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">HTML5, CSS3 & Tailwind</h4>
+            <p class="text-xs text-slate-400 mt-1">Markup semantik, styling responsif lintas perangkat (mobile-first), Tailwind CSS.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Mahir</span>
+            <span class="text-emerald-400">Pixel Perfect</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-orange-500/60" data-category="tools">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-orange-950/70 border border-orange-500/30 flex items-center justify-center font-mono font-bold text-orange-400 text-lg">
+              Git
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-orange-500/10 text-orange-400 border border-orange-500/20">VCS</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">Git & GitHub</h4>
+            <p class="text-xs text-slate-400 mt-1">Branching, commit conventions, code reviews, dan pengelolaan repository tim.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Kompeten</span>
+            <span class="text-orange-400">opangganteng</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-cyan-500/60" data-category="tools">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center font-mono font-bold text-cyan-400 text-lg">
+              NET
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Cisco Certified</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">Router & Jaringan Cisco</h4>
+            <p class="text-xs text-slate-400 mt-1">Konfigurasi WAN & LAN Cisco router, subnetting IP, perutean paket, troubleshooting.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Intermediate</span>
+            <span class="text-cyan-400">Certified</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-emerald-500/60" data-category="tools">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-emerald-950/70 border border-emerald-500/30 flex items-center justify-center font-mono font-bold text-emerald-400 text-lg">
+              IT
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Hands-on</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">IT Diagnostics & CCTV</h4>
+            <p class="text-xs text-slate-400 mt-1">Perbaikan OS Windows, software maintenance, manajemen aset IT, ticketing, CCTV.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Berpengalaman</span>
+            <span class="text-emerald-400">TMII & SMK</span>
+          </div>
+        </div>
+
+        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-violet-500/60" data-category="backend">
+          <div class="flex items-start justify-between">
+            <div class="w-12 h-12 rounded-xl bg-violet-950/70 border border-violet-500/30 flex items-center justify-center font-mono font-bold text-violet-400 text-lg">
+              API
+            </div>
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-violet-500/10 text-violet-400 border border-violet-500/20">Concepts</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-base font-bold text-white">RESTful API & Architecture</h4>
+            <p class="text-xs text-slate-400 mt-1">HTTP methods, JSON parsing, autentikasi sesi, middleware, dan arsitektur data.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>Level: Solid</span>
+            <span class="text-violet-400">Best Practices</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-400 text-xs font-mono uppercase tracking-wider">
+            <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i> Rekam Karya Nyata
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Portofolio Aplikasi Web Unggulan</h2>
+          <p class="text-slate-400 text-sm max-w-xl">
+            Empat proyek aplikasi berbasis basis data yang dibangun menyeluruh dengan fokus pada struktur arsitektur MVC, efisiensi query, dan user experience.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button class="project-filter-btn filter-btn active px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="all">Semua Proyek (4)</button>
+          <button class="project-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="fullstack">Next.js & Express</button>
+          <button class="project-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="csharp">C# ASP.NET</button>
+          <button class="project-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="php">PHP & Laravel</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 flex flex-col justify-between" data-category="fullstack">
+          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">Next.js · Express.js · PostgreSQL</span>
+              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
+            </div>
+            
+            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
+              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                <span class="text-[10px] text-slate-500 ml-2">cibubur-portal.gov/api/services</span>
+              </div>
+              <p class="text-cyan-300">GET /api/v1/warga/layanan-kependudukan</p>
+              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-2xl font-bold text-white">Website Informasi Kelurahan Cibubur</h3>
+              <p class="text-sm text-slate-300 leading-relaxed">Membangun website informasi kelurahan terpadu end-to-end (front-end Next.js dan back-end Express.js) serta merancang skema relasional PostgreSQL untuk penyimpanan dan pengelolaan konten layanan warga yang dinamis.</p>
+              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400"></i> Desain skema PostgreSQL relasional untuk data dinamis pelayanan kependudukan.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400"></i> Layout responsif yang dioptimalkan untuk perangkat seluler hingga desktop.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400"></i> Struktur kode modular berbasis komponen untuk kemudahan pemeliharaan.</li>
+              </ul>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Next.js</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Express.js</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">PostgreSQL</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Tailwind CSS</span>
+              </div>
+              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="1">
+                <span>Detail Proyek</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-purple-500/50 flex flex-col justify-between" data-category="csharp">
+          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/30">C# · ASP.NET MVC · Dapper · SQL Server</span>
+              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
+            </div>
+            
+            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
+              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                <span class="text-[10px] text-slate-500 ml-2">SchoolDataController.cs [MVC]</span>
+              </div>
+              <p class="text-purple-300">var students = await connection.QueryAsync<Student>(sql);</p>
+              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-2xl font-bold text-white">School Management System</h3>
+              <p class="text-sm text-slate-300 leading-relaxed">Sistem data manajemen sekolah menggunakan arsitektur MVC enterprise untuk memisahkan business logic, Razor views, dan data layer secara ketat. Menggunakan Dapper ORM untuk query latensi rendah ke SQL Server.</p>
+              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400"></i> Pemisahan tegas MVC: Controller, Razor View, dan Data Layer.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400"></i> Fungsionalitas CRUD master data sekolah berkinerja tinggi via Dapper ORM.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400"></i> Skema relasional SQL Server teroptimasi dengan foreign key constraints.</li>
+              </ul>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">C#</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">ASP.NET MVC</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Dapper</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">SQL Server</span>
+              </div>
+              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="2">
+                <span>Detail Proyek</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-500/50 flex flex-col justify-between" data-category="php">
+          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">PHP Native · MySQL · HTML5 · CSS3 · JS</span>
+              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
+            </div>
+            
+            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
+              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                <span class="text-[10px] text-slate-500 ml-2">piket_dashboard.php [Admin Live]</span>
+              </div>
+              <p class="text-emerald-300">> 5+ Modul CRUD Aktif: Guru, Siswa, Kelas, Ruang</p>
+              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-2xl font-bold text-white">E-Piket: School Duty Management System</h3>
+              <p class="text-sm text-slate-300 leading-relaxed">Membangun sistem informasi pengelolaan piket sekolah dari nol (pure PHP native) yang mencakup 5+ modul CRUD, penjadwalan piket mingguan, pencatatan absensi & keterlambatan siswa, serta dashboard admin monitoring real-time.</p>
+              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> 5+ Modul CRUD: Guru Piket, Siswa, Kelas, Ruang, dan Tahun Ajaran.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Pencatatan jadwal piket & log ketidakhadiran/keterlambatan siswa.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Dashboard admin real-time untuk pemantauan seluruh aktivitas sekolah.</li>
+              </ul>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">PHP Native</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">MySQL</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">HTML5/CSS3</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">JavaScript</span>
+              </div>
+              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="3">
+                <span>Detail Proyek</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-rose-500/50 flex flex-col justify-between" data-category="php">
+          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-rose-500/10 text-rose-300 border border-rose-500/30">PHP · Laravel · MySQL · Bootstrap</span>
+              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
+            </div>
+            
+            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
+              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                <span class="text-[10px] text-slate-500 ml-2">InventoryController.php [Laravel MVC]</span>
+              </div>
+              <p class="text-rose-300">Product::with('category')->where('stock', '<', 10)->get();</p>
+              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-2xl font-bold text-white">JeWePe Toko Bahan Bangunan</h3>
+              <p class="text-sm text-slate-300 leading-relaxed">Aplikasi inventaris dan manajemen produk toko material bangunan menggunakan framework Laravel. Mengimplementasikan fitur CRUD berbasis basis data relasional untuk mendukung kelancaran transaksi dan stok toko.</p>
+              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400"></i> Katalog produk dan kalkulasi inventaris stok bahan bangunan otomatis.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400"></i> Fitur CRUD berbasis basis data relasional untuk transaksi harian.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400"></i> Struktur MVC Laravel untuk pemisahan logika komputasi dan tampilan data.</li>
+              </ul>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Laravel</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">PHP</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">MySQL</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Bootstrap</span>
+              </div>
+              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="4">
+                <span>Detail Proyek</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER & EDUCATION JOURNEY -->
+  <section id="journey" class="py-24 bg-slate-950/50 relative z-10 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-mono uppercase tracking-wider">
+          <i data-lucide="history" class="w-3.5 h-3.5"></i> Jejak Langkah
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Pengalaman Kerja & Pendidikan</h2>
+        <p class="text-slate-400 text-base">
+          Rekam jejak pendidikan formal di bidang Teknik Informatika dan pengalaman lapangan dalam dukungan teknis (IT Support).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-7 space-y-8">
+          <h3 class="text-xl font-bold text-white flex items-center gap-2.5">
+            <i data-lucide="briefcase" class="w-5 h-5 text-indigo-400"></i>
+            <span>Pengalaman Kerja Lapangan</span>
+          </h3>
+
+          <div class="relative pl-6 border-l-2 border-indigo-500/30 space-y-10">
+            <div class="relative group">
+              <div class="timeline-dot"></div>
+              <div class="glass-card p-6 rounded-2xl space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="px-2.5 py-1 rounded text-xs font-mono bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">IT Support</span>
+                  <span class="text-xs text-slate-400 font-mono">Taman Mini Indonesia Indah</span>
+                </div>
+                <h4 class="text-lg font-bold text-white">Jagat Satwa Nusantara, TMII</h4>
+                <ul class="space-y-2 text-sm text-slate-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-indigo-400 font-bold">•</span>
+                    <span>Menangani dukungan teknis komprehensif untuk kendala hardware, software, serta stabilitas jaringan.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-indigo-400 font-bold">•</span>
+                    <span>Melakukan pemeliharaan rutin dan pengawasan operasional sistem kamera pengawas (CCTV).</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-indigo-400 font-bold">•</span>
+                    <span>Mengelola tiket permintaan bantuan teknis (ticketing system) guna memastikan keandalan sistem harian.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="relative group">
+              <div class="timeline-dot"></div>
+              <div class="glass-card p-6 rounded-2xl space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="px-2.5 py-1 rounded text-xs font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">IT Support</span>
+                  <span class="text-xs text-slate-400 font-mono">Institusi Pendidikan</span>
+                </div>
+                <h4 class="text-lg font-bold text-white">SMK Wijaya Kusuma</h4>
+                <ul class="space-y-2 text-sm text-slate-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold">•</span>
+                    <span>Instalasi, konfigurasi, dan pembaruan sistem operasi serta aplikasi komputer untuk menjamin stabilitas perangkat sekolah.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 font-bold">•</span>
+                    <span>Mendokumentasikan inventaris aset IT sekolah serta konfigurasi sistem laboratorium secara berkelanjutan.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="relative group">
+              <div class="timeline-dot"></div>
+              <div class="glass-card p-6 rounded-2xl space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="px-2.5 py-1 rounded text-xs font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">Quality Control</span>
+                  <span class="text-xs text-slate-400 font-mono">Manufacturing</span>
+                </div>
+                <h4 class="text-lg font-bold text-white">PT Serena Indopangan</h4>
+                <ul class="space-y-2 text-sm text-slate-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-amber-400 font-bold">•</span>
+                    <span>Melakukan inspeksi kontrol kualitas di lapangan secara cermat untuk memastikan standar produk sesuai spesifikasi.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2.5">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-cyan-400"></i>
+              <span>Pendidikan Formal</span>
+            </h3>
+
+            <div class="glass-card p-6 rounded-2xl border-indigo-500/40 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono text-cyan-400 font-semibold">Sarjana (S1)</span>
+                <span class="text-xs font-mono text-slate-400">Gunadarma University</span>
+              </div>
+              <h4 class="text-xl font-bold text-white">Teknik Informatika</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Fokus Keilmuan: Pengembangan Aplikasi Web, Sistem Basis Data Relasional, Rekayasa Perangkat Lunak, dan Dukungan Sistem IT.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2.5">
+              <i data-lucide="award" class="w-5 h-5 text-emerald-400"></i>
+              <span>Sertifikasi Kompetensi</span>
+            </h3>
+
+            <div class="space-y-3">
+              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="file-badge-2" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white">JavaScript Programming Fundamental</div>
+                  <div class="text-[11px] text-slate-400">Core JS, Logic, DOM, async concepts</div>
+                </div>
+              </div>
+
+              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="file-badge-2" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white">Building Website HTML5 & Web App Design</div>
+                  <div class="text-[11px] text-slate-400">Modern layout, semantik web, responsive UI</div>
+                </div>
+              </div>
+
+              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="database" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white">SQL Server for Beginner</div>
+                  <div class="text-[11px] text-slate-400">Database architecture, queries, tables, and relational integrity</div>
+                </div>
+              </div>
+
+              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="network" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white">WAN Cisco Router (Intermediate) & LAN Cisco Router</div>
+                  <div class="text-[11px] text-slate-400">Cisco routing, packet routing, IP subnetting & troubleshooting</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLI TERMINAL SECTION -->
+  <section id="terminal-section" class="py-24 relative z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+          <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Interactive Console
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Coba Developer CLI Terminal</h2>
+        <p class="text-slate-400 text-sm max-w-lg mx-auto">
+          Ketik perintah seperti <span class="text-cyan-400 font-mono">help</span>, <span class="text-cyan-400 font-mono">skills</span>, <span class="text-cyan-400 font-mono">projects</span>, <span class="text-cyan-400 font-mono">sudo hire</span>, atau <span class="text-cyan-400 font-mono">matrix</span>!
+        </p>
+      </div>
+
+      <div class="terminal-card border border-slate-700/80 shadow-2xl">
+        <div class="terminal-header">
+          <div class="terminal-mac-btns">
+            <span class="t-btn t-btn-red" title="Close"></span>
+            <span class="t-btn t-btn-yellow" title="Minimize"></span>
+            <span class="t-btn t-btn-green" title="Maximize"></span>
+          </div>
+          <div class="text-xs font-mono text-slate-400 flex items-center gap-2">
+            <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <span>naufal@dev-portfolio: ~ (bash)</span>
+          </div>
+          <div class="text-[11px] font-mono text-slate-500">
+            press TAB to auto-complete
+          </div>
+        </div>
+
+        <div id="terminal-output" class="terminal-viewport space-y-1">
+          <div class="text-emerald-400 font-bold">Welcome to Naufal Fikri's Interactive CLI [Version 2.0.4]</div>
+          <div class="text-slate-400 text-xs">Type <span class="text-cyan-400 font-bold">help</span> to view all commands, or try <span class="text-amber-300 font-bold">sudo hire</span> for a quick hiring shortcut!</div>
+          <div class="text-slate-600">--------------------------------------------------------------------------------</div>
+        </div>
+
+        <div class="px-4 py-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+          <span class="text-emerald-400 font-mono text-xs font-bold shrink-0">naufal@dev:~$</span>
+          <input type="text" id="terminal-input" class="terminal-cmd-input" placeholder="Type a command (e.g. help, skills, projects, sudo hire)..." autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="py-24 bg-slate-950/60 relative z-10 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-mono uppercase tracking-wider">
+              <i data-lucide="message-square" class="w-3.5 h-3.5"></i> Hubungi Langsung
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Siap Berkontribusi untuk Tim Anda</h2>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Apakah Anda memiliki lowongan kerja Full Stack / Web Developer, proyek kolaborasi, atau ingin berdiskusi teknis? Silakan hubungi saya melalui jalur berikut.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <a href="https://wa.me/6287773862920?text=Halo%20Naufal,%20saya%20tertarik%20dengan%20portofolio%20Anda!" target="_blank" rel="noopener" class="glass-card p-4 rounded-2xl flex items-center justify-between group hover:border-emerald-500/60 transition-all">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i data-lucide="phone" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">WhatsApp Langsung</div>
+                  <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">+62 877-7386-2920</div>
+                </div>
+              </div>
+              <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
+            </a>
+
+            <div class="glass-card p-4 rounded-2xl flex items-center justify-between group hover:border-cyan-500/60 transition-all">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                  <i data-lucide="mail" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">Email Resmi</div>
+                  <div class="text-sm font-bold text-white">naufalfik777@gmail.com</div>
+                </div>
+              </div>
+              <button class="copy-email-btn p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-cyan-400 transition-colors" title="Salin Email">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" rel="noopener" class="glass-card p-4 rounded-2xl flex items-center gap-3 hover:border-indigo-500/60 group">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-400">Profil</div>
+                  <div class="text-xs font-bold text-white group-hover:text-indigo-400">LinkedIn</div>
+                </div>
+              </a>
+
+              <a href="https://github.com/opangganteng" target="_blank" rel="noopener" class="glass-card p-4 rounded-2xl flex items-center gap-3 hover:border-slate-500/60 group">
+                <div class="w-10 h-10 rounded-xl bg-slate-800 text-slate-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-400">Koleksi Repo</div>
+                  <div class="text-xs font-bold text-white group-hover:text-cyan-400">GitHub</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center gap-3 text-xs text-slate-400">
+              <i data-lucide="map-pin" class="w-4 h-4 text-rose-400 shrink-0"></i>
+              <span>Cibinong, Kabupaten Bogor, Jawa Barat, Indonesia (Siap WFO / WFH / Hybrid)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="glass-card p-6 sm:p-8 rounded-3xl border-slate-800 space-y-6">
+            <div>
+              <h3 class="text-xl font-bold text-white">Kirim Pesan Cepat</h3>
+              <p class="text-xs text-slate-400 mt-1">Pilih metode pengiriman favorit Anda (langsung ke WhatsApp atau aplikasi Email).</p>
+            </div>
+
+            <form id="interactive-contact-form" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="contact-name" class="text-xs font-mono text-slate-300">Nama Lengkap / Instansi</label>
+                  <input type="text" id="contact-name" placeholder="Contoh: HR Manager / Tech Lead" required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors">
+                </div>
+
+                <div class="space-y-1.5">
+                  <label for="contact-email" class="text-xs font-mono text-slate-300">Alamat Email Anda</label>
+                  <input type="email" id="contact-email" placeholder="email@perusahaan.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors">
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="contact-subject" class="text-xs font-mono text-slate-300">Perihal / Kebutuhan</label>
+                <input type="text" id="contact-subject" placeholder="Tawaran Kerja Full Stack / Kolaborasi Web" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors">
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="contact-message" class="text-xs font-mono text-slate-300">Pesan Anda</label>
+                <textarea id="contact-message" rows="4" placeholder="Tuliskan detail tawaran atau pertanyaan Anda..." required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"></textarea>
+              </div>
+
+              <div class="pt-2 flex flex-wrap items-center gap-3">
+                <button type="button" id="send-wa-btn" class="flex-1 py-3.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-xs shadow-lg shadow-emerald-600/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
+                  <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  <span>Kirim via WhatsApp</span>
+                </button>
+
+                <button type="button" id="send-email-btn" class="flex-1 py-3.5 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-semibold text-xs hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
+                  <i data-lucide="send" class="w-4 h-4 text-cyan-400"></i>
+                  <span>Kirim via Email</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-900 py-12 relative z-10 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center font-mono font-bold text-white text-xs">
+          &lt;/&gt;
+        </div>
+        <div>
+          <span class="text-sm font-bold text-white">Naufal Fikri</span>
+          <p class="text-[11px] text-slate-500">Junior Full Stack Developer • Cibinong, West Java</p>
+        </div>
+      </div>
+
+      <div class="text-xs text-slate-500 text-center">
+        © 2026 Naufal Fikri. Crafted with clean architecture & modern interactive web principles.
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-mono text-slate-400">
+        <a href="#hero" class="hover:text-cyan-400">Top</a>
+        <span>•</span>
+        <a href="#projects" class="hover:text-cyan-400">Projects</a>
+        <span>•</span>
+        <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="hover:text-indigo-400">CV (PDF)</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PROJECT MODAL -->
+  <div id="project-modal">
+    <div id="project-modal-card" class="relative">
+      <div id="modal-banner" class="p-6 md:p-8 rounded-t-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white relative">
+        <button id="modal-close-btn" class="absolute top-5 right-5 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white/80 hover:text-white transition-colors" title="Tutup Modal (Esc)">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div id="modal-role" class="text-xs font-mono tracking-wider uppercase text-cyan-200">Role & Category</div>
+        <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Project Title</h3>
+        <div id="modal-tags" class="flex flex-wrap gap-2 mt-4"></div>
+      </div>
+
+      <div class="p-6 md:p-8 space-y-6 text-slate-300">
+        <div>
+          <h4 class="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-2">Ringkasan Proyek</h4>
+          <p id="modal-summary" class="text-sm sm:text-base leading-relaxed text-slate-200"></p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+          <h4 class="text-xs font-mono uppercase tracking-wider text-indigo-400 flex items-center gap-2">
+            <i data-lucide="layers" class="w-4 h-4"></i> Arsitektur & Pola Desain
+          </h4>
+          <p id="modal-arch" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-mono uppercase tracking-wider text-emerald-400 mb-3 flex items-center gap-2">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Fitur & Implementasi Utama
+          </h4>
+          <ul id="modal-features" class="space-y-2.5"></ul>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+          <h4 class="text-xs font-mono uppercase tracking-wider text-amber-400 flex items-center gap-2">
+            <i data-lucide="database" class="w-4 h-4"></i> Desain Skema Basis Data
+          </h4>
+          <p id="modal-db" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div class="pt-2 border-t border-slate-800 text-xs text-slate-400">
+          <strong class="text-slate-300">Key Takeaway: </strong>
+          <span id="modal-takeaway"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STANDALONE TERMINAL MODAL -->
+  <div id="terminal-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="terminal-card max-w-3xl w-full border border-cyan-500/40 shadow-2xl">
+      <div class="terminal-header">
+        <div class="terminal-mac-btns">
+          <span id="close-terminal-btn" class="t-btn t-btn-red" title="Close"></span>
+          <span class="t-btn t-btn-yellow"></span>
+          <span class="t-btn t-btn-green"></span>
+        </div>
+        <div class="text-xs font-mono text-cyan-300 flex items-center gap-2">
+          <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>naufal@dev-terminal: ~ (CLI Modal)</span>
+        </div>
+        <div class="text-[11px] font-mono text-slate-500">ESC to close</div>
+      </div>
+      <div class="terminal-viewport p-4">
+        <div class="text-cyan-400 font-bold">Naufal Fikri Quick CLI Modal</div>
+        <div class="text-xs text-slate-400 mb-2">Type <span class="text-white font-mono">help</span> for commands. Use embedded terminal on page for full scrollback.</div>
+        <div class="text-xs text-emerald-400">Tip: Type 'whatsapp' to chat directly, or 'cv' to download resume!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/canvas-bg.js"></script>
+  <script src="assets/js/terminal.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -7,23 +7,23 @@
 const PROJECTS_DATA = [
   {
     id: 1,
-    title: "Kelurahan Cibubur Information Website",
+    title: "Cibubur Local Government Information Website",
     category: "fullstack",
     categoryLabel: "Next.js & Express.js",
     role: "Full Stack Developer",
     badge: "Public Service Web App",
     heroGradient: "from-blue-600 via-indigo-600 to-cyan-500",
-    summary: "Sistem website informasi kelurahan terpadu yang dibangun dari sisi front-end hingga back-end untuk mendigitalkan layanan warga serta diseminasi informasi publik.",
+    summary: "An integrated local government information website built end to end to digitize citizen services and distribute public information.",
     tags: ["Next.js", "Express.js", "PostgreSQL", "Tailwind CSS", "REST API", "Responsive Design"],
-    architecture: "Full-Stack Decoupled Architecture: Front-end modern dengan Next.js yang terhubung melalui RESTful API ke Express.js server, dengan PostgreSQL sebagai database relasional utama.",
+    architecture: "Full-stack decoupled architecture: a modern Next.js front end connected to an Express.js server through a RESTful API, with PostgreSQL as the primary relational database.",
     keyFeatures: [
-      "Integrasi penuh end-to-end antara front-end Next.js dan back-end Express.js.",
-      "Perancangan skema relasional database PostgreSQL untuk menyimpan konten layanan warga yang dinamis.",
-      "Layout responsif yang dioptimalkan secara konsisten di perangkat smartphone, tablet, maupun desktop.",
-      "Arsitektur kode modular berbasis komponen untuk mempermudah maintenance dan pengembangan fitur masa depan."
+      "End-to-end integration between the Next.js front end and Express.js back end.",
+      "Designed a PostgreSQL relational schema to store dynamic citizen-service content.",
+      "Consistently optimized responsive layouts for smartphones, tablets, and desktops.",
+      "Built a modular, component-based codebase to simplify maintenance and future feature development."
     ],
-    dbHighlights: "PostgreSQL relational schema dengan normalisasi data untuk pelayanan kependudukan, pengumuman warga, dan log aktivitas.",
-    techTakeaway: "Memperkuat keahlian integrasi API lintas domain, pengelolaan state di Next.js, dan optimasi performa query database relasional."
+    dbHighlights: "A PostgreSQL relational schema with normalized data for civil services, community announcements, and activity logs.",
+    techTakeaway: "Strengthened skills in cross-domain API integration, Next.js state management, and relational database query optimization."
   },
   {
     id: 2,
@@ -33,17 +33,17 @@ const PROJECTS_DATA = [
     role: "Full Stack Developer (Independent Project)",
     badge: "Enterprise Web App",
     heroGradient: "from-purple-600 via-indigo-700 to-blue-600",
-    summary: "Sistem tata kelola data sekolah komprehensif mengadopsi arsitektur MVC enterprise untuk memisahkan business logic, user interface, dan akses data.",
+    summary: "A comprehensive school data management system using enterprise MVC architecture to separate business logic, the user interface, and data access.",
     tags: ["C#", "ASP.NET MVC", "Dapper ORM", "SQL Server", "MVC Architecture", "CRUD"],
-    architecture: "Enterprise MVC Pattern: Pemisahan tegas Model-View-Controller dengan Dapper sebagai lightweight ORM untuk eksekusi query cepat ke database Microsoft SQL Server.",
+    architecture: "Enterprise MVC pattern: a clear Model-View-Controller separation with Dapper as a lightweight ORM for fast queries to Microsoft SQL Server.",
     keyFeatures: [
-      "Penerapan arsitektur MVC untuk pemisahan logika bisnis, Razor views, dan layer akses data secara bersih.",
-      "Implementasi fungsionalitas CRUD lengkap untuk master data sekolah (siswa, guru, kelas, mata pelajaran).",
-      "Pemanfaatan Dapper ORM untuk efisiensi transfer data dengan latensi minimal ke Microsoft SQL Server.",
-      "Perancangan skema database relasional dengan foreign key constraints untuk menjaga integritas data akademik."
+      "Applied MVC architecture to cleanly separate business logic, Razor views, and the data-access layer.",
+      "Implemented complete CRUD functionality for school master data (students, teachers, classes, and subjects).",
+      "Used Dapper ORM for efficient data transfer with minimal latency to Microsoft SQL Server.",
+      "Designed a relational database schema with foreign-key constraints to preserve academic data integrity."
     ],
-    dbHighlights: "Microsoft SQL Server dengan tabel berelasi one-to-many & many-to-many, dioptimalkan dengan indeks performa dan parameterized queries via Dapper.",
-    techTakeaway: "Menguasai struktur C# .NET ecosystem, pola arsitektur MVC enterprise, serta pencegahan SQL Injection dengan Dapper ORM."
+    dbHighlights: "Microsoft SQL Server with one-to-many and many-to-many relationships, optimized indexes, and parameterized queries through Dapper.",
+    techTakeaway: "Built expertise in the C# .NET ecosystem, enterprise MVC architecture, and SQL injection prevention with Dapper ORM."
   },
   {
     id: 3,
@@ -53,38 +53,38 @@ const PROJECTS_DATA = [
     role: "PHP Developer (Independent Project)",
     badge: "Real-time School System",
     heroGradient: "from-emerald-600 via-teal-700 to-cyan-600",
-    summary: "Sistem manajemen operasional piket harian sekolah yang dirancang dari nol menggunakan PHP Native dengan 5+ modul CRUD dan dashboard monitoring real-time.",
+    summary: "A daily school duty operations management system built from scratch with native PHP, featuring 5+ CRUD modules and a real-time monitoring dashboard.",
     tags: ["PHP Native", "MySQL", "HTML5", "CSS3", "JavaScript", "Admin Dashboard"],
-    architecture: "Custom Modular Native PHP: Dibangun tanpa framework eksternal untuk memperdalam pemahaman mendasar seputar HTTP request handling, session management, dan database connection pooling.",
+    architecture: "Custom modular native PHP: built without an external framework to deepen understanding of HTTP request handling, session management, and database connection pooling.",
     keyFeatures: [
-      "Mencakup 5+ modul CRUD lengkap: Guru Piket, Siswa, Kelas, Ruang Kelas, dan Tahun Ajaran.",
-      "Fitur penjadwalan jadwal piket mingguan dan pencatatan absensi piket terstruktur.",
-      "Pencatatan log ketidakhadiran dan keterlambatan siswa secara detail dan tercatat di database.",
-      "Dashboard admin interaktif untuk pemantauan seluruh aktivitas piket sekolah secara real-time.",
-      "Desain skema database relasional MySQL yang menopang seluruh dependensi data aplikasi."
+      "Includes 5+ complete CRUD modules: duty teachers, students, classes, classrooms, and academic years.",
+      "Features weekly duty scheduling and structured duty attendance tracking.",
+      "Records detailed student absence and tardiness logs in the database.",
+      "Provides an interactive admin dashboard for real-time monitoring of all school duty activities.",
+      "Designed a MySQL relational schema to support all application data dependencies."
     ],
-    dbHighlights: "Relational database MySQL dengan trigger logika bisnis sederhana dan query aggregation untuk laporan statistik kehadiran harian.",
-    techTakeaway: "Pemahaman fundamental yang kokoh mengenai siklus hidup aplikasi web, keamanan dasar (XSS/CSRF prevention), dan query native SQL."
+    dbHighlights: "A MySQL relational database with simple business-logic triggers and aggregate queries for daily attendance reports.",
+    techTakeaway: "Developed a solid understanding of the web application lifecycle, baseline security (XSS/CSRF prevention), and native SQL queries."
   },
   {
     id: 4,
-    title: "JeWePe Toko Bahan Bangunan",
+    title: "JeWePe Building Materials Store",
     category: "php",
     categoryLabel: "PHP · Laravel",
     role: "Full Stack Developer (Independent Project)",
     badge: "Inventory & POS System",
     heroGradient: "from-rose-600 via-orange-600 to-amber-500",
-    summary: "Aplikasi manajemen produk, katalog barang, serta monitoring inventaris stok untuk toko material bahan bangunan berbasis framework Laravel.",
+    summary: "A Laravel-based product management, catalog, and inventory monitoring application for a building materials store.",
     tags: ["PHP", "Laravel", "MySQL", "Bootstrap", "Inventory CRUD", "MVC"],
-    architecture: "Laravel MVC Ecosystem: Memanfaatkan Routing, Controllers, Eloquent ORM, Blade Templating, dan Database Migrations untuk siklus pengembangan yang terstruktur.",
+    architecture: "Laravel MVC ecosystem: uses routing, controllers, Eloquent ORM, Blade templating, and database migrations for a structured development lifecycle.",
     keyFeatures: [
-      "Sistem katalog produk dan inventarisasi material bangunan dengan tracking stok secara akurat.",
-      "Fitur CRUD berbasis database untuk mendukung operasional inventaris harian toko.",
-      "Penerapan struktur MVC Laravel guna memisahkan kode tampilan antarmuka dari logika komputasi data.",
-      "Desain database relasional MySQL untuk mencatat data kategori, supplier, produk, dan log mutasi barang."
+      "A product catalog and building materials inventory system with accurate stock tracking.",
+      "Database-backed CRUD features supporting the store's daily inventory operations.",
+      "Applied Laravel MVC structure to separate interface presentation from data processing logic.",
+      "Designed a MySQL relational database for categories, suppliers, products, and stock movement logs."
     ],
-    dbHighlights: "Schema relational MySQL dengan integrasi foreign key yang dikelola melalui Laravel Migrations & relasi Eloquent Model.",
-    techTakeaway: "Kemahiran memanfaatkan ekosistem Laravel modern, validasi request form otomatis, dan pengelolaan data relasional secara efisien."
+    dbHighlights: "A MySQL relational schema with foreign-key integration managed through Laravel migrations and Eloquent model relationships.",
+    techTakeaway: "Strengthened proficiency in the modern Laravel ecosystem, automatic form request validation, and efficient relational data management."
   }
 ];
 
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const state = sfx.toggle();
       updateSoundUI();
       if (state) sfx.click();
-      showToast(state ? 'Efek audio diaktifkan 🔊' : 'Efek audio dinonaktifkan 🔇');
+      showToast(state ? 'Sound effects enabled 🔊' : 'Sound effects disabled 🔇');
     });
   }
 
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('portfolio-theme', next);
       updateThemeButton(next);
-      showToast(`Tema diubah: ${next.toUpperCase()}`);
+      showToast(`Theme changed: ${next.toUpperCase()}`);
     });
   }
 
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       sfx.click();
       navigator.clipboard.writeText('naufalfik777@gmail.com').then(() => {
-        showToast('📋 Email berhasil disalin: naufalfik777@gmail.com');
+        showToast('📋 Email address copied: naufalfik777@gmail.com');
       }).catch(() => {
         showToast('naufalfik777@gmail.com');
       });
@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       sfx.click();
       navigator.clipboard.writeText('+6287773862920').then(() => {
-        showToast('📋 Nomor WhatsApp berhasil disalin: +62 877-7386-2920');
+        showToast('📋 WhatsApp number copied: +62 877-7386-2920');
       });
     });
   });
@@ -550,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = document.getElementById('contact-message').value.trim();
 
       if (!name || !message) {
-        showToast('⚠️ Silakan isi nama dan pesan Anda terlebih dahulu.');
+        showToast('⚠️ Please enter your name and message first.');
         return;
       }
 
@@ -559,10 +559,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.confetti({ particleCount: 70, spread: 60 });
       }
 
-      const text = `Halo Naufal Fikri,\n\nNama: ${name}\nEmail: ${email || '-'}\n\nPesan:\n${message}\n\n(Dikirim via Portofolio Web)`;
+      const text = `Hello Naufal Fikri,\n\nName: ${name}\nEmail: ${email || '-'}\n\nMessage:\n${message}\n\n(Sent via web portfolio)`;
       const url = `https://wa.me/6287773862920?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
-      showToast('🚀 Membuka WhatsApp chat...');
+      showToast('🚀 Opening WhatsApp chat...');
     });
   }
 
@@ -573,11 +573,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const name = document.getElementById('contact-name').value.trim();
       const email = document.getElementById('contact-email').value.trim();
-      const subject = document.getElementById('contact-subject')?.value.trim() || 'Peluang Kerja / Kolaborasi';
+      const subject = document.getElementById('contact-subject')?.value.trim() || 'Job Opportunity / Collaboration';
       const message = document.getElementById('contact-message').value.trim();
 
       if (!name || !message) {
-        showToast('⚠️ Silakan isi nama dan pesan Anda terlebih dahulu.');
+        showToast('⚠️ Please enter your name and message first.');
         return;
       }
 
@@ -586,10 +586,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.confetti({ particleCount: 70, spread: 60 });
       }
 
-      const body = `Halo Naufal Fikri,\n\nNama Pengirim: ${name}\nEmail Pengirim: ${email}\n\nPesan:\n${message}`;
+      const body = `Hello Naufal Fikri,\n\nSender Name: ${name}\nSender Email: ${email}\n\nMessage:\n${message}`;
       const mailto = `mailto:naufalfik777@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
-      showToast('📧 Membuka aplikasi email Anda...');
+      showToast('📧 Opening your email app...');
     });
   }
 });

@@ -1,239 +1,232 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Naufal Fikri | Junior Full Stack Developer & Web Engineer</title>
-  <meta name="description" content="Official portfolio of Naufal Fikri - Junior Full Stack Developer and Informatics Engineering graduate from Gunadarma University. Experienced in PHP, Laravel, C# ASP.NET MVC, Next.js, Express.js, PostgreSQL, and SQL Server.">
+  <title>Naufal Fikri | Dukungan TI | Lulusan Teknik Informatika</title>
+  <meta name="description" content="Portofolio profesional Naufal Fikri, staf Dukungan TI dan lulusan Teknik Informatika Universitas Gunadarma. Berpengalaman dalam infrastruktur TI, pemecahan masalah jaringan, perawatan perangkat keras dan CCTV, serta pengembangan aplikasi web berbasis basis data. Bersedia relokasi dan bekerja di kantor.">
   <meta name="author" content="Naufal Fikri">
-  <meta name="keywords" content="Naufal Fikri, Web Developer, Full Stack Developer, Laravel, ASP.NET MVC, Next.js, Express.js, Cibinong, Gunadarma">
+  <meta name="keywords" content="Naufal Fikri, Dukungan TI, Universitas Gunadarma, Dukungan Teknis, Infrastruktur TI, Cisco LAN WAN, CCTV, pemecahan masalah perangkat keras, Cibinong, Bogor, TI perusahaan">
 
-  <meta property="og:title" content="Naufal Fikri | Junior Full Stack Developer">
-  <meta property="og:description" content="Naufal Fikri's interactive portfolio - 4 full-stack web applications, MVC architecture, relational databases, and IT support.">
+  <meta property="og:title" content="Naufal Fikri | Dukungan TI | Lulusan Teknik Informatika">
+  <meta property="og:description" content="Memberikan dukungan teknis, merawat sistem, dan menyelesaikan tantangan TI. Bersedia relokasi dan bekerja di kantor.">
   <meta property="og:type" content="website">
 
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: ['class', '[data-theme="dark"]'],
       theme: {
         extend: {
           colors: {
-            brand: { 500: '#6366f1', 600: '#4f46e5' },
-            cyber: { cyan: '#06b6d4', emerald: '#10b981', violet: '#8b5cf6' }
+            corporate: {
+              navy: '#0B1220',
+              surface: '#17243A',
+              blue: '#2563EB',
+              hover: '#1D4ED8',
+              cyan: '#06B6D4',
+              light: '#F8FAFC',
+              darkText: '#1E293B',
+              muted: '#64748B',
+              border: '#E2E8F0',
+              darkBorder: '#1E2D4A'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Manrope', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
           }
         }
       }
     }
   </script>
+
+  <!-- Lucide Icons & Confetti -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="relative selection:bg-indigo-500 selection:text-white">
 
+  <!-- Custom Stylesheet (Theme 1: Modern Corporate Technology) -->
+  <link rel="stylesheet" href="assets/css/style.css?v=3.0">
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Bilah Progres Membaca -->
   <div id="progress-bar"></div>
+
+  <!-- Kanvas Partikel Jaringan -->
   <canvas id="particle-canvas"></canvas>
 
-  <div id="cursor-dot" class="custom-cursor-dot"></div>
-  <div id="cursor-ring" class="custom-cursor-ring"></div>
-
+  <!-- Notifikasi -->
   <div id="toast-notification">
     <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
-    <span id="toast-message" class="text-sm font-medium">Notification message</span>
+    <span id="toast-message" class="text-sm font-medium">Pesan notifikasi</span>
   </div>
 
-  <div class="fixed bottom-6 left-6 z-40 flex flex-col gap-3">
-    <button id="quick-terminal-float" class="open-terminal-trigger p-3 rounded-full bg-slate-900/90 text-cyan-400 border border-cyan-500/40 shadow-lg hover:scale-110 hover:border-cyan-400 transition-all group backdrop-blur-md" title="Open CLI Terminal (Ctrl+K)">
-      <i data-lucide="terminal" class="w-5 h-5 group-hover:rotate-6 transition-transform"></i>
+  <!-- Tombol Terminal -->
+  <div class="fixed bottom-6 left-6 z-40">
+    <button id="quick-terminal-float" class="open-terminal-trigger p-3 rounded-xl bg-[#0B1220] text-blue-400 border border-[#1E2D4A] shadow-xl hover:bg-[#17243A] hover:text-cyan-400 hover:scale-105 transition-all flex items-center gap-2 group" title="Buka terminal diagnostik (Ctrl+K)">
+      <i data-lucide="terminal" class="w-5 h-5"></i>
+      <span class="text-xs font-mono font-medium hidden sm:inline text-slate-300 group-hover:text-white">Terminal (Ctrl+K)</span>
     </button>
   </div>
 
-  <button id="back-to-top-btn" class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-indigo-600/90 hover:bg-indigo-500 text-white shadow-xl hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none backdrop-blur-md" title="Back to top">
+  <!-- Tombol Kembali ke Atas -->
+  <button id="back-to-top-btn" class="fixed bottom-6 right-6 z-40 p-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:scale-105 transition-all duration-300 opacity-0 pointer-events-none" title="Kembali ke atas">
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </button>
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-50 glass-nav border-b">
+  <!-- ==================== 1. NAVIGASI ==================== -->
+  <header class="sticky top-0 z-50 corporate-nav">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-cyan-500 to-indigo-400 flex items-center justify-center font-mono font-bold text-white shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
-          &lt;/&gt;
+      
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3.5 group">
+        <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-mono font-bold shadow-md shadow-blue-600/30 group-hover:bg-blue-500 transition-colors">
+          <i data-lucide="network" class="w-5 h-5"></i>
         </div>
         <div>
-          <span class="text-xl font-extrabold tracking-tight text-white group-hover:text-cyan-400 transition-colors">Naufal<span class="text-cyan-400">.dev</span></span>
-          <div class="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>Available for Hire</span>
+          <span class="text-lg font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">
+            Naufal Fikri
+          </span>
+          <div class="flex items-center gap-2 text-xs text-slate-400">
+            <span class="status-indicator-dot"></span>
+            <span>Dukungan TI &middot; Lulusan Gunadarma</span>
           </div>
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-        <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
-        <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
-        <a href="#journey" class="hover:text-cyan-400 transition-colors">Experience</a>
-        <a href="#terminal-section" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-cyan-400 font-mono">
-          <i data-lucide="terminal" class="w-4 h-4"></i> Terminal
-        </a>
-        <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+      <!-- Menu Navigasi Desktop -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-white transition-colors">Tentang Saya</a>
+        <a href="#skills" class="hover:text-white transition-colors">Keahlian</a>
+        <a href="#experience" class="hover:text-white transition-colors">Pengalaman</a>
+        <a href="#projects" class="hover:text-white transition-colors">Proyek</a>
+        <a href="#education" class="hover:text-white transition-colors">Pendidikan</a>
+        <a href="#certifications" class="hover:text-white transition-colors">Sertifikasi</a>
+        <a href="#contact" class="hover:text-white transition-colors">Kontak</a>
       </nav>
 
+      <!-- Tombol Aksi Desktop -->
       <div class="hidden lg:flex items-center gap-3">
-        <button id="sound-toggle-btn" class="p-2.5 rounded-xl border border-slate-700/60 bg-slate-800/50 hover:bg-slate-700 text-slate-400 transition-colors" title="Toggle Sound Effects">
-          <i id="sound-icon" data-lucide="volume-x" class="w-4 h-4"></i>
-        </button>
-        <button id="theme-toggle-btn" class="p-2.5 rounded-xl border border-slate-700/60 bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors" title="Change Theme">
-          <i id="theme-icon" data-lucide="moon" class="w-4 h-4"></i>
-        </button>
-        <button class="open-terminal-trigger px-3.5 py-2 rounded-xl border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 text-xs font-mono hover:bg-cyan-900/60 hover:border-cyan-400 transition-all flex items-center gap-2" title="Press Ctrl+K">
-          <i data-lucide="terminal" class="w-4 h-4"></i>
+        <button class="open-terminal-trigger px-3 py-2 rounded-lg border border-[#1E2D4A] bg-[#17243A]/80 text-slate-300 text-xs font-mono hover:text-white hover:border-slate-500 transition-all flex items-center gap-1.5" title="Terminal interaktif (tekan Ctrl+K)">
+          <i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-400"></i>
           <span>Ctrl + K</span>
         </button>
-        <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold shadow-lg shadow-indigo-500/20 hover:scale-105 transition-all flex items-center gap-2">
+        <a href="assets/docs/Naufal_Fikri_CV.pdf?v=20261031" download="Naufal_Fikri_CV.pdf" class="btn-primary">
           <i data-lucide="download" class="w-4 h-4"></i>
-          <span>Download CV</span>
+          <span>Unduh CV</span>
+        </a>
+        <a href="assets/docs/SKL_Naufal_Fikri.pdf?v=20261031" download="SKL_Naufal_Fikri.pdf" class="btn-secondary-dark">
+          <i data-lucide="file-check-2" class="w-4 h-4"></i>
+          <span>Unduh SKL</span>
         </a>
       </div>
 
-      <button id="mobile-menu-btn" aria-label="Open navigation menu" class="md:hidden p-2 rounded-lg bg-slate-800/60 text-slate-300 hover:text-white">
-        <i data-lucide="menu" class="w-6 h-6"></i>
+      <!-- Tombol Menu Ponsel -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">
+        <i id="hamburger-icon" data-lucide="menu" class="w-6 h-6"></i>
       </button>
+
     </div>
 
-    <div id="mobile-nav" class="hidden md:hidden px-4 pt-2 pb-6 bg-slate-900/95 border-b border-slate-800 space-y-3">
-      <a href="#about" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">About</a>
-      <a href="#skills" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Skills</a>
-      <a href="#projects" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Projects</a>
-      <a href="#journey" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Experience</a>
-      <a href="#terminal-section" class="block py-2 text-cyan-400 font-mono">Terminal CLI</a>
-      <a href="#contact" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Contact</a>
-      <div class="pt-3 border-t border-slate-800 flex items-center justify-between gap-2">
-        <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="flex-1 text-center py-2.5 rounded-lg bg-indigo-600 text-white font-medium text-xs flex items-center justify-center gap-2">
-          <i data-lucide="download" class="w-4 h-4"></i> Download CV
+    <!-- Menu Navigasi Ponsel -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#0B1220] border-b border-[#1E2D4A] px-4 pt-2 pb-6 space-y-2">
+      <a href="#about" class="mobile-nav-link block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-[#17243A]">Tentang Saya</a>
+      <a href="#skills" class="mobile-nav-link block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-[#17243A]">Keahlian Teknis</a>
+      <a href="#experience" class="mobile-nav-link block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-[#17243A]">Pengalaman Kerja</a>
+      <a href="#projects" class="mobile-nav-link block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-[#17243A]">Proyek</a>
+      <a href="#education" class="mobile-nav-link block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-[#17243A]">Pendidikan</a>
+      <a href="#certifications" class="mobile-nav-link block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-[#17243A]">Sertifikasi</a>
+      <a href="#contact" class="mobile-nav-link block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-[#17243A]">Kontak</a>
+      <div class="pt-3 border-t border-[#1E2D4A] flex flex-col gap-2">
+        <a href="assets/docs/Naufal_Fikri_CV.pdf?v=20261031" download="Naufal_Fikri_CV.pdf" class="btn-primary w-full text-center">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Unduh CV</span>
         </a>
-        <button class="open-terminal-trigger py-2.5 px-3 rounded-lg border border-cyan-500/40 text-cyan-400 text-xs font-mono">
-          CLI
-        </button>
+        <a href="assets/docs/SKL_Naufal_Fikri.pdf?v=20261031" download="SKL_Naufal_Fikri.pdf" class="btn-secondary-dark w-full text-center">
+          <i data-lucide="file-check-2" class="w-4 h-4"></i>
+          <span>Unduh SKL</span>
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section id="hero" class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+  <!-- ==================== 2. BERANDA / PERKENALAN ==================== -->
+  <section id="hero" class="hero-corporate-container pt-20 pb-28 lg:pt-28 lg:pb-36 border-b border-[#1E2D4A]">
+    <!-- High-Quality Enterprise Datacenter Background Image -->
+    <div class="hero-datacenter-bg"></div>
+    <div class="hero-datacenter-overlay"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-corporate-content">
+      <div class="max-w-3xl">
         
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-mono">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Open to Full-Time & Freelance Web Developer Roles</span>
-          </div>
-
-          <div class="space-y-2">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-              Hello, I'm <br class="hidden sm:inline">
-              <span class="text-gradient">Naufal Fikri</span>
-            </h1>
-            <div class="text-xl sm:text-2xl font-mono text-cyan-300 flex items-center min-h-[40px]">
-              <span id="typewriter-text"></span><span class="typewriter-cursor">|</span>
-            </div>
-          </div>
-
-          <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-            A <strong class="text-white">Gunadarma University Informatics Engineering</strong> graduate with hands-on experience building <strong class="text-cyan-300">4 full-stack web applications</strong> powered by relational databases using <strong class="text-indigo-300">Native PHP, Laravel, C# ASP.NET MVC</strong>, and <strong class="text-cyan-300">Next.js / Express.js</strong>.
-          </p>
-
-          <p class="text-sm sm:text-base text-slate-400 max-w-2xl">
-            Experienced in designing MVC architectures, database normalization, and CRUD functionality from the ground up. My <strong>IT support</strong> background has strengthened my diagnostic skills and systematic troubleshooting abilities.
-          </p>
-
-          <div class="pt-2 flex flex-wrap items-center gap-4">
-            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold text-sm shadow-xl shadow-indigo-600/25 hover:shadow-cyan-500/35 hover:-translate-y-0.5 transition-all flex items-center gap-2 group">
-              <span>Explore My Projects</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-            </a>
-
-            <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="px-6 py-3.5 rounded-xl glass-panel border border-slate-700 hover:border-slate-500 text-slate-200 hover:text-white font-semibold text-sm hover:-translate-y-0.5 transition-all flex items-center gap-2">
-              <i data-lucide="file-text" class="w-4 h-4 text-cyan-400"></i>
-              <span>Download Resume (PDF)</span>
-            </a>
-
-            <button class="open-terminal-trigger px-5 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 font-mono text-xs hover:-translate-y-0.5 transition-all flex items-center gap-2">
-              <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
-              <span>&gt;_ Open CLI</span>
-            </button>
-          </div>
-
-          <div class="pt-4 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-t border-slate-800/80">
-            <a href="https://wa.me/6287773862920" target="_blank" rel="noopener" class="hover:text-emerald-400 flex items-center gap-1.5 transition-colors">
-              <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i> +62 877-7386-2920
-            </a>
-            <span class="text-slate-700">•</span>
-            <button class="copy-email-btn hover:text-cyan-400 flex items-center gap-1.5 transition-colors" title="Copy email">
-              <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i> naufalfik777@gmail.com
-            </button>
-            <span class="text-slate-700">•</span>
-            <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" rel="noopener" class="hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
-              <i data-lucide="linkedin" class="w-4 h-4 text-indigo-400"></i> LinkedIn
-            </a>
-            <span class="text-slate-700">•</span>
-            <a href="https://github.com/opangganteng" target="_blank" rel="noopener" class="hover:text-slate-200 flex items-center gap-1.5 transition-colors">
-              <i data-lucide="github" class="w-4 h-4 text-slate-300"></i> GitHub
-            </a>
-          </div>
+        <!-- Status Ketersediaan -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#17243A] border border-[#1E2D4A] text-xs font-semibold text-blue-300 mb-6 shadow-sm">
+          <span class="status-indicator-dot"></span>
+          <span>Bersedia Relokasi &middot; Terbuka untuk Bekerja di Kantor (WFO)</span>
         </div>
 
-        <div class="lg:col-span-5 flex justify-center relative">
-          <div class="relative w-full max-w-sm sm:max-w-md">
-            <div class="absolute inset-0 bg-gradient-to-tr from-indigo-600/30 via-cyan-500/20 to-purple-600/30 blur-3xl -z-10 rounded-full"></div>
+        <!-- Name & Professional Title -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
+          NAUFAL FIKRI
+        </h1>
+        
+        <p class="text-xl sm:text-2xl font-semibold text-blue-400 mb-6">
+          Dukungan TI &nbsp;|&nbsp; Lulusan Teknik Informatika
+        </p>
 
-            <div class="glass-card p-4 sm:p-5 rounded-3xl border border-slate-700/60 shadow-2xl relative">
-              <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/80 shadow-inner group">
-                <img src="assets/images/pas%20foto.jpeg" alt="Naufal Fikri's profile photo" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
-                
-                <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                  <div class="px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-white/10 text-white text-xs font-semibold">
-                    📍 Cibinong, Bogor
-                  </div>
-                  <div class="px-3 py-1.5 rounded-lg bg-emerald-950/80 backdrop-blur-md border border-emerald-500/40 text-emerald-400 text-xs font-mono font-bold">
-                    ✓ Verified
-                  </div>
-                </div>
-              </div>
+        <!-- Pernyataan Profesional -->
+        <blockquote class="text-lg text-slate-200 font-medium italic border-l-4 border-blue-500 pl-4 mb-6">
+          &ldquo;Memberikan dukungan teknis, merawat sistem, dan menyelesaikan tantangan TI.&rdquo;
+        </blockquote>
 
-              <div class="mt-4 p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 font-mono text-[11px] leading-relaxed text-slate-300">
-                <div><span class="text-purple-400">const</span> <span class="text-cyan-300">developer</span> = {</div>
-                <div class="pl-4"><span class="text-slate-400">name:</span> <span class="text-emerald-300">"Naufal Fikri"</span>,</div>
-                <div class="pl-4"><span class="text-slate-400">education:</span> <span class="text-indigo-300">"B.Sc. in Informatics Engineering"</span>,</div>
-                <div class="pl-4"><span class="text-slate-400">projectsBuilt:</span> <span class="text-amber-300">4</span>,</div>
-                <div class="pl-4"><span class="text-slate-400">openToWork:</span> <span class="text-emerald-400">true</span></div>
-                <div>};</div>
-              </div>
-            </div>
+        <!-- Perkenalan Profesional -->
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8">
+          Lulusan Teknik Informatika Universitas Gunadarma dengan pengalaman langsung di bidang dukungan TI serta keahlian tambahan dalam pengembangan aplikasi web. Tertarik pada dukungan TI, infrastruktur TI, jaringan, dan dukungan teknis.
+        </p>
 
-            <div class="absolute -top-6 -left-6 hidden sm:flex items-center gap-3 p-3 rounded-2xl glass-card border border-indigo-500/40 shadow-xl animate-float-1">
-              <div class="w-9 h-9 rounded-xl bg-indigo-600/30 flex items-center justify-center text-indigo-400">
-                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <div class="text-[10px] text-slate-400 font-medium">Bachelor's Degree</div>
-                <div class="text-xs font-bold text-white">Univ Gunadarma</div>
-              </div>
-            </div>
+        <!-- Tombol Aksi -->
+        <div class="flex flex-wrap items-center gap-4 mb-12">
+          <a href="#experience" class="btn-primary">
+            <i data-lucide="briefcase" class="w-4 h-4"></i>
+            <span>Lihat Pengalaman</span>
+          </a>
+          <a href="#projects" class="btn-secondary-dark">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            <span>Lihat Proyek</span>
+          </a>
+          <a href="#contact" class="btn-secondary-dark">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>Hubungi Saya</span>
+          </a>
+          <a href="assets/docs/Naufal_Fikri_CV.pdf?v=20261031" download="Naufal_Fikri_CV.pdf" class="btn-secondary-dark">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>CV (PDF)</span>
+          </a>
+          <a href="assets/docs/SKL_Naufal_Fikri.pdf?v=20261031" download="SKL_Naufal_Fikri.pdf" class="btn-secondary-dark">
+            <i data-lucide="file-check-2" class="w-4 h-4"></i>
+            <span>SKL (PDF)</span>
+          </a>
+        </div>
 
-            <div class="absolute -bottom-6 -right-6 hidden sm:flex items-center gap-3 p-3 rounded-2xl glass-card border border-cyan-500/40 shadow-xl animate-float-2">
-              <div class="w-9 h-9 rounded-xl bg-cyan-600/30 flex items-center justify-center text-cyan-400">
-                <i data-lucide="layers" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <div class="text-[10px] text-slate-400 font-medium">Web Applications</div>
-                <div class="text-xs font-bold text-cyan-300">4 Full-Stack Projects</div>
-              </div>
-            </div>
-
+        <!-- Ringkasan Profesional -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-[#1E2D4A]">
+          <div>
+            <div class="text-2xl font-bold text-white font-mono">3.21<span class="text-sm font-normal text-slate-400">/4.00</span></div>
+            <div class="text-xs text-slate-400 font-medium">IPK Universitas Gunadarma</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white font-mono">3+<span class="text-sm font-normal text-slate-400"> Peran</span></div>
+            <div class="text-xs text-slate-400 font-medium">Pengalaman Dukungan TI</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white font-mono">4<span class="text-sm font-normal text-slate-400"> Sistem</span></div>
+            <div class="text-xs text-slate-400 font-medium">Aplikasi Web Berbasis Basis Data</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white font-mono">8<span class="text-sm font-normal text-slate-400"> Sertifikat</span></div>
+            <div class="text-xs text-slate-400 font-medium">Pelatihan Cisco & TI</div>
           </div>
         </div>
 
@@ -241,939 +234,1005 @@
     </div>
   </section>
 
-  <!-- METRICS BANNER -->
-  <section class="border-y border-slate-800 bg-slate-950/60 relative z-10 py-8">
+  <!-- ==================== 3. TENTANG SAYA ==================== -->
+  <section id="about" class="py-20 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="space-y-1">
-          <div class="text-3xl sm:text-4xl font-extrabold text-gradient">4+</div>
-          <div class="text-xs sm:text-sm text-slate-300 font-medium">Full-Stack Web Applications</div>
-          <div class="text-[11px] text-slate-500">Database-driven end-to-end</div>
-        </div>
-        <div class="space-y-1">
-          <div class="text-3xl sm:text-4xl font-extrabold text-cyan-400">4</div>
-          <div class="text-xs sm:text-sm text-slate-300 font-medium">Database Technologies</div>
-          <div class="text-[11px] text-slate-500">PostgreSQL, MySQL, SQL Server, Dapper</div>
-        </div>
-        <div class="space-y-1">
-          <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400">100%</div>
-          <div class="text-xs sm:text-sm text-slate-300 font-medium">MVC Architecture</div>
-          <div class="text-[11px] text-slate-500">Structured separation of concerns</div>
-        </div>
-        <div class="space-y-1">
-          <div class="text-3xl sm:text-4xl font-extrabold text-purple-400">IT</div>
-          <div class="text-xs sm:text-sm text-slate-300 font-medium">Support & Diagnostics</div>
-          <div class="text-[11px] text-slate-500">Hardware, Network & CCTV</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section id="about" class="py-24 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-400 text-xs font-mono uppercase tracking-wider">
-          <i data-lucide="user" class="w-3.5 h-3.5"></i> Profile & Core Strengths
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Combining Programming Logic with a Comprehensive Understanding of Systems
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-12">
+        <div class="corp-badge-blue mb-3">Tentang Saya</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          Profil & Latar Belakang Profesional
         </h2>
-        <p class="text-slate-400 text-base leading-relaxed">
-          As an Informatics Engineering graduate from Gunadarma University, I combine computer science theory with hands-on experience building MVC-based systems, advanced database solutions, and analytical skills developed through IT support.
+        <p class="text-slate-600 mt-2">
+          Profesional Dukungan TI dengan pemahaman teknis dalam pemeliharaan infrastruktur dan pengembangan perangkat lunak dari sisi depan hingga belakang.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-indigo-500/50">
-          <div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center">
-            <i data-lucide="layout-grid" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white">MVC Architecture & Clean Code</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Experienced in cleanly separating business logic, presentation views, and data-access layers in modern frameworks (Laravel, ASP.NET MVC) and native PHP architectures.
-          </p>
-          <div class="text-xs text-indigo-400 font-mono font-medium">Modular & Maintainable</div>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-cyan-500/50">
-          <div class="w-12 h-12 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center">
-            <i data-lucide="database" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white">Relational Database Design</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Skilled in ERD design, table normalization, foreign-key integrity, and high-performance queries for MySQL, PostgreSQL, and SQL Server.
-          </p>
-          <div class="text-xs text-cyan-400 font-mono font-medium">Optimized Queries & ORM</div>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-emerald-500/50">
-          <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center">
-            <i data-lucide="code-2" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white">End-to-End Development</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Able to handle the full development lifecycle, from responsive user interfaces (HTML5, Tailwind, Next.js) and REST API integration to backend logic and database configuration.
-          </p>
-          <div class="text-xs text-emerald-400 font-mono font-medium">Full Stack Integration</div>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl space-y-4 hover:border-amber-500/50">
-          <div class="w-12 h-12 rounded-xl bg-amber-600/20 text-amber-400 flex items-center justify-center">
-            <i data-lucide="wrench" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-lg font-bold text-white">Troubleshooting & IT Support</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Hands-on experience at TMII and SMK Wijaya Kusuma has developed an analytical approach to diagnosing software and hardware issues, LAN/WAN configurations, and CCTV systems.
-          </p>
-          <div class="text-xs text-amber-400 font-mono font-medium">Diagnostic Mindset</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS SECTION -->
-  <section id="skills" class="py-20 bg-slate-950/40 relative z-10 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-        <div class="space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider">
-            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Technology Stack
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Skills & Tools</h2>
-          <p class="text-slate-400 text-sm max-w-xl">
-            Modern programming languages, backend and frontend frameworks, database technologies, and systems and networking expertise.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap gap-2">
-          <button class="skill-filter-btn filter-btn active px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="all">All</button>
-          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="backend">Backend & MVC</button>
-          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="frontend">Front-End</button>
-          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="database">Databases & ORM</button>
-          <button class="skill-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="tools">Tools & Network</button>
-        </div>
-      </div>
-
-      <div id="skills-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-indigo-500/60" data-category="backend">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-indigo-950/70 border border-indigo-500/30 flex items-center justify-center font-mono font-bold text-indigo-400 text-lg">
-              PHP
+        <!-- Kartu Profil -->
+        <div class="lg:col-span-4">
+          <div class="corp-card p-6 text-center">
+            <div class="relative w-36 h-36 mx-auto mb-5 rounded-2xl overflow-hidden border-2 border-slate-200 shadow-md">
+              <img src="assets/images/pas foto.jpeg" alt="Naufal Fikri" class="w-full h-full object-cover">
             </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Native & MVC</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">PHP</h4>
-            <p class="text-xs text-slate-400 mt-1">Native web development, session management, form handling, and building CRUD functionality from scratch.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Advanced</span>
-            <span class="text-indigo-400">Used in E-Piket</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-rose-500/60" data-category="backend">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-rose-950/70 border border-rose-500/30 flex items-center justify-center font-mono font-bold text-rose-400 text-lg">
-              Lv
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-rose-500/10 text-rose-400 border border-rose-500/20">Framework</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">Laravel</h4>
-            <p class="text-xs text-slate-400 mt-1">MVC architecture, Blade templating, Eloquent ORM relationships, and database migrations.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Proficient</span>
-            <span class="text-rose-400">Used in JeWePe</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-purple-500/60" data-category="backend">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-purple-950/70 border border-purple-500/30 flex items-center justify-center font-mono font-bold text-purple-400 text-lg">
-              C#
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20">Enterprise MVC</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">C# · ASP.NET MVC</h4>
-            <p class="text-xs text-slate-400 mt-1">School data systems, MVC architecture, Razor views, and business logic.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Proficient</span>
-            <span class="text-purple-400">School Mgmt</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-cyan-500/60" data-category="backend frontend">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center font-mono font-bold text-cyan-400 text-lg">
-              JS
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Full-Stack JS</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">Next.js & Express.js</h4>
-            <p class="text-xs text-slate-400 mt-1">Modern component-based front ends with Next.js and Express.js REST APIs for a local government website.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Proficient</span>
-            <span class="text-cyan-400">Cibubur Local Government</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-sky-500/60" data-category="database">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-sky-950/70 border border-sky-500/30 flex items-center justify-center font-mono font-bold text-sky-400 text-lg">
-              PG
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20">RDBMS</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">PostgreSQL</h4>
-            <p class="text-xs text-slate-400 mt-1">Designing structured relational data schemas for local government citizen services.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Advanced</span>
-            <span class="text-sky-400">Relational DB</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-blue-500/60" data-category="database">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-blue-950/70 border border-blue-500/30 flex items-center justify-center font-mono font-bold text-blue-400 text-lg">
-              SQL
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">ORM & Server</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">SQL Server & Dapper</h4>
-            <p class="text-xs text-slate-400 mt-1">Using Dapper, a lightweight ORM, for high-speed data access to SQL Server.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Certified</span>
-            <span class="text-blue-400">High-Speed Queries</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-amber-500/60" data-category="database">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-amber-950/70 border border-amber-500/30 flex items-center justify-center font-mono font-bold text-amber-400 text-lg">
-              My
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">RDBMS</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">MySQL</h4>
-            <p class="text-xs text-slate-400 mt-1">Multi-table database design for a building materials store and a school duty management system.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Advanced</span>
-            <span class="text-amber-400">CRUD & Indexing</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-emerald-500/60" data-category="frontend">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-emerald-950/70 border border-emerald-500/30 flex items-center justify-center font-mono font-bold text-emerald-400 text-lg">
-              UI
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Certified</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">HTML5, CSS3 & Tailwind</h4>
-            <p class="text-xs text-slate-400 mt-1">Semantic markup, cross-device responsive styling (mobile-first), and Tailwind CSS.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Advanced</span>
-            <span class="text-emerald-400">Pixel Perfect</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-orange-500/60" data-category="tools">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-orange-950/70 border border-orange-500/30 flex items-center justify-center font-mono font-bold text-orange-400 text-lg">
-              Git
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-orange-500/10 text-orange-400 border border-orange-500/20">VCS</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">Git & GitHub</h4>
-            <p class="text-xs text-slate-400 mt-1">Branching, commit conventions, code reviews, and team repository management.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Proficient</span>
-            <span class="text-orange-400">opangganteng</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-cyan-500/60" data-category="tools">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center font-mono font-bold text-cyan-400 text-lg">
-              NET
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Cisco Certified</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">Cisco Routers & Networking</h4>
-            <p class="text-xs text-slate-400 mt-1">Cisco WAN and LAN router configuration, IP subnetting, packet routing, and troubleshooting.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Intermediate</span>
-            <span class="text-cyan-400">Certified</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-emerald-500/60" data-category="tools">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-emerald-950/70 border border-emerald-500/30 flex items-center justify-center font-mono font-bold text-emerald-400 text-lg">
-              IT
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Hands-on</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">IT Diagnostics & CCTV</h4>
-            <p class="text-xs text-slate-400 mt-1">Windows OS troubleshooting, software maintenance, IT asset management, ticketing, and CCTV.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Experienced</span>
-            <span class="text-emerald-400">TMII & SMK</span>
-          </div>
-        </div>
-
-        <div class="skill-card glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-violet-500/60" data-category="backend">
-          <div class="flex items-start justify-between">
-            <div class="w-12 h-12 rounded-xl bg-violet-950/70 border border-violet-500/30 flex items-center justify-center font-mono font-bold text-violet-400 text-lg">
-              API
-            </div>
-            <span class="px-2.5 py-1 rounded-md text-[10px] font-mono bg-violet-500/10 text-violet-400 border border-violet-500/20">Concepts</span>
-          </div>
-          <div class="mt-4">
-            <h4 class="text-base font-bold text-white">RESTful API & Architecture</h4>
-            <p class="text-xs text-slate-400 mt-1">HTTP methods, JSON parsing, session authentication, middleware, and data architecture.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>Level: Solid</span>
-            <span class="text-violet-400">Best Practices</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS SECTION -->
-  <section id="projects" class="py-24 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-        <div class="space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-400 text-xs font-mono uppercase tracking-wider">
-            <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i> Selected Work
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Featured Web Applications</h2>
-          <p class="text-slate-400 text-sm max-w-xl">
-            Four end-to-end, database-driven applications focused on MVC architecture, query efficiency, and user experience.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap gap-2">
-          <button class="project-filter-btn filter-btn active px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="all">All Projects (4)</button>
-          <button class="project-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="fullstack">Next.js & Express</button>
-          <button class="project-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="csharp">C# ASP.NET</button>
-          <button class="project-filter-btn filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500 transition-all" data-filter="php">PHP & Laravel</button>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 flex flex-col justify-between" data-category="fullstack">
-          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">Next.js · Express.js · PostgreSQL</span>
-              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
-            </div>
+            <h3 class="text-xl font-bold text-slate-900">Naufal Fikri</h3>
+            <p class="text-sm font-medium text-blue-600 mb-3">Dukungan TI | Teknik Informatika</p>
             
-            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
-              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                <span class="text-[10px] text-slate-500 ml-2">cibubur-portal.gov/api/services</span>
+            <div class="space-y-2.5 text-xs text-left pt-4 border-t border-slate-100 text-slate-600">
+              <div class="flex items-center gap-2">
+                <i data-lucide="map-pin" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                <span>Cibinong, Bogor, Jawa Barat, Indonesia</span>
               </div>
-              <p class="text-cyan-300">GET /api/v1/citizens/resident-services</p>
-              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
-            </div>
-          </div>
-
-          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-            <div class="space-y-3">
-              <h3 class="text-2xl font-bold text-white">Cibubur Local Government Information Website</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">Built an integrated local government information website end to end, with a Next.js front end and Express.js back end, and designed a PostgreSQL relational schema for managing dynamic citizen-service content.</p>
-              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400"></i> Designed a PostgreSQL relational schema for dynamic civil-service data.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400"></i> Responsive layouts optimized for mobile devices through desktop.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400"></i> Modular, component-based code structure for easier maintenance.</li>
-              </ul>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Next.js</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Express.js</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">PostgreSQL</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Tailwind CSS</span>
+              <div class="flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                <span>Universitas Gunadarma (Lulus Agustus 2026)</span>
               </div>
-              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="1">
-                <span>Project Details</span>
-                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-purple-500/50 flex flex-col justify-between" data-category="csharp">
-          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/30">C# · ASP.NET MVC · Dapper · SQL Server</span>
-              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
-            </div>
-            
-            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
-              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                <span class="text-[10px] text-slate-500 ml-2">SchoolDataController.cs [MVC]</span>
+              <div class="flex items-center gap-2">
+                <i data-lucide="briefcase" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                <span>Bersedia Relokasi | Bekerja di Kantor (WFO)</span>
               </div>
-              <p class="text-purple-300">var students = await connection.QueryAsync<Student>(sql);</p>
-              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
-            </div>
-          </div>
-
-          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-            <div class="space-y-3">
-              <h3 class="text-2xl font-bold text-white">School Management System</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">A school data management system using enterprise MVC architecture to clearly separate business logic, Razor views, and the data layer. Uses Dapper ORM for low-latency queries to SQL Server.</p>
-              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400"></i> Clear MVC separation across controllers, Razor views, and the data layer.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400"></i> High-performance CRUD functionality for school master data using Dapper ORM.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-purple-400"></i> Optimized SQL Server relational schema with foreign-key constraints.</li>
-              </ul>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">C#</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">ASP.NET MVC</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Dapper</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">SQL Server</span>
+              <div class="flex items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                <span class="font-mono text-slate-700">naufalfik777@gmail.com</span>
               </div>
-              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="2">
-                <span>Project Details</span>
-                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-              </button>
+            </div>
+
+            <div class="mt-5 pt-4 border-t border-slate-100 flex justify-center gap-3">
+              <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" rel="noopener" class="p-2 rounded-lg bg-slate-50 hover:bg-blue-50 text-slate-600 hover:text-blue-600 transition-colors" title="Profil LinkedIn">
+                <i data-lucide="linkedin" class="w-4 h-4"></i>
+              </a>
+              <a href="https://github.com/opangganteng" target="_blank" rel="noopener" class="p-2 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors" title="Profil GitHub">
+                <i data-lucide="github" class="w-4 h-4"></i>
+              </a>
+              <a href="mailto:naufalfik777@gmail.com" class="p-2 rounded-lg bg-slate-50 hover:bg-emerald-50 text-slate-600 hover:text-emerald-600 transition-colors" title="Kirim email ke Naufal Fikri">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-500/50 flex flex-col justify-between" data-category="php">
-          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">PHP Native · MySQL · HTML5 · CSS3 · JS</span>
-              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
-            </div>
-            
-            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
-              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                <span class="text-[10px] text-slate-500 ml-2">piket_dashboard.php [Admin Live]</span>
-              </div>
-              <p class="text-emerald-300">> 5+ Active CRUD Modules: Teachers, Students, Classes, Rooms</p>
-              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
-            </div>
-          </div>
-
-          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-            <div class="space-y-3">
-              <h3 class="text-2xl font-bold text-white">E-Piket: School Duty Management System</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">Built a school duty management system from scratch with native PHP, including 5+ CRUD modules, weekly duty scheduling, student attendance and tardiness tracking, and a real-time admin dashboard.</p>
-              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> 5+ CRUD modules: duty teachers, students, classes, rooms, and academic years.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Duty schedule tracking and student absence/tardiness logs.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Real-time admin dashboard for monitoring school activities.</li>
-              </ul>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">PHP Native</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">MySQL</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">HTML5/CSS3</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">JavaScript</span>
-              </div>
-              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="3">
-                <span>Project Details</span>
-                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-rose-500/50 flex flex-col justify-between" data-category="php">
-          <div class="p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800 relative">
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-rose-500/10 text-rose-300 border border-rose-500/30">PHP · Laravel · MySQL · Bootstrap</span>
-              <span class="text-xs text-slate-400 font-mono">Full-Stack MVC</span>
-            </div>
-            
-            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
-              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                <span class="text-[10px] text-slate-500 ml-2">InventoryController.php [Laravel MVC]</span>
-              </div>
-              <p class="text-rose-300">Product::with('category')->where('stock', '<', 10)->get();</p>
-              <p class="text-slate-500">&gt; Status 200 OK • Architecture & Schema Validated</p>
-            </div>
-          </div>
-
-          <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-            <div class="space-y-3">
-              <h3 class="text-2xl font-bold text-white">JeWePe Building Materials Store</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">A building materials store inventory and product management application built with Laravel. Implements relational database-backed CRUD features to support daily transactions and inventory operations.</p>
-              <ul class="space-y-1.5 text-xs text-slate-400 pt-1">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400"></i> Product catalog with automatic building materials inventory tracking.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400"></i> Relational database-backed CRUD features for daily transactions.</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-rose-400"></i> Laravel MVC structure separating application logic from data presentation.</li>
-              </ul>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Laravel</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">PHP</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">MySQL</span> <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Bootstrap</span>
-              </div>
-              <button class="open-modal-trigger px-4 py-2 rounded-xl bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-semibold transition-all flex items-center gap-1.5" data-project-id="4">
-                <span>Project Details</span>
-                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAREER & EDUCATION JOURNEY -->
-  <section id="journey" class="py-24 bg-slate-950/50 relative z-10 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-mono uppercase tracking-wider">
-          <i data-lucide="history" class="w-3.5 h-3.5"></i> Career Journey
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Work Experience & Education</h2>
-        <p class="text-slate-400 text-base">
-          A background in Informatics Engineering and hands-on experience providing technical support.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div class="lg:col-span-7 space-y-8">
-          <h3 class="text-xl font-bold text-white flex items-center gap-2.5">
-            <i data-lucide="briefcase" class="w-5 h-5 text-indigo-400"></i>
-            <span>Professional Experience</span>
-          </h3>
-
-          <div class="relative pl-6 border-l-2 border-indigo-500/30 space-y-10">
-            <div class="relative group">
-              <div class="timeline-dot"></div>
-              <div class="glass-card p-6 rounded-2xl space-y-3">
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                  <span class="px-2.5 py-1 rounded text-xs font-mono bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">IT Support</span>
-                  <span class="text-xs text-slate-400 font-mono">Taman Mini Indonesia Indah</span>
-                </div>
-                <h4 class="text-lg font-bold text-white">Jagat Satwa Nusantara, TMII</h4>
-                <ul class="space-y-2 text-sm text-slate-300">
-                  <li class="flex items-start gap-2">
-                    <span class="text-indigo-400 font-bold">•</span>
-                    <span>Provided comprehensive technical support for hardware, software, and network stability issues.</span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <span class="text-indigo-400 font-bold">•</span>
-                    <span>Performed routine maintenance and monitored CCTV system operations.</span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <span class="text-indigo-400 font-bold">•</span>
-                    <span>Managed technical support requests through a ticketing system to ensure reliable daily operations.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="relative group">
-              <div class="timeline-dot"></div>
-              <div class="glass-card p-6 rounded-2xl space-y-3">
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                  <span class="px-2.5 py-1 rounded text-xs font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">IT Support</span>
-                  <span class="text-xs text-slate-400 font-mono">Educational Institution</span>
-                </div>
-                <h4 class="text-lg font-bold text-white">SMK Wijaya Kusuma</h4>
-                <ul class="space-y-2 text-sm text-slate-300">
-                  <li class="flex items-start gap-2">
-                    <span class="text-cyan-400 font-bold">•</span>
-                    <span>Installed, configured, and updated operating systems and computer applications to maintain school device stability.</span>
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <span class="text-cyan-400 font-bold">•</span>
-                    <span>Maintained documentation for school IT assets and computer lab configurations.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="relative group">
-              <div class="timeline-dot"></div>
-              <div class="glass-card p-6 rounded-2xl space-y-3">
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                  <span class="px-2.5 py-1 rounded text-xs font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">Quality Control</span>
-                  <span class="text-xs text-slate-400 font-mono">Manufacturing</span>
-                </div>
-                <h4 class="text-lg font-bold text-white">PT Serena Indopangan</h4>
-                <ul class="space-y-2 text-sm text-slate-300">
-                  <li class="flex items-start gap-2">
-                    <span class="text-amber-400 font-bold">•</span>
-                    <span>Conducted careful on-site quality inspections to ensure products met specifications.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5 space-y-8">
-          <div class="space-y-4">
-            <h3 class="text-xl font-bold text-white flex items-center gap-2.5">
-              <i data-lucide="graduation-cap" class="w-5 h-5 text-cyan-400"></i>
-              <span>Education</span>
+        <!-- Ringkasan Profesional & Kompetensi -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <div class="corp-card p-6 sm:p-8">
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <i data-lucide="user-check" class="w-5 h-5 text-blue-600"></i>
+              <span>Ringkasan Profesional</span>
             </h3>
-
-            <div class="glass-card p-6 rounded-2xl border-indigo-500/40 space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-mono text-cyan-400 font-semibold">Bachelor's Degree</span>
-                <span class="text-xs font-mono text-slate-400">Gunadarma University</span>
-              </div>
-              <h4 class="text-xl font-bold text-white">Informatics Engineering</h4>
-              <p class="text-xs text-slate-400 leading-relaxed">
-                Focus areas: Web Application Development, Relational Database Systems, Software Engineering, and IT Systems Support.
-              </p>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <h3 class="text-xl font-bold text-white flex items-center gap-2.5">
-              <i data-lucide="award" class="w-5 h-5 text-emerald-400"></i>
-              <span>Professional Certifications</span>
-            </h3>
-
-            <div class="space-y-3">
-              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                  <i data-lucide="file-badge-2" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-xs font-bold text-white">JavaScript Programming Fundamental</div>
-                  <div class="text-[11px] text-slate-400">Core JS, Logic, DOM, async concepts</div>
-                </div>
-              </div>
-
-              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
-                  <i data-lucide="file-badge-2" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-xs font-bold text-white">Building Website HTML5 & Web App Design</div>
-                  <div class="text-[11px] text-slate-400">Modern layouts, semantic web, and responsive UI</div>
-                </div>
-              </div>
-
-              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
-                  <i data-lucide="database" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-xs font-bold text-white">SQL Server for Beginner</div>
-                  <div class="text-[11px] text-slate-400">Database architecture, queries, tables, and relational integrity</div>
-                </div>
-              </div>
-
-              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
-                  <i data-lucide="network" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-xs font-bold text-white">WAN Cisco Router (Intermediate) & LAN Cisco Router</div>
-                  <div class="text-[11px] text-slate-400">Cisco routing, packet routing, IP subnetting & troubleshooting</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLI TERMINAL SECTION -->
-  <section id="terminal-section" class="py-24 relative z-10">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center space-y-3 mb-10">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider">
-          <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Interactive Console
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Try the Developer CLI Terminal</h2>
-        <p class="text-slate-400 text-sm max-w-lg mx-auto">
-          Try commands such as <span class="text-cyan-400 font-mono">help</span>, <span class="text-cyan-400 font-mono">skills</span>, <span class="text-cyan-400 font-mono">projects</span>, <span class="text-cyan-400 font-mono">sudo hire</span>, or <span class="text-cyan-400 font-mono">matrix</span>!
-        </p>
-      </div>
-
-      <div class="terminal-card border border-slate-700/80 shadow-2xl">
-        <div class="terminal-header">
-          <div class="terminal-mac-btns">
-            <span class="t-btn t-btn-red" title="Close"></span>
-            <span class="t-btn t-btn-yellow" title="Minimize"></span>
-            <span class="t-btn t-btn-green" title="Maximize"></span>
-          </div>
-          <div class="text-xs font-mono text-slate-400 flex items-center gap-2">
-            <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
-            <span>naufal@dev-portfolio: ~ (bash)</span>
-          </div>
-          <div class="text-[11px] font-mono text-slate-500">
-            press TAB to auto-complete
-          </div>
-        </div>
-
-        <div id="terminal-output" class="terminal-viewport space-y-1">
-          <div class="text-emerald-400 font-bold">Welcome to Naufal Fikri's Interactive CLI [Version 2.0.4]</div>
-          <div class="text-slate-400 text-xs">Type <span class="text-cyan-400 font-bold">help</span> to view all commands, or try <span class="text-amber-300 font-bold">sudo hire</span> for a quick hiring shortcut!</div>
-          <div class="text-slate-600">--------------------------------------------------------------------------------</div>
-        </div>
-
-        <div class="px-4 py-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
-          <span class="text-emerald-400 font-mono text-xs font-bold shrink-0">naufal@dev:~$</span>
-          <input type="text" id="terminal-input" class="terminal-cmd-input" placeholder="Type a command (e.g. help, skills, projects, sudo hire)..." autocomplete="off" spellcheck="false">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="py-24 bg-slate-950/60 relative z-10 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div class="lg:col-span-5 space-y-8">
-          <div class="space-y-3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-mono uppercase tracking-wider">
-              <i data-lucide="message-square" class="w-3.5 h-3.5"></i> Get in Touch
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Ready to Contribute to Your Team</h2>
-            <p class="text-slate-400 text-sm leading-relaxed">
-              Have a Full Stack / Web Developer opportunity, a collaboration project, or a technical topic to discuss? Feel free to contact me through any of the channels below.
+            <p class="text-slate-700 text-base leading-relaxed mb-4">
+              Lulusan S1 Teknik Informatika Universitas Gunadarma (2026) dengan pengalaman di bidang IT Support dan dukungan operasional TI. Memiliki kemampuan dalam melakukan troubleshooting perangkat keras dan perangkat lunak, pemeliharaan perangkat CCTV, penanganan permasalahan jaringan, serta pengelolaan tiket dukungan teknis. Memahami dasar administrasi jaringan, pemeliharaan perangkat TI, dan pengembangan aplikasi berbasis web menggunakan PHP, C#, serta berbagai sistem basis data.
+            </p>
+            <p class="text-slate-700 text-base leading-relaxed">
+              Memiliki kemampuan analitis, teliti, komunikatif, dan adaptif dalam menangani permasalahan teknis. Mampu bekerja secara mandiri maupun dalam tim, serta memiliki komitmen untuk memberikan dukungan TI yang efektif guna menjaga kelancaran operasional perusahaan.
             </p>
           </div>
 
-          <div class="space-y-4">
-            <a href="https://wa.me/6287773862920?text=Hello%20Naufal,%20I%27m%20interested%20in%20your%20portfolio!" target="_blank" rel="noopener" class="glass-card p-4 rounded-2xl flex items-center justify-between group hover:border-emerald-500/60 transition-all">
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <i data-lucide="phone" class="w-6 h-6"></i>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400">WhatsApp</div>
-                  <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">+62 877-7386-2920</div>
-                </div>
+          <!-- Empat Kompetensi Utama -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <div class="corp-card p-5">
+              <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+                <i data-lucide="cpu" class="w-5 h-5"></i>
               </div>
-              <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
-            </a>
+              <h4 class="font-bold text-slate-900 text-sm mb-1.5">Pemecahan Masalah Perangkat Keras & Sistem Operasi</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Diagnosis sistem, penggantian komponen, pemasangan sistem operasi (Windows/Linux), serta dokumentasi inventaris aset.
+              </p>
+            </div>
 
-            <div class="glass-card p-4 rounded-2xl flex items-center justify-between group hover:border-cyan-500/60 transition-all">
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
-                  <i data-lucide="mail" class="w-6 h-6"></i>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400">Email</div>
-                  <div class="text-sm font-bold text-white">naufalfik777@gmail.com</div>
-                </div>
+            <div class="corp-card p-5">
+              <div class="w-9 h-9 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center mb-3">
+                <i data-lucide="wifi" class="w-5 h-5"></i>
               </div>
-              <button class="copy-email-btn p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-cyan-400 transition-colors" title="Copy email">
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
+              <h4 class="font-bold text-slate-900 text-sm mb-1.5">Pemeliharaan Jaringan & CCTV</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Routing Cisco LAN/WAN, pemasangan kabel terstruktur, pengalamatan IP, pemeliharaan kamera CCTV, dan pemantauan ketersediaan jaringan.
+              </p>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
-              <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" rel="noopener" class="glass-card p-4 rounded-2xl flex items-center gap-3 hover:border-indigo-500/60 group">
-                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <i data-lucide="linkedin" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-[11px] text-slate-400">Profile</div>
-                  <div class="text-xs font-bold text-white group-hover:text-indigo-400">LinkedIn</div>
-                </div>
-              </a>
-
-              <a href="https://github.com/opangganteng" target="_blank" rel="noopener" class="glass-card p-4 rounded-2xl flex items-center gap-3 hover:border-slate-500/60 group">
-                <div class="w-10 h-10 rounded-xl bg-slate-800 text-slate-200 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <i data-lucide="github" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-[11px] text-slate-400">Repositories</div>
-                  <div class="text-xs font-bold text-white group-hover:text-cyan-400">GitHub</div>
-                </div>
-              </a>
+            <div class="corp-card p-5">
+              <div class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+                <i data-lucide="database" class="w-5 h-5"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm mb-1.5">Basis Data & Logika Aplikasi</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Perancangan skema relasional, SQL Server/MySQL/PostgreSQL, serta penerapan CRUD dengan C# ASP.NET MVC dan PHP/Laravel.
+              </p>
             </div>
 
-            <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center gap-3 text-xs text-slate-400">
-              <i data-lucide="map-pin" class="w-4 h-4 text-rose-400 shrink-0"></i>
-              <span>Cibinong, Bogor Regency, West Java, Indonesia (Available for on-site, remote, or hybrid work)</span>
+            <div class="corp-card p-5">
+              <div class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+                <i data-lucide="headphones" class="w-5 h-5"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm mb-1.5">Layanan Dukungan TI & Sistem Tiket</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Penanganan insiden pengguna, pemantauan SLA, penyelesaian masalah pengguna secara kolaboratif, dan dokumentasi prosedur TI.
+              </p>
             </div>
+
           </div>
+
         </div>
 
-        <div class="lg:col-span-7">
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border-slate-800 space-y-6">
-            <div>
-              <h3 class="text-xl font-bold text-white">Send a Quick Message</h3>
-              <p class="text-xs text-slate-400 mt-1">Choose your preferred delivery method (WhatsApp or email).</p>
-            </div>
-
-            <form id="interactive-contact-form" class="space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="space-y-1.5">
-                  <label for="contact-name" class="text-xs font-mono text-slate-300">Full Name / Organization</label>
-                  <input type="text" id="contact-name" placeholder="Example: HR Manager / Tech Lead" required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors">
-                </div>
-
-                <div class="space-y-1.5">
-                  <label for="contact-email" class="text-xs font-mono text-slate-300">Your Email Address</label>
-                  <input type="email" id="contact-email" placeholder="email@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors">
-                </div>
-              </div>
-
-              <div class="space-y-1.5">
-                <label for="contact-subject" class="text-xs font-mono text-slate-300">Subject / Inquiry</label>
-                <input type="text" id="contact-subject" placeholder="Full Stack Developer Opportunity / Web Collaboration" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors">
-              </div>
-
-              <div class="space-y-1.5">
-                <label for="contact-message" class="text-xs font-mono text-slate-300">Your Message</label>
-                <textarea id="contact-message" rows="4" placeholder="Enter the details of your opportunity or question..." required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"></textarea>
-              </div>
-
-              <div class="pt-2 flex flex-wrap items-center gap-3">
-                <button type="button" id="send-wa-btn" class="flex-1 py-3.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-xs shadow-lg shadow-emerald-600/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
-                  <i data-lucide="message-circle" class="w-4 h-4"></i>
-                  <span>Send via WhatsApp</span>
-                </button>
-
-                <button type="button" id="send-email-btn" class="flex-1 py-3.5 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-semibold text-xs hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
-                  <i data-lucide="send" class="w-4 h-4 text-cyan-400"></i>
-                  <span>Send via Email</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-900 py-12 relative z-10 bg-slate-950">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center font-mono font-bold text-white text-xs">
-          &lt;/&gt;
+  <!-- ==================== 4. TECHNICAL SKILLS ==================== -->
+  <section id="skills" class="py-20 bg-[#F8FAFC] border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-10">
+        <div class="corp-badge-blue mb-3">Keahlian Teknis</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          Keahlian Teknis & Perangkat
+        </h2>
+        <p class="text-slate-600 mt-2">
+          Berfokus pada Dukungan TI & Jaringan, dilengkapi keahlian basis data dan pengembangan web.
+        </p>
+      </div>
+
+      <!-- Skill Category Tabs -->
+      <div class="flex flex-wrap items-center gap-2 mb-8 bg-white p-2 rounded-xl border border-slate-200 w-fit">
+        <button type="button" class="skill-tab-btn active" data-filter="all" aria-pressed="true">Semua Keahlian</button>
+        <button type="button" class="skill-tab-btn" data-filter="itsupport" aria-pressed="false">Dukungan TI & Jaringan (Utama)</button>
+        <button type="button" class="skill-tab-btn" data-filter="webdev" aria-pressed="false">Pemrograman & Pengembangan Web</button>
+        <button type="button" class="skill-tab-btn" data-filter="database" aria-pressed="false">Basis Data</button>
+        <button type="button" class="skill-tab-btn" data-filter="tools" aria-pressed="false">Perangkat & Alur Kerja</button>
+      </div>
+
+      <!-- Skills Grid Container -->
+      <div class="space-y-6">
+
+        <!-- FOKUS UTAMA: Dukungan TI & Jaringan -->
+        <div id="skill-group-itsupport" class="skill-card-group corp-card p-6 sm:p-8 border-l-4 border-l-blue-600">
+          <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+                <i data-lucide="server" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">Dukungan TI & Jaringan</h3>
+                <p class="text-xs text-slate-500 font-medium">Fokus Teknis Utama & Kompetensi Harian</p>
+              </div>
+            </div>
+            <span class="corp-badge-blue">Fokus Utama</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Diagnosis</div>
+              <div class="font-semibold text-slate-800 text-sm">Pemecahan Masalah Perangkat Keras</div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Perangkat Lunak</div>
+              <div class="font-semibold text-slate-800 text-sm">Pemecahan Masalah Perangkat Lunak</div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Sistem Operasi</div>
+              <div class="font-semibold text-slate-800 text-sm">Instalasi & Konfigurasi Sistem Operasi</div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Meja Layanan</div>
+              <div class="font-semibold text-slate-800 text-sm">Sistem Tiket & SLA</div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Infrastruktur</div>
+              <div class="font-semibold text-slate-800 text-sm">Pemeliharaan Jaringan</div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Routing & Switching</div>
+              <div class="font-semibold text-slate-800 text-sm">Cisco LAN / WAN</div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Pengawasan</div>
+              <div class="font-semibold text-slate-800 text-sm">Pemeliharaan CCTV</div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors">
+              <div class="text-xs text-slate-400 font-medium mb-1">Dokumentasi</div>
+              <div class="font-semibold text-slate-800 text-sm">Dokumentasi Aset TI</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SEKUNDER: Pemrograman & Pengembangan Web -->
+        <div id="skill-group-webdev" class="skill-card-group corp-card p-6 sm:p-8">
+          <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold">
+                <i data-lucide="code-2" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">Pemrograman & Pengembangan Web</h3>
+                <p class="text-xs text-slate-500 font-medium">Keahlian Teknis Sekunder & Pengembangan Web Menyeluruh</p>
+              </div>
+            </div>
+            <span class="corp-badge-cyan">Keahlian Sekunder</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">C#</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">PHP</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">JavaScript</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">SQL</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">ASP.NET MVC</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">Laravel</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">Node.js</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">Express.js</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">Next.js</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">React</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">REST API</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">HTML5</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm">CSS3</div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-sm col-span-2 sm:col-span-2">Desain Responsif</div>
+          </div>
+        </div>
+
+        <!-- BASIS DATA & PERANGKAT -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Basis Data -->
+          <div id="skill-group-database" class="skill-card-group corp-card p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <i data-lucide="database" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 text-base">Basis Data</h3>
+                <p class="text-xs text-slate-500">Pemodelan Relasional & Kueri</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2.5">
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">SQL Server</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">MySQL</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">PostgreSQL</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">Desain Basis Data Relasional</div>
+            </div>
+          </div>
+
+          <!-- Perangkat & Lainnya -->
+          <div id="skill-group-tools" class="skill-card-group corp-card p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+                <i data-lucide="wrench" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 text-base">Perangkat & Alur Kerja Profesional</h3>
+                <p class="text-xs text-slate-500">Kontrol Versi, QA & Peninjauan AI</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2.5">
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">Git & GitHub</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">Penerapan</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">Pengujian Manual</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-sm text-center">Debugging</div>
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-800 text-xs text-center col-span-2">Claude AI (Pembuatan Kode, Peninjauan & Debugging)</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 5. PENGALAMAN KERJA ==================== -->
+  <section id="experience" class="py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-12">
+        <div class="corp-badge-blue mb-3">Pengalaman Kerja</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          Perjalanan Karier Profesional
+        </h2>
+        <p class="text-slate-600 mt-2">
+          Pengalaman langsung dalam dukungan TI, pemeliharaan sistem CCTV, dan pengendalian mutu operasional.
+        </p>
+      </div>
+
+      <!-- Linimasa Pengalaman -->
+      <div class="space-y-6">
+
+        <!-- Role 1: IT Support @ Jagat Satwa Nusantara, TMII -->
+        <div class="corp-card p-6 sm:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 pb-4 border-b border-slate-100">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="corp-badge-blue">Pengalaman di Lokasi</span>
+                <span class="text-xs text-slate-500 font-medium">Taman Mini Indonesia Indah (TMII)</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mt-1">IT Support</h3>
+              <p class="text-sm font-semibold text-blue-600">Jagat Satwa Nusantara, TMII</p>
+            </div>
+            <div class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 w-fit">
+              Mei 2026 – Juli 2026
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-sm text-slate-700">
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-1"></i>
+              <span>Memberikan dukungan teknis untuk masalah perangkat keras, perangkat lunak, dan jaringan, termasuk pemeliharaan sistem CCTV.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-1"></i>
+              <span>Menangani permintaan dukungan dan sistem tiket untuk menjaga keandalan sistem.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-1"></i>
+              <span>Bekerja sama dengan tim TI untuk menyelesaikan masalah perangkat keras, perangkat lunak, dan jaringan.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role 2: Quality Control (Field) @ PT Serena Indopangan -->
+        <div class="corp-card p-6 sm:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 pb-4 border-b border-slate-100">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="corp-badge-cyan">Operasional Lapangan</span>
+                <span class="text-xs text-slate-500 font-medium">Penjaminan Mutu</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mt-1">Pengendalian Mutu (Lapangan)</h3>
+              <p class="text-sm font-semibold text-blue-600">PT Serena Indopangan</p>
+            </div>
+            <div class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 w-fit">
+              Oktober 2025 – Februari 2026
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-sm text-slate-700">
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-1"></i>
+              <span>Melakukan pemeriksaan mutu di lokasi untuk memastikan produk memenuhi standar perusahaan dalam lingkungan operasional lapangan.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role 3: IT Support (Freelance) @ SMK Wijaya Kusuma -->
+        <div class="corp-card p-6 sm:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 pb-4 border-b border-slate-100">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="corp-badge-green">Dukungan Infrastruktur</span>
+                <span class="text-xs text-slate-500 font-medium">Institusi Pendidikan</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mt-1">Dukungan TI (Lepas)</h3>
+              <p class="text-sm font-semibold text-blue-600">SMK Wijaya Kusuma</p>
+            </div>
+            <div class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 w-fit">
+              Maret 2023 – Juni 2025
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-sm text-slate-700">
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-1"></i>
+              <span>Memasang, mengonfigurasi, dan memperbarui sistem operasi serta aplikasi untuk menjaga stabilitas sistem.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-1"></i>
+              <span>Memelihara dokumentasi aset TI dan konfigurasi sistem.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-1"></i>
+              <span>Berkolaborasi dengan anggota tim TI dalam dukungan dan pemeliharaan sehari-hari.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 6. PROYEK ==================== -->
+  <section id="projects" class="py-20 bg-[#F8FAFC] border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-12">
+        <div class="corp-badge-blue mb-3">Perangkat Lunak & Sistem</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          Pengalaman Proyek
+        </h2>
+        <p class="text-slate-600 mt-2">
+          Empat aplikasi web berbasis basis data yang dirancang, dibuat, dan diterapkan secara mandiri menggunakan arsitektur modern.
+        </p>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Project 1: E-Piket -->
+        <div class="corp-card p-6 sm:p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="corp-badge-blue">Proyek Mandiri</span>
+              <span class="text-xs text-slate-500 font-medium">Juli 2026 – September 2026</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Sistem Pengelolaan Piket Sekolah (E-Piket)</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Mengembangkan aplikasi web pengelolaan piket sekolah dari awal menggunakan PHP native dengan lebih dari lima modul CRUD: guru, siswa, kelas, ruangan, dan tahun ajaran. Membuat fitur penjadwalan piket, pencatatan kehadiran, serta pencatatan ketidakhadiran dan keterlambatan siswa. Membuat dasbor admin untuk memantau seluruh kegiatan piket. Merancang basis data relasional MySQL, menerapkan aplikasi secara daring, dan memperbaiki bug yang ditemukan saat pengujian.
+            </p>
+            
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">PHP</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">MySQL</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">HTML5</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">CSS3</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-mono">Status: Diuji & Diterapkan</span>
+            <button class="open-project-modal-btn btn-outline-light text-xs py-2 px-3.5" data-project-id="1">
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span>Lihat Detail</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2: JeWePe -->
+        <div class="corp-card p-6 sm:p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="corp-badge-blue">Proyek Mandiri</span>
+              <span class="text-xs text-slate-500 font-medium">Mei 2026 – Juni 2026</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Toko Bahan Bangunan JeWePe</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Mengembangkan sistem pengelolaan produk dan inventaris untuk toko bahan bangunan menggunakan Laravel. Menerapkan fitur CRUD berbasis basis data untuk menggantikan pencatatan manual dan mendukung operasional toko sehari-hari. Menggunakan struktur MVC Laravel untuk memisahkan logika aplikasi dari pemrosesan data.
+            </p>
+            
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">PHP</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">Laravel</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">MySQL</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">Arsitektur MVC</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-mono">Status: Sistem Beroperasi</span>
+            <button class="open-project-modal-btn btn-outline-light text-xs py-2 px-3.5" data-project-id="2">
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span>Lihat Detail</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 3: Kelurahan Cibubur -->
+        <div class="corp-card p-6 sm:p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="corp-badge-blue">Proyek Mandiri</span>
+              <span class="text-xs text-slate-500 font-medium">September 2025 – Desember 2025</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Situs Informasi Kelurahan Cibubur</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Membuat situs informasi kelurahan dengan antarmuka Next.js yang terhubung ke layanan REST Express.js di sisi server. Merancang skema PostgreSQL untuk menyimpan dan mengelola konten layanan warga yang dinamis. Membuat tampilan responsif untuk komputer dan ponsel, menerapkan situs secara daring, serta memperbaiki kesalahan pada versi aktif.
+            </p>
+            
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">Next.js</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">React</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">Express.js</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">Node.js</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">PostgreSQL</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-mono">Status: Diuji & Diterapkan</span>
+            <button class="open-project-modal-btn btn-outline-light text-xs py-2 px-3.5" data-project-id="3">
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span>Lihat Detail</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Proyek 4: Sistem Manajemen Sekolah -->
+        <div class="corp-card p-6 sm:p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="corp-badge-blue">Proyek Mandiri</span>
+              <span class="text-xs text-slate-500 font-medium">Juli 2025 – September 2025</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Sistem Manajemen Sekolah</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Mengembangkan sistem pengelolaan data sekolah dengan arsitektur MVC untuk memisahkan logika bisnis, tampilan, dan data. Membuat fungsi CRUD untuk data induk sekolah menggunakan Dapper sebagai lapisan akses data ke SQL Server. Merancang skema relasional untuk pengelolaan informasi sekolah yang terstruktur, menerapkan aplikasi secara daring, dan memperbaiki bug yang ditemukan saat pengujian.
+            </p>
+            
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">C#</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">ASP.NET MVC</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">Dapper</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">SQL Server</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-mono">Status: Diuji & Diterapkan</span>
+            <button class="open-project-modal-btn btn-outline-light text-xs py-2 px-3.5" data-project-id="4">
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span>Lihat Detail</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 7. PENDIDIKAN ==================== -->
+  <section id="education" class="py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-12">
+        <div class="corp-badge-blue mb-3">Pendidikan</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          Kualifikasi Akademik
+        </h2>
+        <p class="text-slate-600 mt-2">
+          Pendidikan formal di bidang teknik dari salah satu perguruan tinggi swasta terkemuka di Indonesia.
+        </p>
+      </div>
+
+      <div class="corp-card p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 pb-6 border-b border-slate-100">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">Sarjana Teknik Informatika</h3>
+              <p class="text-base font-semibold text-blue-600">Universitas Gunadarma</p>
+              <p class="text-xs text-slate-500 mt-0.5">September 2022 – Agustus 2026 &middot; Lulus: Agustus 2026</p>
+            </div>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-xl px-4 py-2.5 text-center sm:text-right shrink-0">
+            <div class="text-xs font-semibold text-blue-800 uppercase tracking-wider">Indeks Prestasi Kumulatif</div>
+            <div class="text-2xl font-extrabold text-blue-700 font-mono">3.21 <span class="text-sm font-normal text-slate-500">/ 4.00</span></div>
+          </div>
+        </div>
+
+        <div class="pt-6">
+          <h4 class="text-sm font-bold text-slate-900 mb-3">Bidang Fokus Akademik:</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-xs">
+              Pengembangan Aplikasi Web
+            </div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-xs">
+              Sistem Basis Data
+            </div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-xs">
+              Rekayasa Perangkat Lunak
+            </div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center font-medium text-slate-800 text-xs">
+              Dukungan TI & Sistem
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 8. SERTIFIKASI ==================== -->
+  <section id="certifications" class="py-20 bg-[#F8FAFC] border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-12">
+        <div class="corp-badge-blue mb-3">Sertifikasi</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          Sertifikasi Profesional
+        </h2>
+        <p class="text-slate-600 mt-2">
+          Delapan sertifikat di bidang jaringan Cisco, basis data, serta desain dan pengembangan aplikasi web. Pilih sertifikat untuk melihat atau mengunduh berkas PDF.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+      <!-- Sertifikat JavaScript -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Dasar-Dasar Pemrograman JavaScript</h3>
+            <p class="text-xs text-slate-500 mt-1">Logika pemrograman dan skrip web</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/JavaScript%20Programming%20Language%20Fundamental.pdf" data-certificate-title="Dasar-Dasar Pemrograman JavaScript" aria-label="Lihat sertifikat Dasar-Dasar Pemrograman JavaScript" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/JavaScript%20Programming%20Language%20Fundamental.pdf" download="JavaScript Programming Language Fundamental.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat Dasar-Dasar Pemrograman JavaScript">Unduh PDF</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat HTML5 -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Membangun Situs Web dengan HTML5</h3>
+            <p class="text-xs text-slate-500 mt-1">Markup modern dan struktur semantik</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/Building%20Website%20using%20HTML%205.pdf" data-certificate-title="Membangun Situs Web dengan HTML5" aria-label="Lihat sertifikat Membangun Situs Web dengan HTML5" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/Building%20Website%20using%20HTML%205.pdf" download="Building Website using HTML 5.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat Membangun Situs Web dengan HTML5">Unduh PDF</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat desain aplikasi web -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Dasar-Dasar Desain Aplikasi Web</h3>
+            <p class="text-xs text-slate-500 mt-1">Prinsip antarmuka dan tata letak</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/Basic%20Web%20Application%20Design.pdf" data-certificate-title="Dasar-Dasar Desain Aplikasi Web" aria-label="Lihat sertifikat Dasar-Dasar Desain Aplikasi Web" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/Basic%20Web%20Application%20Design.pdf" download="Basic Web Application Design.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat Dasar-Dasar Desain Aplikasi Web">Unduh PDF</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat pengembangan aplikasi web -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Dasar-Dasar Pengembangan Aplikasi Web</h3>
+            <p class="text-xs text-slate-500 mt-1">Dasar pengembangan aplikasi berbasis web</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/Basic%20Web%20Application%20Development.pdf" data-certificate-title="Dasar-Dasar Pengembangan Aplikasi Web" aria-label="Lihat sertifikat Dasar-Dasar Pengembangan Aplikasi Web" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/Basic%20Web%20Application%20Development.pdf" download="Basic Web Application Development.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat Dasar-Dasar Pengembangan Aplikasi Web">Unduh PDF</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat WAN Cisco tingkat menengah -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+          <i data-lucide="award" class="w-5 h-5"></i>
         </div>
         <div>
-          <span class="text-sm font-bold text-white">Naufal Fikri</span>
-          <p class="text-[11px] text-slate-500">Junior Full Stack Developer • Cibinong, West Java</p>
+          <h3 class="font-bold text-slate-900 text-sm">Router Cisco WAN (Menengah)</h3>
+          <p class="text-xs text-slate-500 mt-1">Routing dan protokol jaringan area luas</p>
+        </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/WIDE%20AREA%20NETWORK%20USING%20CISCO%20ROUTER%20FOR%20INTERMEDIATE.pdf" data-certificate-title="Router Cisco WAN (Menengah)" aria-label="Lihat sertifikat Router Cisco WAN tingkat menengah" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/WIDE%20AREA%20NETWORK%20USING%20CISCO%20ROUTER%20FOR%20INTERMEDIATE.pdf" download="WIDE AREA NETWORK USING CISCO ROUTER FOR INTERMEDIATE.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat Router Cisco WAN tingkat menengah">Unduh PDF</a>
         </div>
       </div>
 
-      <div class="text-xs text-slate-500 text-center">
-        © 2026 Naufal Fikri. Crafted with clean architecture & modern interactive web principles.
+      <!-- Sertifikat LAN Cisco -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+          <i data-lucide="award" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm">Router Cisco LAN</h3>
+          <p class="text-xs text-slate-500 mt-1">Penyiapan dan konfigurasi jaringan area lokal</p>
+        </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/LOCAL%20AREA%20NETWORK%20USING%20CISCO%20ROUTER.pdf" data-certificate-title="Router Cisco LAN" aria-label="Lihat sertifikat Router Cisco LAN" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/LOCAL%20AREA%20NETWORK%20USING%20CISCO%20ROUTER.pdf" download="LOCAL AREA NETWORK USING CISCO ROUTER.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat Router Cisco LAN">Unduh PDF</a>
+        </div>
       </div>
 
-      <div class="flex items-center gap-4 text-xs font-mono text-slate-400">
-        <a href="#hero" class="hover:text-cyan-400">Top</a>
-        <span>•</span>
-        <a href="#projects" class="hover:text-cyan-400">Projects</a>
-        <span>•</span>
-        <a href="assets/docs/Naufal_Fikri_CV.pdf" download="Naufal_Fikri_CV.pdf" class="hover:text-indigo-400">CV (PDF)</a>
+      <!-- Sertifikat SQL Server tingkat pemula -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">SQL Server untuk Pemula</h3>
+            <p class="text-xs text-slate-500 mt-1">Kueri basis data, tabel, dan struktur relasional</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/SQL%20SERVER%20UNTUK%20TINGKAT%20PEMULA.pdf" data-certificate-title="SQL Server untuk Pemula" aria-label="Lihat sertifikat SQL Server untuk Pemula" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/SQL%20SERVER%20UNTUK%20TINGKAT%20PEMULA.pdf" download="SQL SERVER UNTUK TINGKAT PEMULA.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat SQL Server untuk Pemula">Unduh PDF</a>
+        </div>
+      </div>
+
+      <!-- Sertifikat SQL Server tingkat menengah -->
+      <div class="corp-card p-5 flex flex-col justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">SQL Server Tingkat Menengah</h3>
+            <p class="text-xs text-slate-500 mt-1">Pengelolaan dan kueri basis data tingkat menengah</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="view-certificate-btn btn-outline-light text-xs py-2 px-3" data-certificate-src="assets/docs/sertifikat/SQL%20SERVER%20FOR%20INTERMEDIATE.pdf" data-certificate-title="SQL Server Tingkat Menengah" aria-label="Lihat sertifikat SQL Server tingkat menengah" aria-haspopup="dialog">Lihat</button>
+          <a href="assets/docs/sertifikat/SQL%20SERVER%20FOR%20INTERMEDIATE.pdf" download="SQL SERVER FOR INTERMEDIATE.pdf" class="btn-outline-light text-xs py-2 px-3" aria-label="Unduh sertifikat SQL Server tingkat menengah">Unduh PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 9. BAHASA ==================== -->
+  <section id="languages" class="py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-12">
+        <div class="corp-badge-blue mb-3">Bahasa</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          Kemampuan Berbahasa
+        </h2>
+        <p class="text-slate-600 mt-2">
+          Kemampuan bahasa untuk kolaborasi di lingkungan kerja profesional dan memahami dokumentasi teknis.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
+        
+        <div class="corp-card p-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-bold text-slate-900">Bahasa Indonesia</h3>
+            <span class="corp-badge-blue">Fasih</span>
+          </div>
+          <p class="text-xs text-slate-500 mb-3">Fasih berkomunikasi secara lisan dan tulisan dalam konteks profesional.</p>
+          <div class="w-full bg-slate-100 rounded-full h-2">
+            <div class="bg-blue-600 h-2 rounded-full w-full"></div>
+          </div>
+        </div>
+
+        <div class="corp-card p-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-bold text-slate-900">Bahasa Inggris</h3>
+            <span class="corp-badge-cyan">Dasar hingga Menengah</span>
+          </div>
+          <p class="text-xs text-slate-500 mb-3">Mampu membaca dokumentasi teknis dan spesifikasi perangkat lunak serta berkomunikasi secara profesional.</p>
+          <div class="w-full bg-slate-100 rounded-full h-2">
+            <div class="bg-blue-600 h-2 rounded-full w-3/5"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 10. KONTAK ==================== -->
+  <section id="contact" class="py-20 bg-[#0B1220] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <div class="corp-badge-dark mb-3">Hubungi Saya</div>
+        <h2 class="text-3xl font-extrabold text-white tracking-tight sm:text-4xl mb-4">
+          Punya peluang kerja atau ide kolaborasi? Silakan hubungi saya.
+        </h2>
+        <p class="text-slate-300 text-base leading-relaxed">
+          Saya terbuka untuk posisi Dukungan TI, Infrastruktur TI, dan Dukungan Teknis. Bersedia relokasi dan bekerja di kantor (WFO).
+        </p>
+      </div>
+
+      <!-- Kartu Kontak -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        
+        <!-- Kartu Email -->
+        <div class="corp-card-dark p-5 text-center flex flex-col items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center mb-3">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">Alamat Email</h3>
+          <p class="text-xs text-slate-400 font-mono mb-4 break-all">naufalfik777@gmail.com</p>
+          <button class="copy-email-btn btn-secondary-dark text-xs py-1.5 px-3 w-full" data-email="naufalfik777@gmail.com">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Salin Email</span>
+          </button>
+        </div>
+
+        <!-- Kartu Telepon -->
+        <div class="corp-card-dark p-5 text-center flex flex-col items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center mb-3">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">Telepon / WhatsApp</h3>
+          <p class="text-xs text-slate-400 font-mono mb-4">+62 877-7386-2920</p>
+          <a href="https://wa.me/6287773862920" target="_blank" rel="noopener" class="btn-secondary-dark text-xs py-1.5 px-3 w-full">
+            <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+            <span>Hubungi melalui WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- Kartu LinkedIn -->
+        <div class="corp-card-dark p-5 text-center flex flex-col items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center mb-3">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">Profil LinkedIn</h3>
+          <p class="text-xs text-slate-400 font-mono mb-4">naufal-fikri-0500r</p>
+          <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" rel="noopener" class="btn-secondary-dark text-xs py-1.5 px-3 w-full">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            <span>Lihat Profil</span>
+          </a>
+        </div>
+
+        <!-- Kartu Lokasi -->
+        <div class="corp-card-dark p-5 text-center flex flex-col items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-cyan-600/20 text-cyan-400 flex items-center justify-center mb-3">
+            <i data-lucide="map-pin" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">Lokasi & WFO</h3>
+          <p class="text-xs text-slate-400 mb-4">Cibinong, Bogor, Jawa Barat</p>
+          <div class="text-[11px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 rounded py-1 px-2 w-full">
+            Bersedia Relokasi
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tombol Email Utama -->
+      <div class="text-center">
+        <a href="mailto:naufalfik777@gmail.com?subject=Peluang%20Karier%20-%20Naufal%20Fikri" class="btn-primary text-base py-3 px-8 shadow-lg shadow-blue-600/30">
+          <i data-lucide="send" class="w-5 h-5"></i>
+          <span>Kirim Email ke naufalfik777@gmail.com</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 11. KAKI HALAMAN ==================== -->
+  <footer class="bg-[#070C16] border-t border-[#1E2D4A] py-10 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="font-medium text-slate-300">&copy; 2026 Naufal Fikri &middot; Hak Cipta Dilindungi.</p>
+        <p class="text-[11px] text-slate-500 mt-0.5">Lulusan Teknik Informatika &middot; Universitas Gunadarma &middot; IPK 3,21/4,00</p>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" rel="noopener" class="hover:text-white transition-colors">LinkedIn</a>
+        <span>&middot;</span>
+        <a href="https://github.com/opangganteng" target="_blank" rel="noopener" class="hover:text-white transition-colors">GitHub</a>
+        <span>&middot;</span>
+        <a href="assets/docs/Naufal_Fikri_CV.pdf?v=20261031" download="Naufal_Fikri_CV.pdf" class="hover:text-white transition-colors">CV PDF</a>
+        <span>&middot;</span>
+        <a href="assets/docs/SKL_Naufal_Fikri.pdf?v=20261031" download="SKL_Naufal_Fikri.pdf" class="hover:text-white transition-colors">SKL PDF</a>
       </div>
     </div>
   </footer>
 
-  <!-- PROJECT MODAL -->
-  <div id="project-modal">
-    <div id="project-modal-card" class="relative">
-      <div id="modal-banner" class="p-6 md:p-8 rounded-t-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white relative">
-        <button id="modal-close-btn" class="absolute top-5 right-5 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white/80 hover:text-white transition-colors" title="Close Modal (Esc)">
+  <!-- ==================== MODAL PRATINJAU SERTIFIKAT ==================== -->
+  <div id="certificate-modal" class="corp-modal-overlay" aria-hidden="true">
+    <div class="corp-modal-box certificate-modal-box" role="dialog" aria-modal="true" aria-labelledby="certificate-modal-title">
+      <div class="flex items-center justify-between gap-4 p-4 sm:p-5 border-b border-slate-200">
+        <h2 id="certificate-modal-title" class="text-lg font-bold text-slate-900">Pratinjau Sertifikat</h2>
+        <button id="certificate-modal-close" type="button" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors" aria-label="Tutup pratinjau sertifikat">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
-        <div id="modal-role" class="text-xs font-mono tracking-wider uppercase text-cyan-200">Role & Category</div>
-        <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Project Title</h3>
-        <div id="modal-tags" class="flex flex-wrap gap-2 mt-4"></div>
       </div>
-
-      <div class="p-6 md:p-8 space-y-6 text-slate-300">
-        <div>
-          <h4 class="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-2">Project Overview</h4>
-          <p id="modal-summary" class="text-sm sm:text-base leading-relaxed text-slate-200"></p>
-        </div>
-
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-          <h4 class="text-xs font-mono uppercase tracking-wider text-indigo-400 flex items-center gap-2">
-            <i data-lucide="layers" class="w-4 h-4"></i> Architecture & Design Patterns
-          </h4>
-          <p id="modal-arch" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-mono uppercase tracking-wider text-emerald-400 mb-3 flex items-center gap-2">
-            <i data-lucide="check-circle" class="w-4 h-4"></i> Key Features & Implementation
-          </h4>
-          <ul id="modal-features" class="space-y-2.5"></ul>
-        </div>
-
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-          <h4 class="text-xs font-mono uppercase tracking-wider text-amber-400 flex items-center gap-2">
-            <i data-lucide="database" class="w-4 h-4"></i> Database Schema Design
-          </h4>
-          <p id="modal-db" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
-        </div>
-
-        <div class="pt-2 border-t border-slate-800 text-xs text-slate-400">
-          <strong class="text-slate-300">Key Takeaway: </strong>
-          <span id="modal-takeaway"></span>
-        </div>
+      <iframe id="certificate-modal-frame" class="certificate-modal-frame" title="Pratinjau sertifikat PDF"></iframe>
+      <div class="flex items-center justify-between gap-3 p-4 border-t border-slate-200">
+        <span class="text-xs text-slate-500">Pratinjau PDF di halaman portofolio</span>
+        <a id="certificate-modal-download" class="btn-primary text-xs py-2 px-3" download>Unduh PDF</a>
       </div>
     </div>
   </div>
 
-  <!-- STANDALONE TERMINAL MODAL -->
-  <div id="terminal-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="terminal-card max-w-3xl w-full border border-cyan-500/40 shadow-2xl">
-      <div class="terminal-header">
-        <div class="terminal-mac-btns">
-          <span id="close-terminal-btn" class="t-btn t-btn-red" title="Close"></span>
-          <span class="t-btn t-btn-yellow"></span>
-          <span class="t-btn t-btn-green"></span>
+  <!-- ==================== MODAL DETAIL PROYEK ==================== -->
+  <div id="project-detail-modal" class="corp-modal-overlay">
+    <div class="corp-modal-box">
+      <div class="p-6 sm:p-8">
+        
+        <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <div id="modal-badge" class="corp-badge-blue mb-2">Proyek Mandiri</div>
+            <h3 id="modal-title" class="text-2xl font-bold text-slate-900">Judul Proyek</h3>
+            <p id="modal-period" class="text-xs text-slate-500 font-medium mt-1">Periode Proyek</p>
+          </div>
+          <button id="modal-close-btn" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors" title="Tutup Jendela">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
         </div>
-        <div class="text-xs font-mono text-cyan-300 flex items-center gap-2">
-          <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
-          <span>naufal@dev-terminal: ~ (CLI Modal)</span>
+
+        <div class="py-5 space-y-5">
+          <div>
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Ringkasan Proyek</h4>
+            <p id="modal-summary" class="text-sm text-slate-700 leading-relaxed"></p>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Implementasi Teknis Utama</h4>
+            <ul id="modal-features" class="space-y-2 text-sm text-slate-700"></ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Teknologi yang Digunakan</h4>
+            <div id="modal-tags" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h4 class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-1">Sorotan Arsitektur & Data</h4>
+            <p id="modal-architecture" class="text-xs text-slate-600 leading-relaxed"></p>
+          </div>
         </div>
-        <div class="text-[11px] font-mono text-slate-500">ESC to close</div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-500 font-mono">Proyek Mandiri dari CV</span>
+          <button id="modal-close-bottom-btn" class="btn-outline-light text-xs py-2 px-4">
+            Tutup
+          </button>
+        </div>
+
       </div>
-      <div class="terminal-viewport p-4">
-        <div class="text-cyan-400 font-bold">Naufal Fikri Quick CLI Modal</div>
-        <div class="text-xs text-slate-400 mb-2">Type <span class="text-white font-mono">help</span> for commands. Use embedded terminal on page for full scrollback.</div>
-        <div class="text-xs text-emerald-400">Tip: Type 'whatsapp' to chat directly, or 'cv' to download resume!</div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL TERMINAL DIAGNOSTIK ==================== -->
+  <div id="terminal-modal-overlay">
+    <div class="corp-terminal-window">
+      <div class="flex items-center justify-between px-4 py-3 bg-[#070C16] border-b border-[#1E2D4A]">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-rose-500 inline-block cursor-pointer" id="cli-close-dot"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+          <span class="text-xs font-mono text-slate-400 ml-2">naufal@stasiun-perusahaan:~</span>
+        </div>
+        <button id="close-terminal-btn" class="text-slate-400 hover:text-white text-xs font-mono">ESC</button>
+      </div>
+
+      <div class="p-4 font-mono text-xs text-slate-200 h-80 overflow-y-auto" id="terminal-viewport">
+        <div class="text-blue-400 font-bold mb-1">Naufal Fikri - Konsol Diagnostik TI</div>
+        <div class="text-slate-400 mb-3">Ketik <span class="text-white font-bold">'help'</span> untuk melihat perintah, atau <span class="text-white font-bold">'cv'</span> untuk mengunduh CV.</div>
+        <div id="terminal-output" class="space-y-1 mb-2"></div>
+        <div class="flex items-center gap-2 text-blue-400">
+          <span>naufal@station:~$</span>
+          <input type="text" id="terminal-input" class="bg-transparent text-white outline-none flex-1 font-mono text-xs" autocomplete="off" autofocus>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="assets/js/canvas-bg.js"></script>
-  <script src="assets/js/terminal.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/canvas-bg.js?v=3.0"></script>
+  <script src="assets/js/terminal.js?v=3.2"></script>
+  <script src="assets/js/main.js?v=3.3"></script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 /**
- * Interactive Developer Terminal for Naufal Fikri Portfolio
+ * Terminal Interaktif Portofolio Naufal Fikri
  */
 
 (function () {
@@ -16,103 +16,114 @@
   let activeOutput = terminalBodies[0];
 
   const COMMANDS = {
-    help: `Available Commands:
-<span class="text-indigo-400 font-bold">─── Core Profile ───</span>
-  <span class="text-cyan-400">about</span>           - Naufal Fikri's profile & career summary
-  <span class="text-cyan-400">skills</span>          - Languages, frameworks & databases
-  <span class="text-cyan-400">projects</span>        - Overview of 4 full-stack applications
-  <span class="text-cyan-400">project &lt;1-4&gt;</span>     - Open an interactive project details modal
-  <span class="text-cyan-400">experience</span>      - Work experience & IT support
-  <span class="text-cyan-400">education</span>       - Informatics Engineering degree from Gunadarma
-  <span class="text-cyan-400">certs</span>           - Cisco & web programming certifications
-  <span class="text-cyan-400">contact</span>         - Contact details (email, WhatsApp, LinkedIn, GitHub)
-  <span class="text-cyan-400">social</span>          - Social media & repository links
+    help: `Perintah yang tersedia:
+<span class="text-indigo-400 font-bold">─── Profil Utama ───</span>
+  <span class="text-cyan-400">about</span>           - Profil dan ringkasan karier Naufal Fikri
+  <span class="text-cyan-400">skills</span>          - Bahasa pemrograman, framework, dan basis data
+  <span class="text-cyan-400">projects</span>        - Ringkasan 4 aplikasi web menyeluruh
+  <span class="text-cyan-400">project &lt;1-4&gt;</span>     - Buka detail proyek interaktif
+  <span class="text-cyan-400">experience</span>      - Pengalaman kerja dan dukungan TI
+  <span class="text-cyan-400">education</span>       - Gelar Teknik Informatika dari Gunadarma
+  <span class="text-cyan-400">certs</span>           - Sertifikasi Cisco dan pemrograman web
+  <span class="text-cyan-400">contact</span>         - Informasi kontak (email, WhatsApp, LinkedIn, GitHub)
+  <span class="text-cyan-400">social</span>          - Tautan media sosial dan repositori
 
-<span class="text-emerald-400 font-bold">─── Developer Utilities ───</span>
-  <span class="text-cyan-400">neofetch</span>        - Linux-style developer system information
-  <span class="text-cyan-400">cat cv.txt</span>      - View the resume in the terminal
-  <span class="text-cyan-400">git status</span>      - Repository status & work availability
-  <span class="text-cyan-400">git log</span>         - Project commits & milestones
-  <span class="text-cyan-400">tree</span>            - Portfolio architecture directory tree
-  <span class="text-cyan-400">ping &lt;host&gt;</span>      - Simulate a network connection test (Cisco ping)
-  <span class="text-cyan-400">calc &lt;expr&gt;</span>      - Quick calculator (e.g., calc 15 * 8)
-  <span class="text-cyan-400">sound [on|off]</span>  - Turn sound effects on or off
+<span class="text-emerald-400 font-bold">─── Utilitas Pengembang ───</span>
+  <span class="text-cyan-400">neofetch</span>        - Informasi sistem pengembang bergaya Linux
+  <span class="text-cyan-400">cat cv.txt</span>      - Lihat ringkasan CV di terminal
+  <span class="text-cyan-400">git status</span>      - Status repositori dan ketersediaan kerja
+  <span class="text-cyan-400">git log</span>         - Komit dan pencapaian proyek
+  <span class="text-cyan-400">tree</span>            - Struktur direktori portofolio
+  <span class="text-cyan-400">ping &lt;host&gt;</span>      - Simulasi uji koneksi jaringan (Cisco ping)
+  <span class="text-cyan-400">calc &lt;expr&gt;</span>      - Kalkulator cepat (contoh: calc 15 * 8)
+  <span class="text-cyan-400">sound [on|off]</span>  - Aktifkan atau nonaktifkan efek suara
 
-<span class="text-amber-400 font-bold">─── Actions & Easter Eggs ───</span>
-  <span class="text-cyan-400">whatsapp</span>        - Open a direct WhatsApp chat with Naufal
-  <span class="text-cyan-400">download</span> / <span class="text-cyan-400">cv</span>   - Download the official resume (PDF)
-  <span class="text-cyan-400">theme &lt;name&gt;</span>     - Change the theme (dark, light, matrix)
-  <span class="text-cyan-400">matrix</span>          - Matrix green digital rain mode
-  <span class="text-cyan-400">coffee</span> / <span class="text-cyan-400">brew</span>    - Brew a virtual developer coffee ☕
-  <span class="text-cyan-400">joke</span>            - Random programmer joke
-  <span class="text-cyan-400">quote</span>           - Inspirational software quote
-  <span class="text-cyan-400">history</span>         - Command history for this session
-  <span class="text-cyan-400">sudo hire</span>       - Get in touch about a job opportunity (🎉 Confetti)
-  <span class="text-cyan-400">clear</span>           - Clear the terminal`,
+<span class="text-amber-400 font-bold">─── Aksi & Kejutan ───</span>
+  <span class="text-cyan-400">whatsapp</span>        - Buka percakapan WhatsApp langsung dengan Naufal
+  <span class="text-cyan-400">download</span> / <span class="text-cyan-400">cv</span>   - Unduh CV resmi (PDF)
+  <span class="text-cyan-400">theme &lt;name&gt;</span>     - Ubah tema (dark, light, matrix)
+  <span class="text-cyan-400">matrix</span>          - Aktifkan efek hujan digital hijau Matrix
+  <span class="text-cyan-400">coffee</span> / <span class="text-cyan-400">brew</span>    - Seduh kopi virtual untuk pengembang ☕
+  <span class="text-cyan-400">joke</span>            - Lelucon pemrograman acak
+  <span class="text-cyan-400">quote</span>           - Kutipan inspiratif tentang perangkat lunak
+  <span class="text-cyan-400">history</span>         - Riwayat perintah pada sesi ini
+  <span class="text-cyan-400">sudo hire</span>       - Hubungi Naufal untuk peluang kerja (🎉 Konfeti)
+  <span class="text-cyan-400">clear</span>           - Bersihkan terminal`,
 
     about: `<div class="space-y-1">
-  <div class="text-indigo-400 font-bold">NAUFAL FIKRI — Junior Web & Full Stack Developer</div>
-  <div>📍 Cibinong, Bogor, West Java, Indonesia</div>
-  <div class="text-slate-300 mt-1">Informatics Engineering graduate from Gunadarma University with hands-on experience building 4 full-stack, database-driven web applications using PHP Native, Laravel, C# ASP.NET MVC, and Next.js / Express.js.</div>
-  <div class="text-slate-400 mt-1">Skilled in designing MVC architecture, relational database normalization, and robust CRUD features from scratch. Backed by solid IT Support diagnostics experience.</div>
+  <div class="text-cyan-400 font-bold">NAUFAL FIKRI — Dukungan TI | Lulusan Teknik Informatika</div>
+  <div>📍 Cibinong, Bogor, Jawa Barat, Indonesia</div>
+  <div class="text-emerald-400 font-semibold mt-1">"Memberikan dukungan teknis, merawat sistem, dan menyelesaikan tantangan TI."</div>
+  <div class="text-slate-300 mt-1">Lulusan Teknik Informatika Universitas Gunadarma (2026) dengan pengalaman langsung di bidang dukungan TI dan pengembangan aplikasi web. Berpengalaman menangani masalah perangkat keras, perangkat lunak, dan jaringan, merawat CCTV, mengelola tiket dukungan, serta membangun empat aplikasi web berbasis basis data menggunakan C# ASP.NET MVC, PHP/Laravel, dan Next.js/Express.js dengan SQL Server, MySQL, dan PostgreSQL.</div>
+  <div class="text-cyan-300 font-mono text-xs mt-1">Status: Bersedia Relokasi | Terbuka untuk Bekerja di Kantor (WFO)</div>
 </div>`,
 
     skills: `<div class="space-y-1">
-  <span class="text-indigo-300 font-semibold">[Languages]</span> PHP, C#, JavaScript (ES6+), SQL, HTML5, CSS3
-  <br><span class="text-cyan-300 font-semibold">[Frameworks]</span> Laravel, ASP.NET MVC, Next.js, Express.js
-  <br><span class="text-emerald-300 font-semibold">[Databases]</span> MySQL, PostgreSQL, SQL Server, Dapper ORM
-  <br><span class="text-purple-300 font-semibold">[Architecture]</span> MVC Pattern, RESTful APIs, CRUD, Relational DB Design
-  <br><span class="text-amber-300 font-semibold">[Tools & IT]</span> Git, GitHub, Network Configuration (LAN/WAN Cisco), Troubleshooting
+  <div class="text-cyan-400 font-bold">Keahlian Teknis:</div>
+  <div><span class="text-cyan-300 font-semibold">[Dukungan TI & Jaringan - Utama]</span> Pemecahan Masalah Perangkat Keras, Pemecahan Masalah Perangkat Lunak, Instalasi & Konfigurasi Sistem Operasi, Sistem Tiket, Pemeliharaan Jaringan, Cisco LAN/WAN, Pemeliharaan CCTV, Dokumentasi Aset TI</div>
+  <div class="mt-1"><span class="text-blue-300 font-semibold">[Pemrograman & Pengembangan Web]</span> C#, PHP, JavaScript, SQL, ASP.NET MVC, Laravel, Node.js, Express.js, Next.js, React, REST API, HTML5, CSS3, Desain Responsif</div>
+  <div class="mt-1"><span class="text-emerald-300 font-semibold">[Basis Data]</span> SQL Server, MySQL, PostgreSQL, Desain Basis Data Relasional</div>
+  <div class="mt-1"><span class="text-purple-300 font-semibold">[Perangkat & Lainnya]</span> Git, GitHub, Penerapan, Pengujian Manual, Debugging, Claude AI (Pembuatan Kode, Debugging, dan Peninjauan Kode)</div>
 </div>`,
 
     projects: `<div class="space-y-1">
-  <div class="text-indigo-400 font-bold">Featured Full-Stack Projects:</div>
-  <div>1. <span class="text-cyan-300 font-semibold">Cibubur Local Government Information Website</span> [Next.js, Express.js, PostgreSQL]</div>
-  <div>2. <span class="text-cyan-300 font-semibold">School Management System</span> [C#, ASP.NET MVC, Dapper, SQL Server]</div>
-  <div>3. <span class="text-cyan-300 font-semibold">E-Piket: School Duty Management System</span> [PHP Native, MySQL, JavaScript]</div>
-  <div>4. <span class="text-cyan-300 font-semibold">JeWePe Building Materials Store</span> [PHP, Laravel, MySQL, Bootstrap]</div>
-  <div class="text-slate-400 mt-1">Tip: Type <span class="text-amber-400">project 1</span> (or 2, 3, 4) to open the interactive project deep dive!</div>
+  <div class="text-cyan-400 font-bold">Proyek Pilihan:</div>
+  <div>1. <span class="text-cyan-300 font-semibold">Sistem Pengelolaan Piket Sekolah (E-Piket)</span> [PHP, MySQL, HTML5, CSS3, JavaScript] (Juli 2026 – September 2026)</div>
+  <div>2. <span class="text-cyan-300 font-semibold">Toko Bahan Bangunan JeWePe</span> [PHP, Laravel, MySQL] (Mei 2026 – Juni 2026)</div>
+  <div>3. <span class="text-cyan-300 font-semibold">Situs Informasi Kelurahan Cibubur</span> [Next.js, React, Express.js, Node.js, PostgreSQL] (September 2025 – Desember 2025)</div>
+  <div>4. <span class="text-cyan-300 font-semibold">Sistem Manajemen Sekolah</span> [C#, ASP.NET MVC, Dapper, SQL Server] (Juli 2025 – September 2025)</div>
+  <div class="text-slate-400 mt-1">Catatan: Ketik <span class="text-amber-400">project 1</span> (atau 2, 3, 4) untuk membuka detail proyek interaktif!</div>
 </div>`,
 
     experience: `<div class="space-y-1">
-  <div class="text-indigo-400 font-bold">Work Experience:</div>
-  <div>💼 <span class="text-emerald-400">IT Support</span> — Jagat Satwa Nusantara, TMII</div>
-  <div class="text-slate-400 pl-4">• Technical support for hardware, software, network & CCTV maintenance.</div>
-  <div>💼 <span class="text-emerald-400">IT Support</span> — SMK Wijaya Kusuma</div>
-  <div class="text-slate-400 pl-4">• OS installation, troubleshooting, and IT asset documentation.</div>
-  <div>💼 <span class="text-emerald-400">QC Field</span> — PT Serena Indopangan</div>
-  <div class="text-slate-400 pl-4">• On-site quality inspections and standards verification.</div>
+  <div class="text-cyan-400 font-bold">Pengalaman Kerja:</div>
+  <div>💼 <span class="text-emerald-400 font-semibold">Dukungan TI</span> — Jagat Satwa Nusantara, TMII (Mei 2026 – Juli 2026)</div>
+  <div class="text-slate-400 pl-4">• Memberikan dukungan teknis untuk masalah perangkat keras, perangkat lunak, dan jaringan, termasuk pemeliharaan sistem CCTV.</div>
+  <div class="text-slate-400 pl-4">• Menangani permintaan dukungan dan sistem tiket untuk menjaga keandalan sistem.</div>
+  <div class="text-slate-400 pl-4">• Bekerja sama dengan tim TI untuk menyelesaikan masalah perangkat keras, perangkat lunak, dan jaringan.</div>
+  <div class="mt-1">💼 <span class="text-amber-400 font-semibold">Pengendalian Mutu (Lapangan)</span> — PT Serena Indopangan (Oktober 2025 – Februari 2026)</div>
+  <div class="text-slate-400 pl-4">• Melakukan pemeriksaan mutu di lokasi untuk memastikan produk memenuhi standar perusahaan.</div>
+  <div class="mt-1">💼 <span class="text-cyan-400 font-semibold">Dukungan TI (Lepas)</span> — SMK Wijaya Kusuma (Maret 2023 – Juni 2025)</div>
+  <div class="text-slate-400 pl-4">• Memasang, mengonfigurasi, dan memperbarui sistem operasi serta aplikasi untuk menjaga stabilitas sistem.</div>
+  <div class="text-slate-400 pl-4">• Memelihara dokumentasi aset TI dan konfigurasi sistem.</div>
+  <div class="text-slate-400 pl-4">• Berkolaborasi dengan anggota tim TI dalam dukungan dan pemeliharaan sehari-hari.</div>
 </div>`,
 
     education: `<div class="space-y-1">
-  <div class="text-indigo-400 font-bold">Education:</div>
-  <div>🎓 <span class="text-white font-semibold">Gunadarma University</span></div>
-  <div class="text-cyan-300">Bachelor's Degree in Informatics Engineering</div>
-  <div class="text-slate-400">• Core focus: Web Application Development, Database Systems, Software Engineering, and IT Support.</div>
+  <div class="text-cyan-400 font-bold">Pendidikan & Bahasa:</div>
+  <div>🎓 <span class="text-white font-semibold">Sarjana Teknik Informatika</span> — Universitas Gunadarma</div>
+  <div class="text-slate-400">September 2022 – Agustus 2026 | IPK: 3,21 / 4,00 | Lulus: Agustus 2026</div>
+  <div class="text-slate-300">• Bidang fokus: Pengembangan Aplikasi Web, Sistem Basis Data, Rekayasa Perangkat Lunak, Dukungan TI.</div>
+  <div class="mt-1 text-slate-300">🌐 <span class="font-semibold text-white">Bahasa:</span> Indonesia (Fasih), Inggris (Dasar hingga Menengah)</div>
 </div>`,
 
     certs: `<div class="space-y-1">
-  <div class="text-indigo-400 font-bold">Licenses & Certifications:</div>
-  <div>📜 JavaScript Programming Fundamental</div>
-  <div>📜 Building Website Using HTML5</div>
-  <div>📜 Basic Web App Design</div>
-  <div>📜 SQL Server for Beginner</div>
-  <div>📜 WAN Cisco Router — Intermediate</div>
-  <div>📜 LAN Cisco Router</div>
+  <div class="text-cyan-400 font-bold">Lisensi & Sertifikasi:</div>
+  <div>📜 Dasar-Dasar Pemrograman JavaScript</div>
+  <div>📜 Membangun Situs Web dengan HTML5</div>
+  <div>📜 Dasar-Dasar Desain Aplikasi Web</div>
+  <div>📜 SQL Server untuk Pemula</div>
+  <div>📜 Router Cisco WAN (Menengah)</div>
+  <div>📜 Router Cisco LAN</div>
+  <div>📜 SQL Server Tingkat Menengah</div>
+  <div>📜 Dasar-Dasar Pengembangan Aplikasi Web</div>
 </div>`,
 
     contact: `<div class="space-y-1">
-  <div class="text-indigo-400 font-bold">Get In Touch:</div>
+  <div class="text-cyan-400 font-bold">Informasi Kontak:</div>
   <div>📧 Email: <a href="mailto:naufalfik777@gmail.com" class="text-cyan-300 hover:underline">naufalfik777@gmail.com</a></div>
-  <div>📱 WhatsApp: <a href="https://wa.me/6287773862920" target="_blank" class="text-emerald-300 hover:underline">+62 877-7386-2920</a></div>
-  <div>💼 LinkedIn: <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" class="text-indigo-300 hover:underline">linkedin.com/in/naufal-fikri-0500r</a></div>
-  <div>🐙 GitHub: <a href="https://github.com/opangganteng" target="_blank" class="text-purple-300 hover:underline">github.com/opangganteng</a></div>
+  <div>📱 Telepon/WhatsApp: <a href="https://wa.me/6287773862920" target="_blank" class="text-emerald-300 hover:underline">+62 877-7386-2920</a></div>
+  <div>💼 LinkedIn: <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" class="text-blue-300 hover:underline">linkedin.com/in/naufal-fikri-0500r</a></div>
+  <div>🐙 GitHub: <a href="https://github.com/opangganteng" target="_blank" class="text-slate-300 hover:underline">github.com/opangganteng</a></div>
+  <div>📍 Lokasi: Cibinong, Bogor, Jawa Barat, Indonesia</div>
+  <div class="text-emerald-400 text-xs mt-1">Bersedia Relokasi | Terbuka untuk Bekerja di Kantor (WFO)</div>
 </div>`,
 
     social: `<div class="space-y-1">
-  <div class="text-indigo-400 font-bold">Social & Portfolio Links:</div>
+  <div class="text-cyan-400 font-bold">Profil Profesional:</div>
   <div>• LinkedIn: <a href="https://linkedin.com/in/naufal-fikri-0500r" target="_blank" class="text-cyan-300 underline">linkedin.com/in/naufal-fikri-0500r</a></div>
   <div>• GitHub: <a href="https://github.com/opangganteng" target="_blank" class="text-cyan-300 underline">github.com/opangganteng</a></div>
+  <div>• Portofolio: <a href="https://portofolio-alpha-sable-44.vercel.app" target="_blank" class="text-cyan-300 underline">portofolio-alpha-sable-44.vercel.app</a></div>
   <div>• WhatsApp: <a href="https://wa.me/6287773862920" target="_blank" class="text-emerald-400 underline">wa.me/6287773862920</a></div>
 </div>`,
 
@@ -125,67 +136,73 @@
    \`---\`
   </div>
   <div class="space-y-0.5 text-slate-300">
-    <div><span class="text-indigo-400 font-bold">OS:</span> NaufalOS v2.4 (x86_64 Web Edition)</div>
-    <div><span class="text-indigo-400 font-bold">Host:</span> Gunadarma Informatics Alumni</div>
-    <div><span class="text-indigo-400 font-bold">Role:</span> Junior Full Stack Developer</div>
-    <div><span class="text-indigo-400 font-bold">Stack:</span> PHP, Laravel, C#, ASP.NET, Next.js, Express.js</div>
-    <div><span class="text-indigo-400 font-bold">Databases:</span> PostgreSQL, MySQL, SQL Server, Dapper ORM</div>
-    <div><span class="text-indigo-400 font-bold">Networking:</span> Cisco LAN/WAN Router Certified</div>
-    <div><span class="text-indigo-400 font-bold">Status:</span> <span class="text-emerald-400 font-bold">Open for Full-time & Freelance Roles</span></div>
-    <div><span class="text-indigo-400 font-bold">Uptime:</span> Ready to contribute immediately!</div>
+    <div><span class="text-cyan-400 font-bold">Identitas:</span> Naufal Fikri</div>
+    <div><span class="text-cyan-400 font-bold">Jabatan:</span> Dukungan TI | Lulusan Teknik Informatika</div>
+    <div><span class="text-cyan-400 font-bold">Pendidikan:</span> Universitas Gunadarma (IPK: 3,21)</div>
+    <div><span class="text-cyan-400 font-bold">Fokus Utama:</span> Perangkat Keras, Sistem Operasi, Pemeliharaan Jaringan, CCTV, Sistem Tiket</div>
+    <div><span class="text-cyan-400 font-bold">Fokus Sekunder:</span> Pengembangan Aplikasi Web (ASP.NET MVC, Laravel, Next.js)</div>
+    <div><span class="text-cyan-400 font-bold">Basis Data:</span> SQL Server, MySQL, PostgreSQL</div>
+    <div><span class="text-cyan-400 font-bold">Ketersediaan:</span> <span class="text-emerald-400 font-bold">Bersedia Relokasi | Terbuka untuk Bekerja di Kantor</span></div>
+    <div><span class="text-cyan-400 font-bold">Lokasi:</span> Cibinong, Bogor, Jawa Barat, Indonesia</div>
   </div>
 </div>`,
 
     catcv: `<div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 text-xs font-mono space-y-2 text-slate-300">
-  <div class="text-cyan-400 font-bold border-b border-slate-700 pb-1">=== CURRICULUM VITAE: NAUFAL FIKRI ===</div>
-  <div><strong>Title:</strong> Junior Web Developer | Junior Full Stack Developer</div>
-  <div><strong>Contact:</strong> +62 877-7386-2920 | naufalfik777@gmail.com</div>
-  <div><strong>Location:</strong> Cibinong, Bogor, West Java, Indonesia</div>
-  <div class="mt-2 text-indigo-300 font-semibold">[Education]</div>
-  <div>• Bachelor's Degree in Informatics Engineering — Gunadarma University</div>
-  <div class="mt-2 text-indigo-300 font-semibold">[Featured Full-Stack Projects]</div>
-  <div>1. Cibubur Local Government Information Website (Next.js, Express.js, PostgreSQL)</div>
-  <div>2. School Management System (C#, ASP.NET MVC, Dapper, SQL Server)</div>
-  <div>3. E-Piket Duty System (PHP Native, MySQL, JS)</div>
-  <div>4. JeWePe Building Materials Store (PHP, Laravel, MySQL)</div>
-  <div class="mt-2 text-indigo-300 font-semibold">[Professional Experience]</div>
-  <div>• IT Support - TMII Jagat Satwa Nusantara (Hardware, Software, CCTV, Network)</div>
-  <div>• IT Support - SMK Wijaya Kusuma (OS, IT Assets, Maintenance)</div>
-  <div class="mt-2 text-emerald-400">Type <strong>download</strong> to download the official PDF resume!</div>
+  <div class="text-cyan-400 font-bold border-b border-slate-700 pb-1">=== DAFTAR RIWAYAT HIDUP: NAUFAL FIKRI ===</div>
+  <div><strong>Jabatan:</strong> Dukungan TI | Lulusan Teknik Informatika</div>
+  <div><strong>Kontak:</strong> +62 877-7386-2920 | naufalfik777@gmail.com</div>
+  <div><strong>Lokasi:</strong> Cibinong, Bogor, Jawa Barat, Indonesia</div>
+  <div><strong>Ketersediaan:</strong> Bersedia Relokasi | Terbuka untuk Bekerja di Kantor</div>
+  <div class="mt-2 text-cyan-300 font-semibold">[Pendidikan]</div>
+  <div>• Sarjana Teknik Informatika — Universitas Gunadarma (September 2022 – Agustus 2026, IPK: 3,21)</div>
+  <div class="mt-2 text-cyan-300 font-semibold">[Pengalaman Kerja]</div>
+  <div>• Dukungan TI — Jagat Satwa Nusantara, TMII (Mei 2026 – Juli 2026)</div>
+  <div>• Pengendalian Mutu (Lapangan) — PT Serena Indopangan (Oktober 2025 – Februari 2026)</div>
+  <div>• Dukungan TI (Lepas) — SMK Wijaya Kusuma (Maret 2023 – Juni 2025)</div>
+  <div class="mt-2 text-cyan-300 font-semibold">[Proyek]</div>
+  <div>1. Sistem Pengelolaan Piket Sekolah (E-Piket) [PHP, MySQL, HTML5, CSS3, JS]</div>
+  <div>2. Toko Bahan Bangunan JeWePe [PHP, Laravel, MySQL]</div>
+  <div>3. Situs Informasi Kelurahan Cibubur [Next.js, React, Express.js, PostgreSQL]</div>
+  <div>4. Sistem Manajemen Sekolah [C#, ASP.NET MVC, Dapper, SQL Server]</div>
+  <div class="mt-2 text-emerald-400">Ketik <strong>download</strong> untuk mengunduh CV resmi dalam format PDF!</div>
 </div>`,
 
     tree: `<div class="font-mono text-xs text-slate-300 space-y-0.5">
 <span class="text-cyan-400 font-bold">naufal-portfolio/</span>
-├── <span class="text-indigo-400">projects/</span>
-│   ├── <span class="text-emerald-400">cibubur-information-web/</span> (Next.js + Express.js + PostgreSQL)
-│   ├── <span class="text-purple-400">school-management-system/</span> (C# + ASP.NET MVC + Dapper)
-│   ├── <span class="text-amber-400">e-piket-duty-system/</span> (PHP Native + MySQL + JS)
-│   └── <span class="text-rose-400">jewepe-materials-store/</span> (PHP + Laravel + MySQL)
-├── <span class="text-indigo-400">experience/</span>
-│   ├── <span class="text-slate-300">it-support-tmii-jagat-satwa/</span>
-│   ├── <span class="text-slate-300">it-support-smk-wijaya-kusuma/</span>
-│   └── <span class="text-slate-300">qc-field-serena-indopangan/</span>
-├── <span class="text-indigo-400">education/</span>
-│   └── <span class="text-cyan-300">bachelor-informatics-engineering-gunadarma</span>
-└── <span class="text-indigo-400">credentials/</span>
-    └── 6-verified-certifications (Cisco, SQL, HTML5, JS)
+├── <span class="text-cyan-300">keahlian-dukungan-ti/</span>
+│   ├── pemecahan-masalah-perangkat-keras & konfigurasi-sistem-operasi
+│   ├── sistem-tiket & dokumentasi-aset
+│   ├── cisco-lan-wan & pemeliharaan-jaringan
+│   └── pemeliharaan-pemantauan-cctv
+├── <span class="text-blue-300">pengembangan-web/</span>
+│   ├── sistem-piket-e-piket/ (PHP Native + MySQL)
+│   ├── toko-bahan-bangunan-jewepe/ (PHP + Laravel + MySQL)
+│   ├── portal-kelurahan-cibubur/ (Next.js + Express.js + PostgreSQL)
+│   └── sistem-manajemen-sekolah/ (C# + ASP.NET MVC + SQL Server)
+├── <span class="text-emerald-300">pengalaman-kerja/</span>
+│   ├── dukungan-ti-tmii-jagat-satwa/ (Mei 2026 – Juli 2026)
+│   ├── pengendalian-mutu-lapangan-pt-serena-indopangan/ (Oktober 2025 – Februari 2026)
+│   └── dukungan-ti-smk-wijaya-kusuma/ (Maret 2023 – Juni 2025)
+└── <span class="text-purple-300">pendidikan-dan-sertifikasi/</span>
+    ├── sarjana-teknik-informatika-universitas-gunadarma (IPK 3,21)
+    └── 8 sertifikasi (Cisco WAN/LAN, SQL Server, HTML5, JavaScript, desain & pengembangan web)
 </div>`
   };
 
   const DEV_JOKES = [
-    "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
-    "There are 10 types of people in the world: those who understand binary, and those who don't.",
-    "A SQL query walks into a bar, walks up to two tables and asks: 'Can I JOIN you?' 🍻",
-    "Why did the developer go broke? Because he used up all his cache! 💸",
-    "How do you comfort a JavaScript bug? You console it. ❤️",
-    "Real programmers count from 0."
+    "Mengapa programmer menyukai mode gelap? Karena cahaya menarik bug! 🐛",
+    "Ada 10 jenis orang di dunia: yang memahami bilangan biner dan yang tidak.",
+    "Sebuah kueri SQL masuk ke bar, menghampiri dua tabel, lalu bertanya: 'Boleh JOIN?' 🍻",
+    "Mengapa pengembang kehabisan uang? Karena seluruh cache-nya sudah habis! 💸",
+    "Bagaimana menghibur bug JavaScript? Tampilkan ke console. ❤️",
+    "Programmer sejati mulai menghitung dari 0."
   ];
 
   const TECH_QUOTES = [
-    '"Talk is cheap. Show me the code." - Linus Torvalds',
-    '"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." - Martin Fowler',
-    '"Simplicity is prerequisite for reliability." - Edsger W. Dijkstra',
-    '"First, solve the problem. Then, write the code." - John Johnson'
+    '"Bicara itu mudah. Tunjukkan kodenya." - Linus Torvalds',
+    '"Siapa pun bisa menulis kode yang dipahami komputer. Programmer yang baik menulis kode yang dipahami manusia." - Martin Fowler',
+    '"Kesederhanaan adalah prasyarat keandalan." - Edsger W. Dijkstra',
+    '"Selesaikan masalahnya terlebih dahulu. Setelah itu, tulis kodenya." - John Johnson'
   ];
 
   function appendLine(html, isCommand = false) {
@@ -205,7 +222,7 @@
     commandHistory.push(trimmed);
     historyIndex = commandHistory.length;
 
-    appendLine(`<span class="text-emerald-400">naufal@dev:~$</span> ${trimmed}`, true);
+    appendLine(`<span class="text-cyan-400">naufal@infra:~$</span> ${trimmed}`, true);
 
     const parts = trimmed.split(' ');
     const cmd = parts[0].toLowerCase();
@@ -239,12 +256,12 @@
     if (cmd === 'project') {
       const pNum = parseInt(arg, 10);
       if (pNum >= 1 && pNum <= 4) {
-        appendLine(`<span class="text-cyan-400">🚀 Opening project ${pNum} interactive deep-dive modal...</span>`);
+        appendLine(`<span class="text-cyan-400">🚀 Membuka detail interaktif proyek ${pNum}...</span>`);
         if (window.openProjectModalByIndex) {
           window.openProjectModalByIndex(pNum - 1);
         }
       } else {
-        appendLine(`<span class="text-amber-400">Please choose a project index from 1 to 4. E.g.: 'project 1'</span>`);
+        appendLine(`<span class="text-amber-400">Pilih nomor proyek dari 1 sampai 4. Contoh: 'project 1'</span>`);
       }
       return;
     }
@@ -283,7 +300,7 @@
       if (arg.includes('cv') || arg.includes('resume')) {
         appendLine(COMMANDS.catcv);
       } else {
-        appendLine(`<span class="text-amber-400">File not found. Try: <strong>cat cv.txt</strong></span>`);
+        appendLine(`<span class="text-amber-400">Berkas tidak ditemukan. Coba: <strong>cat cv.txt</strong></span>`);
       }
       return;
     }
@@ -296,25 +313,25 @@
     if (cmd === 'git') {
       if (arg === 'status') {
         appendLine(`<div class="space-y-1">
-  <div class="text-emerald-400">On branch main</div>
-  <div>Your branch is up to date with 'origin/production'.</div>
-  <div class="text-cyan-300 mt-1">Changes ready for deployment:</div>
-  <div class="text-emerald-300 pl-4">✔ Cibubur Local Government Portal (Next.js/Express/PostgreSQL)</div>
-  <div class="text-emerald-300 pl-4">✔ School Management System (C# ASP.NET MVC/Dapper)</div>
-  <div class="text-emerald-300 pl-4">✔ E-Piket School Duty System (PHP Native/MySQL)</div>
-  <div class="text-emerald-300 pl-4">✔ JeWePe Building Materials Store (Laravel/MySQL)</div>
-  <div class="text-slate-400 mt-1">nothing to commit, ready to join your engineering team! 🚀</div>
+  <div class="text-emerald-400">Sedang berada di cabang main</div>
+  <div>Cabang Anda sudah mutakhir dengan 'origin/production'.</div>
+  <div class="text-cyan-300 mt-1">Perubahan siap diterapkan:</div>
+  <div class="text-emerald-300 pl-4">✔ Portal Kelurahan Cibubur (Next.js/Express/PostgreSQL)</div>
+  <div class="text-emerald-300 pl-4">✔ Sistem Manajemen Sekolah (C# ASP.NET MVC/Dapper)</div>
+  <div class="text-emerald-300 pl-4">✔ Sistem Piket Sekolah E-Piket (PHP Native/MySQL)</div>
+  <div class="text-emerald-300 pl-4">✔ Toko Bahan Bangunan JeWePe (Laravel/MySQL)</div>
+  <div class="text-slate-400 mt-1">tidak ada perubahan untuk disimpan, siap bergabung dengan tim Anda! 🚀</div>
 </div>`);
       } else if (arg === 'log') {
         appendLine(`<div class="space-y-1 text-xs font-mono">
-  <div><span class="text-amber-400">commit 9f4a12</span> - feat: Built Cibubur Village Portal (Next.js, Express, PostgreSQL)</div>
-  <div><span class="text-amber-400">commit 7b3d90</span> - feat: Developed School Management System in C# ASP.NET MVC</div>
-  <div><span class="text-amber-400">commit 4c8e61</span> - feat: Implemented E-Piket Duty & Attendance System in Native PHP</div>
-  <div><span class="text-amber-400">commit 2a1f05</span> - feat: Built JeWePe Building Materials Store in Laravel MVC</div>
-  <div><span class="text-amber-400">commit 0e89aa</span> - grad: Earned a bachelor's degree in Informatics Engineering from Gunadarma University</div>
+  <div><span class="text-amber-400">commit 9f4a12</span> - fitur: Membuat Portal Kelurahan Cibubur (Next.js, Express, PostgreSQL)</div>
+  <div><span class="text-amber-400">commit 7b3d90</span> - fitur: Mengembangkan Sistem Manajemen Sekolah dengan C# ASP.NET MVC</div>
+  <div><span class="text-amber-400">commit 4c8e61</span> - fitur: Menerapkan Sistem Piket & Kehadiran E-Piket dengan PHP Native</div>
+  <div><span class="text-amber-400">commit 2a1f05</span> - fitur: Membuat Toko Bahan Bangunan JeWePe dengan Laravel MVC</div>
+  <div><span class="text-amber-400">commit 0e89aa</span> - lulus: Meraih gelar Sarjana Teknik Informatika dari Universitas Gunadarma</div>
 </div>`);
       } else {
-        appendLine(`<span class="text-amber-400">Supported git subcommands: <strong>git status</strong> or <strong>git log</strong></span>`);
+        appendLine(`<span class="text-amber-400">Subperintah git yang tersedia: <strong>git status</strong> atau <strong>git log</strong></span>`);
       }
       return;
     }
@@ -327,16 +344,16 @@
   <div>64 bytes from 10.0.8.1: icmp_seq=2 ttl=116 time=16.8 ms</div>
   <div>64 bytes from 10.0.8.1: icmp_seq=3 ttl=116 time=17.2 ms</div>
   <div>64 bytes from 10.0.8.1: icmp_seq=4 ttl=116 time=16.5 ms</div>
-  <div class="text-emerald-400 font-bold mt-1">--- ${target} ping statistics ---</div>
-  <div>4 packets transmitted, 4 packets received, 0.0% packet loss</div>
-  <div class="text-cyan-300">Cisco LAN/WAN connection status: EXCELLENT ✅</div>
+  <div class="text-emerald-400 font-bold mt-1">--- statistik ping ${target} ---</div>
+  <div>4 paket dikirim, 4 paket diterima, kehilangan paket 0,0%</div>
+  <div class="text-cyan-300">Status koneksi Cisco LAN/WAN: SANGAT BAIK ✅</div>
 </div>`);
       return;
     }
 
     if (cmd === 'calc') {
       if (!arg) {
-        appendLine(`<span class="text-amber-400">Usage: calc &lt;math expression&gt;. Example: <strong>calc 25 * 4</strong></span>`);
+        appendLine(`<span class="text-amber-400">Penggunaan: calc &lt;ekspresi matematika&gt;. Contoh: <strong>calc 25 * 4</strong></span>`);
         return;
       }
       try {
@@ -344,7 +361,7 @@
         const result = Function(`'use strict'; return (${sanitized})`)();
         appendLine(`<span class="text-cyan-300">${arg}</span> = <span class="text-emerald-400 font-bold">${result}</span>`);
       } catch (err) {
-        appendLine(`<span class="text-red-400">Unable to evaluate the mathematical expression.</span>`);
+        appendLine(`<span class="text-red-400">Ekspresi matematika tidak dapat dihitung.</span>`);
       }
       return;
     }
@@ -353,12 +370,12 @@
       if (window.sfx) {
         if (arg === 'on') {
           if (!window.sfx.enabled) window.sfx.toggle();
-          appendLine(`<span class="text-emerald-400">🔊 Sound effects: ON</span>`);
+          appendLine(`<span class="text-emerald-400">🔊 Efek suara: AKTIF</span>`);
         } else if (arg === 'off') {
           if (window.sfx.enabled) window.sfx.toggle();
-          appendLine(`<span class="text-slate-400">🔇 Sound effects: OFF</span>`);
+          appendLine(`<span class="text-slate-400">🔇 Efek suara: NONAKTIF</span>`);
         } else {
-          appendLine(`Current sound status: <strong>${window.sfx.enabled ? 'ON 🔊' : 'OFF 🔇'}</strong>. Use: 'sound on' or 'sound off'`);
+          appendLine(`Status efek suara saat ini: <strong>${window.sfx.enabled ? 'AKTIF 🔊' : 'NONAKTIF 🔇'}</strong>. Gunakan: 'sound on' atau 'sound off'`);
         }
       }
       return;
@@ -366,9 +383,9 @@
 
     if (cmd === 'coffee' || cmd === 'brew') {
       appendLine(`<div class="text-amber-400 font-mono">
-  ☕ Brewing a warm cup of Arabica coffee...
+  ☕ Menyeduh secangkir kopi Arabika hangat...
   [████████████████████] 100%
-  <span class="text-emerald-400">Coffee is ready! Developer energy fully restored for clean, bug-free coding.</span>
+  <span class="text-emerald-400">Kopi siap! Semangat untuk menulis kode yang rapi dan bebas bug telah pulih.</span>
 </div>`);
       return;
     }
@@ -387,7 +404,7 @@
 
     if (cmd === 'history') {
       if (commandHistory.length === 0) {
-        appendLine(`No command history yet.`);
+        appendLine(`Belum ada riwayat perintah.`);
       } else {
         const hist = commandHistory.map((h, i) => `${i + 1}. ${h}`).join('<br>');
         appendLine(`<div class="text-slate-400 font-mono text-xs">${hist}</div>`);
@@ -396,15 +413,15 @@
     }
 
     if (cmd === 'whatsapp' || cmd === 'wa') {
-      appendLine('<span class="text-emerald-400">Redirecting to WhatsApp chat...</span>');
-      window.open('https://wa.me/6287773862920?text=Hello%20Naufal,%20I%27m%20interested%20in%20your%20portfolio!', '_blank');
+      appendLine('<span class="text-emerald-400">Mengalihkan ke percakapan WhatsApp...</span>');
+      window.open('https://wa.me/6287773862920?text=Halo%20Naufal,%20saya%20tertarik%20dengan%20portofolio%20Anda!', '_blank');
       return;
     }
 
     if (cmd === 'download' || cmd === 'cv' || cmd === 'resume') {
-      appendLine('<span class="text-emerald-400">📥 Initiating CV download...</span>');
+      appendLine('<span class="text-emerald-400">📥 Memulai pengunduhan CV...</span>');
       const link = document.createElement('a');
-      link.href = 'assets/docs/Naufal_Fikri_CV.pdf';
+      link.href = 'assets/docs/Naufal_Fikri_CV.pdf?v=20261031';
       link.download = 'Naufal_Fikri_CV.pdf';
       document.body.appendChild(link);
       link.click();
@@ -417,7 +434,7 @@
       const next = current === 'matrix' ? 'dark' : 'matrix';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('portfolio-theme', next);
-      appendLine(`<span class="text-emerald-400">Matrix mode: ${next === 'matrix' ? 'ENABLED ⚡' : 'DISABLED'}</span>`);
+      appendLine(`<span class="text-emerald-400">Mode Matrix: ${next === 'matrix' ? 'AKTIF ⚡' : 'NONAKTIF'}</span>`);
       return;
     }
 
@@ -425,17 +442,18 @@
       if (['dark', 'light', 'matrix'].includes(arg)) {
         document.documentElement.setAttribute('data-theme', arg);
         localStorage.setItem('portfolio-theme', arg);
-        appendLine(`<span class="text-cyan-400">Theme switched to: <strong>${arg}</strong></span>`);
+        const themeNames = { dark: 'gelap', light: 'terang', matrix: 'matrix' };
+        appendLine(`<span class="text-cyan-400">Tema diubah menjadi: <strong>${themeNames[arg]}</strong></span>`);
       } else {
-        appendLine(`<span class="text-amber-400">Available themes: dark, light, matrix. Usage: 'theme light'</span>`);
+        appendLine(`<span class="text-amber-400">Tema yang tersedia: dark, light, matrix. Penggunaan: 'theme light'</span>`);
       }
       return;
     }
 
     if (trimmed.toLowerCase() === 'sudo hire' || cmd === 'hire') {
-      appendLine(`<div class="text-emerald-400 font-bold text-base">🎉 ACCESS GRANTED: Candidate Naufal Fikri is ready for hire!</div>
-<div class="text-cyan-300">Fast learner, passionate about clean MVC architecture, ready to contribute immediately to your team.</div>
-<div class="text-slate-300 mt-1">Launching celebratory confetti and direct WhatsApp connection...</div>`);
+      appendLine(`<div class="text-emerald-400 font-bold text-base">🎉 AKSES DIBERIKAN: Naufal Fikri siap bergabung dengan tim Anda!</div>
+<div class="text-cyan-300">Cepat belajar, berpengalaman dalam diagnostik Dukungan TI dan pengembangan web. Bersedia relokasi dan bekerja di kantor!</div>
+<div class="text-slate-300 mt-1">Menampilkan konfeti perayaan dan membuka WhatsApp...</div>`);
       
       if (window.confetti) {
         window.confetti({
@@ -446,13 +464,13 @@
       }
 
       setTimeout(() => {
-        window.open('https://wa.me/6287773862920?text=Hello%20Naufal,%20we%27d%20like%20to%20offer%20you%20a%20job%20opportunity!', '_blank');
+        window.open('https://wa.me/6287773862920?text=Halo%20Naufal,%20kami%20ingin%20menawarkan%20peluang%20kerja!', '_blank');
       }, 1200);
       return;
     }
 
     if (cmd === 'date' || cmd === 'time') {
-      appendLine(new Date().toString());
+      appendLine(new Date().toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'long' }));
       return;
     }
 
@@ -461,7 +479,7 @@
       return;
     }
 
-    appendLine(`<span class="text-red-400">Command not found: '${trimmed}'.</span> Type <span class="text-cyan-400">help</span> for a list of valid commands.`);
+    appendLine(`<span class="text-red-400">Perintah tidak ditemukan: '${trimmed}'.</span> Ketik <span class="text-cyan-400">help</span> untuk melihat daftar perintah.`);
   }
 
   // Keyboard navigation & execution
@@ -552,7 +570,7 @@
         closeTerminal();
       }
     }
-    if (e.key === 'Escape' && !terminalModal.classList.contains('hidden')) {
+    if (e.key === 'Escape' && terminalModal && !terminalModal.classList.contains('hidden')) {
       closeTerminal();
     }
   });

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Main Application Logic & Interactivity
  * Naufal Fikri Portfolio
  */
@@ -7,84 +7,91 @@
 const PROJECTS_DATA = [
   {
     id: 1,
-    title: "Cibubur Local Government Information Website",
-    category: "fullstack",
-    categoryLabel: "Next.js & Express.js",
-    role: "Full Stack Developer",
-    badge: "Public Service Web App",
-    heroGradient: "from-blue-600 via-indigo-600 to-cyan-500",
-    summary: "An integrated local government information website built end to end to digitize citizen services and distribute public information.",
-    tags: ["Next.js", "Express.js", "PostgreSQL", "Tailwind CSS", "REST API", "Responsive Design"],
-    architecture: "Full-stack decoupled architecture: a modern Next.js front end connected to an Express.js server through a RESTful API, with PostgreSQL as the primary relational database.",
+    title: "Sistem Pengelolaan Piket Sekolah (E-Piket)",
+    period: "Juli 2026 – September 2026",
+    type: "Proyek Mandiri",
+    category: "php",
+    categoryLabel: "PHP Native · MySQL",
+    role: "Pengembang Web Menyeluruh",
+    badge: "Proyek Mandiri",
+    heroGradient: "from-blue-700 via-indigo-700 to-cyan-600",
+    summary: "Mengembangkan aplikasi web pengelolaan piket sekolah dari awal menggunakan PHP native dengan lebih dari lima modul CRUD: guru, siswa, kelas, ruangan, dan tahun ajaran.",
+    tags: ["PHP Native", "MySQL", "HTML5", "CSS3", "JavaScript", "Modul CRUD", "Dasbor Admin"],
+    architecture: "Arsitektur modular PHP native yang dikembangkan tanpa framework eksternal untuk memahami siklus sesi, perutean permintaan HTTP, dan operasi basis data relasional MySQL secara langsung.",
     keyFeatures: [
-      "End-to-end integration between the Next.js front end and Express.js back end.",
-      "Designed a PostgreSQL relational schema to store dynamic citizen-service content.",
-      "Consistently optimized responsive layouts for smartphones, tablets, and desktops.",
-      "Built a modular, component-based codebase to simplify maintenance and future feature development."
+      "Mengembangkan aplikasi web pengelolaan piket sekolah dari awal menggunakan PHP native dengan lebih dari lima modul CRUD: guru, siswa, kelas, ruangan, dan tahun ajaran.",
+      "Membuat fitur penjadwalan piket, pencatatan kehadiran, serta pencatatan ketidakhadiran dan keterlambatan siswa.",
+      "Membuat dasbor admin untuk memantau seluruh kegiatan piket sekolah.",
+      "Merancang basis data relasional MySQL, menerapkan aplikasi secara daring, dan memperbaiki kesalahan yang ditemukan saat pengujian."
     ],
-    dbHighlights: "A PostgreSQL relational schema with normalized data for civil services, community announcements, and activity logs.",
-    techTakeaway: "Strengthened skills in cross-domain API integration, Next.js state management, and relational database query optimization."
+    dbHighlights: "Merancang skema basis data relasional MySQL dengan integritas referensial antara data guru, kelas, semester, dan catatan kehadiran.",
+    techTakeaway: "Menunjukkan dasar pemrograman dan desain basis data yang kuat, serta kemampuan menangani masalah dari tahap pengembangan hingga pengujian langsung."
   },
   {
     id: 2,
-    title: "School Management System",
-    category: "csharp",
-    categoryLabel: "C# · ASP.NET MVC",
-    role: "Full Stack Developer (Independent Project)",
-    badge: "Enterprise Web App",
-    heroGradient: "from-purple-600 via-indigo-700 to-blue-600",
-    summary: "A comprehensive school data management system using enterprise MVC architecture to separate business logic, the user interface, and data access.",
-    tags: ["C#", "ASP.NET MVC", "Dapper ORM", "SQL Server", "MVC Architecture", "CRUD"],
-    architecture: "Enterprise MVC pattern: a clear Model-View-Controller separation with Dapper as a lightweight ORM for fast queries to Microsoft SQL Server.",
+    title: "Toko Bahan Bangunan JeWePe",
+    period: "Mei 2026 – Juni 2026",
+    type: "Proyek Mandiri",
+    category: "laravel",
+    categoryLabel: "PHP · Laravel · MySQL",
+    role: "Pengembang Sisi Server & Web",
+    badge: "Proyek Mandiri",
+    heroGradient: "from-cyan-700 via-blue-700 to-indigo-800",
+    summary: "Mengembangkan sistem pengelolaan produk dan inventaris toko bahan bangunan menggunakan Laravel untuk menggantikan pencatatan manual dan mendukung operasional toko sehari-hari.",
+    tags: ["PHP", "Laravel", "MySQL", "Arsitektur MVC", "Pengelolaan Inventaris", "CRUD"],
+    architecture: "Pola desain MVC Laravel yang memisahkan logika bisnis, pemrosesan pengendali, model Eloquent ORM, dan tampilan.",
     keyFeatures: [
-      "Applied MVC architecture to cleanly separate business logic, Razor views, and the data-access layer.",
-      "Implemented complete CRUD functionality for school master data (students, teachers, classes, and subjects).",
-      "Used Dapper ORM for efficient data transfer with minimal latency to Microsoft SQL Server.",
-      "Designed a relational database schema with foreign-key constraints to preserve academic data integrity."
+      "Mengembangkan sistem pengelolaan produk dan inventaris toko bahan bangunan menggunakan Laravel.",
+      "Menerapkan fitur CRUD berbasis basis data untuk menggantikan pencatatan manual dan mendukung operasional toko sehari-hari.",
+      "Menggunakan struktur MVC Laravel untuk memisahkan logika aplikasi dari pemrosesan data.",
+      "Membuat kueri basis data relasional untuk melacak stok bahan bangunan secara akurat."
     ],
-    dbHighlights: "Microsoft SQL Server with one-to-many and many-to-many relationships, optimized indexes, and parameterized queries through Dapper.",
-    techTakeaway: "Built expertise in the C# .NET ecosystem, enterprise MVC architecture, and SQL injection prevention with Dapper ORM."
+    dbHighlights: "Desain basis data MySQL untuk mendukung klasifikasi produk, data pemasok, dan riwayat transaksi inventaris dengan kunci asing.",
+    techTakeaway: "Memahami prinsip arsitektur MVC dan alur kerja CRUD berbasis basis data untuk mengotomatisasi proses bisnis operasional."
   },
   {
     id: 3,
-    title: "E-Piket: School Duty Management System",
-    category: "php",
-    categoryLabel: "PHP Native · MySQL",
-    role: "PHP Developer (Independent Project)",
-    badge: "Real-time School System",
-    heroGradient: "from-emerald-600 via-teal-700 to-cyan-600",
-    summary: "A daily school duty operations management system built from scratch with native PHP, featuring 5+ CRUD modules and a real-time monitoring dashboard.",
-    tags: ["PHP Native", "MySQL", "HTML5", "CSS3", "JavaScript", "Admin Dashboard"],
-    architecture: "Custom modular native PHP: built without an external framework to deepen understanding of HTTP request handling, session management, and database connection pooling.",
+    title: "Situs Informasi Kelurahan Cibubur",
+    period: "September 2025 – Desember 2025",
+    type: "Proyek Mandiri",
+    category: "fullstack",
+    categoryLabel: "Next.js · React · Express.js · PostgreSQL",
+    role: "Pengembang Web Menyeluruh",
+    badge: "Proyek Mandiri",
+    heroGradient: "from-slate-800 via-blue-900 to-cyan-700",
+    summary: "Membuat situs informasi kelurahan dengan antarmuka Next.js yang terhubung ke layanan REST Express.js di sisi server dan basis data PostgreSQL.",
+    tags: ["Next.js", "React", "Express.js", "Node.js", "PostgreSQL", "REST API", "Responsif"],
+    architecture: "Arsitektur web menyeluruh yang memisahkan lapisan tampilan Next.js/React dan lapisan layanan Node.js/Express.js di sisi server melalui titik akhir REST API.",
     keyFeatures: [
-      "Includes 5+ complete CRUD modules: duty teachers, students, classes, classrooms, and academic years.",
-      "Features weekly duty scheduling and structured duty attendance tracking.",
-      "Records detailed student absence and tardiness logs in the database.",
-      "Provides an interactive admin dashboard for real-time monitoring of all school duty activities.",
-      "Designed a MySQL relational schema to support all application data dependencies."
+      "Membuat situs informasi kelurahan dengan antarmuka Next.js yang terhubung ke layanan REST Express.js di sisi server.",
+      "Merancang skema PostgreSQL untuk menyimpan dan mengelola konten layanan warga yang dinamis.",
+      "Menerapkan tata letak responsif untuk desktop dan ponsel.",
+      "Menerapkan situs secara daring dan memperbaiki kesalahan yang ditemukan pada versi aktif."
     ],
-    dbHighlights: "A MySQL relational database with simple business-logic triggers and aggregate queries for daily attendance reports.",
-    techTakeaway: "Developed a solid understanding of the web application lifecycle, baseline security (XSS/CSRF prevention), and native SQL queries."
+    dbHighlights: "Skema relasional PostgreSQL yang dirancang untuk katalog layanan warga dinamis, data administrasi publik, dan pengindeksan konten.",
+    techTakeaway: "Memahami kontrak RESTful API, komunikasi klien-server, penyelesaian bug pada lingkungan produksi, dan pengembangan responsif untuk perangkat seluler."
   },
   {
     id: 4,
-    title: "JeWePe Building Materials Store",
-    category: "php",
-    categoryLabel: "PHP · Laravel",
-    role: "Full Stack Developer (Independent Project)",
-    badge: "Inventory & POS System",
-    heroGradient: "from-rose-600 via-orange-600 to-amber-500",
-    summary: "A Laravel-based product management, catalog, and inventory monitoring application for a building materials store.",
-    tags: ["PHP", "Laravel", "MySQL", "Bootstrap", "Inventory CRUD", "MVC"],
-    architecture: "Laravel MVC ecosystem: uses routing, controllers, Eloquent ORM, Blade templating, and database migrations for a structured development lifecycle.",
+    title: "Sistem Manajemen Sekolah",
+    period: "Juli 2025 – September 2025",
+    type: "Proyek Mandiri",
+    category: "csharp",
+    categoryLabel: "C# · ASP.NET MVC · Dapper · SQL Server",
+    role: "Pengembang Web Menyeluruh",
+    badge: "Proyek Mandiri",
+    heroGradient: "from-blue-900 via-indigo-800 to-sky-700",
+    summary: "Mengembangkan sistem pengelolaan data sekolah dengan arsitektur MVC untuk memisahkan logika bisnis, tampilan, dan data, serta kueri Dapper berlatensi rendah ke SQL Server.",
+    tags: ["C#", "ASP.NET MVC", "Dapper", "SQL Server", "Basis Data Relasional", "CRUD"],
+    architecture: "Arsitektur Microsoft .NET MVC yang memisahkan logika bisnis, tampilan UI Razor, dan lapisan akses data khusus berkinerja tinggi menggunakan micro-ORM Dapper.",
     keyFeatures: [
-      "A product catalog and building materials inventory system with accurate stock tracking.",
-      "Database-backed CRUD features supporting the store's daily inventory operations.",
-      "Applied Laravel MVC structure to separate interface presentation from data processing logic.",
-      "Designed a MySQL relational database for categories, suppliers, products, and stock movement logs."
+      "Mengembangkan sistem pengelolaan data sekolah dengan arsitektur MVC untuk memisahkan logika bisnis, tampilan, dan data.",
+      "Membuat fungsi CRUD untuk data induk sekolah menggunakan Dapper sebagai lapisan akses data ke SQL Server.",
+      "Merancang skema relasional untuk pengelolaan informasi sekolah yang terstruktur.",
+      "Menerapkan aplikasi secara daring dan memperbaiki kesalahan yang ditemukan saat pengujian."
     ],
-    dbHighlights: "A MySQL relational schema with foreign-key integration managed through Laravel migrations and Eloquent model relationships.",
-    techTakeaway: "Strengthened proficiency in the modern Laravel ecosystem, automatic form request validation, and efficient relational data management."
+    dbHighlights: "Desain basis data Microsoft SQL Server dengan batasan relasional, kunci terindeks, dan kueri berparameter yang dioptimalkan menggunakan Dapper ORM.",
+    techTakeaway: "Memahami teknologi Microsoft untuk perusahaan, pemodelan skema relasional, optimasi akses data, dan penanganan kesalahan yang andal."
   }
 ];
 
@@ -181,11 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sfx.enabled) {
       if (soundToggleBtn) soundToggleBtn.classList.add('text-cyan-400');
       if (soundIcon) soundIcon.setAttribute('data-lucide', 'volume-2');
-      if (soundText) soundText.innerText = 'Sound: ON';
+      if (soundText) soundText.innerText = 'Suara: AKTIF';
     } else {
       if (soundToggleBtn) soundToggleBtn.classList.remove('text-cyan-400');
       if (soundIcon) soundIcon.setAttribute('data-lucide', 'volume-x');
-      if (soundText) soundText.innerText = 'Sound: OFF';
+      if (soundText) soundText.innerText = 'Suara: NONAKTIF';
     }
     if (window.lucide) window.lucide.createIcons();
   }
@@ -196,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const state = sfx.toggle();
       updateSoundUI();
       if (state) sfx.click();
-      showToast(state ? 'Sound effects enabled 🔊' : 'Sound effects disabled 🔇');
+      showToast(state ? 'Efek suara diaktifkan 🔊' : 'Efek suara dinonaktifkan 🔇');
     });
   }
 
@@ -232,7 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('portfolio-theme', next);
       updateThemeButton(next);
-      showToast(`Theme changed: ${next.toUpperCase()}`);
+      const themeNames = { dark: 'gelap', light: 'terang', matrix: 'matrix' };
+      showToast(`Tema diubah: ${themeNames[next]}`);
     });
   }
 
@@ -305,11 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const typewriterEl = document.getElementById('typewriter-text');
   if (typewriterEl) {
     const roles = [
-      "Junior Full Stack Developer",
-      "Backend & MVC Architecture Specialist",
-      "Modern Web Developer (Next.js & Laravel)",
-      "Informatics Engineering Graduate",
-      "Reliable IT Support & Problem Solver"
+      "Spesialis Dukungan TI",
+      "Lulusan Teknik Informatika",
+      "Infrastruktur TI & Diagnostik Perangkat Keras",
+      "Pemeliharaan Jaringan & Routing Cisco",
+      "Pengembang Aplikasi Web (Keahlian Sekunder)"
     ];
 
     let roleIdx = 0;
@@ -344,29 +352,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Skills Filter
-  const skillFilterBtns = document.querySelectorAll('.skill-filter-btn');
-  const skillCards = document.querySelectorAll('.skill-card');
+  const skillFilterBtns = document.querySelectorAll('.skill-tab-btn');
+  const skillGroups = document.querySelectorAll('.skill-card-group');
 
   skillFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       sfx.click();
-      skillFilterBtns.forEach(b => b.classList.remove('active'));
+      skillFilterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
 
-      const filter = btn.getAttribute('data-filter');
-      skillCards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat.includes(filter)) {
-          card.classList.remove('hidden');
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => card.classList.add('hidden'), 200);
-        }
+      const filter = btn.dataset.filter;
+      skillGroups.forEach(group => {
+        const isVisible = filter === 'all' || group.id === `skill-group-${filter}`;
+        group.classList.toggle('hidden', !isVisible);
       });
     });
   });
@@ -418,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sfx.modalOpen();
 
     if (modalTitle) modalTitle.textContent = project.title;
-    if (modalRole) modalRole.textContent = `${project.role} • ${project.categoryLabel}`;
+    if (modalRole) modalRole.textContent = `${project.type} • ${project.period} • ${project.categoryLabel}`;
     if (modalSummary) modalSummary.textContent = project.summary;
     if (modalArch) modalArch.textContent = project.architecture;
     if (modalDb) modalDb.textContent = project.dbHighlights;
@@ -474,9 +476,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Certificate PDF preview modal
+  const certificateModal = document.getElementById('certificate-modal');
+  const certificateModalTitle = document.getElementById('certificate-modal-title');
+  const certificateModalFrame = document.getElementById('certificate-modal-frame');
+  const certificateModalDownload = document.getElementById('certificate-modal-download');
+  const certificateModalClose = document.getElementById('certificate-modal-close');
+  let certificateModalTrigger = null;
+
+  function closeCertificateModal() {
+    if (!certificateModal) return;
+    certificateModal.classList.remove('active');
+    certificateModal.setAttribute('aria-hidden', 'true');
+    if (certificateModalFrame) certificateModalFrame.removeAttribute('src');
+    document.body.style.overflow = '';
+    certificateModalTrigger?.focus();
+    certificateModalTrigger = null;
+  }
+
+  document.querySelectorAll('.view-certificate-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      if (!certificateModal || !certificateModalTitle || !certificateModalFrame || !certificateModalDownload) return;
+      const source = button.dataset.certificateSrc;
+      const title = button.dataset.certificateTitle;
+      if (!source || !title) return;
+
+      certificateModalTrigger = button;
+      certificateModalTitle.textContent = title;
+      certificateModalFrame.title = `Pratinjau sertifikat: ${title}`;
+      certificateModalFrame.src = source;
+      certificateModalDownload.href = source;
+      certificateModalDownload.download = decodeURIComponent(source.split('/').pop() || 'sertifikat.pdf');
+      certificateModal.classList.add('active');
+      certificateModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      certificateModalClose?.focus();
+    });
+  });
+
+  certificateModalClose?.addEventListener('click', closeCertificateModal);
+  certificateModal?.addEventListener('click', (event) => {
+    if (event.target === certificateModal) closeCertificateModal();
+  });
+
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && projectModal && projectModal.classList.contains('show')) {
       closeProjectModal();
+    }
+    if (e.key === 'Escape' && certificateModal?.classList.contains('active')) {
+      closeCertificateModal();
     }
   });
 
@@ -518,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       sfx.click();
       navigator.clipboard.writeText('naufalfik777@gmail.com').then(() => {
-        showToast('📋 Email address copied: naufalfik777@gmail.com');
+        showToast('📋 Alamat email berhasil disalin: naufalfik777@gmail.com');
       }).catch(() => {
         showToast('naufalfik777@gmail.com');
       });
@@ -530,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       sfx.click();
       navigator.clipboard.writeText('+6287773862920').then(() => {
-        showToast('📋 WhatsApp number copied: +62 877-7386-2920');
+        showToast('📋 Nomor WhatsApp berhasil disalin: +62 877-7386-2920');
       });
     });
   });
@@ -550,7 +598,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = document.getElementById('contact-message').value.trim();
 
       if (!name || !message) {
-        showToast('⚠️ Please enter your name and message first.');
+        showToast('⚠️ Masukkan nama dan pesan terlebih dahulu.');
         return;
       }
 
@@ -559,10 +607,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.confetti({ particleCount: 70, spread: 60 });
       }
 
-      const text = `Hello Naufal Fikri,\n\nName: ${name}\nEmail: ${email || '-'}\n\nMessage:\n${message}\n\n(Sent via web portfolio)`;
+      const text = `Halo Naufal Fikri,\n\nNama: ${name}\nEmail: ${email || '-'}\n\nPesan:\n${message}\n\n(Dikirim melalui situs portofolio)`;
       const url = `https://wa.me/6287773862920?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
-      showToast('🚀 Opening WhatsApp chat...');
+      showToast('🚀 Membuka percakapan WhatsApp...');
     });
   }
 
@@ -573,11 +621,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const name = document.getElementById('contact-name').value.trim();
       const email = document.getElementById('contact-email').value.trim();
-      const subject = document.getElementById('contact-subject')?.value.trim() || 'Job Opportunity / Collaboration';
+      const subject = document.getElementById('contact-subject')?.value.trim() || 'Peluang Kerja / Kolaborasi';
       const message = document.getElementById('contact-message').value.trim();
 
       if (!name || !message) {
-        showToast('⚠️ Please enter your name and message first.');
+        showToast('⚠️ Masukkan nama dan pesan terlebih dahulu.');
         return;
       }
 
@@ -586,10 +634,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.confetti({ particleCount: 70, spread: 60 });
       }
 
-      const body = `Hello Naufal Fikri,\n\nSender Name: ${name}\nSender Email: ${email}\n\nMessage:\n${message}`;
+      const body = `Halo Naufal Fikri,\n\nNama Pengirim: ${name}\nEmail Pengirim: ${email}\n\nPesan:\n${message}`;
       const mailto = `mailto:naufalfik777@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
-      showToast('📧 Opening your email app...');
+      showToast('📧 Membuka aplikasi email...');
     });
   }
 });

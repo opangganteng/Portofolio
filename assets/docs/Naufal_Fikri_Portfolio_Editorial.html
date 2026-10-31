@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naufal Fikri — Selected Work &amp; Experience</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172438;
+      --muted: #667387;
+      --paper: #f8f7f3;
+      --white: #fff;
+      --line: #e5e3dc;
+      --accent: #d87448;
+      --accent-soft: #f6e8df;
+      --blue-soft: #e9eef4;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #dfe3e7;
+      color: var(--ink);
+      font: 10pt/1.55 var(--sans);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      margin: 12mm auto;
+      padding: 17mm 18mm 18mm;
+      overflow: hidden;
+      background: var(--paper);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child { page-break-after: auto; break-after: auto; }
+    .page.dark { background: var(--ink); color: #fff; }
+    .page-head, .page-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-head {
+      padding-bottom: 5mm;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 8pt;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .dark .page-head { border-color: #344154; color: #c0cad5; }
+    .wordmark { color: inherit; font-weight: 700; letter-spacing: .08em; }
+    .wordmark b { color: var(--accent); }
+    .page-foot {
+      position: absolute;
+      right: 18mm;
+      bottom: 9mm;
+      left: 18mm;
+      padding-top: 3mm;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 8pt;
+    }
+
+    .dark .page-foot { border-color: #344154; color: #bbc5d1; }
+    .page-number { color: var(--accent); font-weight: 700; }
+    .eyebrow {
+      margin: 0 0 3mm;
+      color: var(--accent);
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.12; }
+    h1, h2 { font-family: var(--serif); font-weight: 500; }
+    h2 { margin-bottom: 3mm; font-size: 28pt; letter-spacing: -.025em; }
+    h3 { margin-bottom: 2mm; font-size: 12pt; }
+    p { margin-bottom: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    .cover-accent {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5mm;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .cover-main { padding-top: 19mm; }
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 62mm;
+      align-items: center;
+      gap: 13mm;
+      margin-top: 19mm;
+    }
+
+    .cover h1 {
+      margin: 0 0 5mm;
+      font-size: 45pt;
+      letter-spacing: -.04em;
+      line-height: .99;
+    }
+
+    .cover h1 span { color: var(--accent); }
+    .role {
+      margin-bottom: 8mm;
+      color: #d3dbe4;
+      font-size: 13pt;
+      font-weight: 500;
+      letter-spacing: .02em;
+    }
+
+    .intro {
+      max-width: 96mm;
+      color: #dce2e9;
+      font-size: 11pt;
+      line-height: 1.8;
+    }
+
+    .portrait-frame {
+      position: relative;
+      height: 83mm;
+      padding: 3mm;
+      border: 1px solid #566274;
+      border-radius: 32mm 32mm 5mm 5mm;
+    }
+
+    .portrait-frame::after {
+      position: absolute;
+      right: -3mm;
+      bottom: -3mm;
+      z-index: 0;
+      width: 24mm;
+      height: 24mm;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .portrait-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 29mm 29mm 3mm 3mm;
+      object-fit: cover;
+      object-position: center 22%;
+    }
+
+    .cover-rule { width: 21mm; height: 1mm; margin: 9mm 0 6mm; background: var(--accent); }
+    .cover-meta { color: #c2ccd7; font-size: 9pt; letter-spacing: .04em; }
+    .cover-bottom {
+      position: absolute;
+      right: 18mm;
+      bottom: 25mm;
+      left: 18mm;
+      display: flex;
+      justify-content: space-between;
+      gap: 8mm;
+      padding-top: 5mm;
+      border-top: 1px solid #3a4657;
+    }
+
+    .cover-stat strong {
+      display: block;
+      color: #fff;
+      font-family: var(--serif);
+      font-size: 22pt;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .cover-stat span {
+      display: block;
+      margin-top: 2mm;
+      color: #bac5d0;
+      font-size: 8pt;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .section-intro { max-width: 145mm; margin-bottom: 8mm; color: var(--muted); font-size: 10pt; }
+    .section-intro strong { color: var(--ink); }
+    .strength-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+    .strength {
+      min-height: 39mm;
+      padding: 5mm;
+      border: 1px solid var(--line);
+      border-radius: 2mm;
+      background: var(--white);
+    }
+
+    .strength-index { margin-bottom: 3mm; color: var(--accent); font: 11pt var(--serif); }
+    .strength p { color: var(--muted); font-size: 9pt; line-height: 1.65; }
+    .subsection { margin-top: 8mm; }
+    .subsection-title {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      margin-bottom: 4mm;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .subsection-title::after { height: 1px; flex: 1; background: var(--line); content: ""; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 2.2mm; }
+    .chip {
+      padding: 2mm 3mm;
+      border: 1px solid #dce1e6;
+      border-radius: 99px;
+      background: var(--white);
+      color: #3c4b5f;
+      font-size: 8.5pt;
+    }
+
+    .approach {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7mm;
+      margin-top: 8mm;
+      padding: 6mm;
+      border-left: 1mm solid var(--accent);
+      background: var(--blue-soft);
+    }
+
+    .approach p { color: #455267; font-size: 9pt; line-height: 1.65; }
+    .project-list { display: grid; gap: 6mm; margin-top: 7mm; }
+    .project {
+      position: relative;
+      padding: 6mm 7mm 6mm 18mm;
+      border: 1px solid var(--line);
+      border-radius: 2mm;
+      background: var(--white);
+      break-inside: avoid;
+    }
+
+    .project-number {
+      position: absolute;
+      top: 6mm;
+      left: 6mm;
+      color: var(--accent);
+      font: 16pt var(--serif);
+    }
+
+    .project-type {
+      margin-bottom: 2mm;
+      color: var(--muted);
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .project h3 { margin-bottom: 2.5mm; font-family: var(--serif); font-size: 17pt; font-weight: 500; }
+    .project p { color: #556174; font-size: 9pt; line-height: 1.58; }
+    .project ul { margin: 3mm 0 3.5mm; padding-left: 4mm; color: #3f4d60; font-size: 8.5pt; }
+    .project li { margin: 1mm 0; padding-left: 1mm; }
+    .project li::marker { color: var(--accent); }
+    .project-stack {
+      padding-top: 2.5mm;
+      border-top: 1px solid var(--line);
+      color: #526174;
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: .025em;
+    }
+
+    .closing-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 8mm; margin-top: 7mm; }
+    .timeline { display: grid; gap: 4mm; }
+    .experience {
+      padding: 4mm 4mm 4mm 5mm;
+      border-left: 1mm solid #d7dce2;
+      break-inside: avoid;
+    }
+
+    .experience .role-label { color: var(--accent); font-size: 7.5pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .experience h3 { margin: 1mm 0; font-size: 11pt; }
+    .experience p { color: var(--muted); font-size: 8.3pt; line-height: 1.5; }
+    .education-card, .cert-list { padding: 4mm; border: 1px solid var(--line); border-radius: 2mm; background: var(--white); }
+    .education-card { margin-top: 2mm; }
+    .education-card .school { color: var(--accent); font-size: 8pt; font-weight: 700; }
+    .education-card h3 { margin: 1mm 0 2mm; font-family: var(--serif); font-size: 15pt; font-weight: 500; }
+    .education-card p { color: var(--muted); font-size: 8.5pt; }
+    .cert-list { display: grid; gap: 2.5mm; margin-top: 3mm; }
+    .cert { padding-bottom: 2mm; border-bottom: 1px solid var(--line); font-size: 8pt; font-weight: 600; }
+    .cert:last-child { padding-bottom: 0; border-bottom: 0; }
+    .cert span { display: block; margin-top: .5mm; color: var(--muted); font-size: 7.5pt; font-weight: 400; }
+    .contact-panel { margin-top: 7mm; padding: 5mm 6mm; border-radius: 2mm; background: var(--ink); color: #fff; }
+    .contact-panel h3 { margin-bottom: 3mm; color: #fff; font-family: var(--serif); font-size: 16pt; font-weight: 500; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 6mm; color: #d7dfe8; font-size: 8pt; }
+    .contact-grid b { color: #fff; }
+    .contact-link { color: #fff; }
+    .closing-note { margin-top: 4mm; color: var(--muted); font-size: 8pt; }
+
+    @page { size: A4; margin: 0; }
+    @media print {
+      html, body { width: 210mm; height: auto; background: #fff; }
+      body { font-size: 10pt; }
+      .page { margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page dark cover">
+      <div class="cover-accent"></div>
+      <header class="page-head">
+        <div class="wordmark">NF<b>.</b> / PORTFOLIO</div>
+        <span>Selected work &amp; experience</span>
+      </header>
+      <div class="cover-main">
+        <p class="eyebrow">Full-stack developer · Cibinong, Indonesia</p>
+        <div class="cover-grid">
+          <div>
+            <h1>Naufal<br><span>Fikri.</span></h1>
+            <p class="role">Junior Full Stack Developer<br>&amp; Web Engineer</p>
+            <p class="intro">I build practical web applications with clear MVC architecture, thoughtful database design, and a focus on the people who use them.</p>
+            <div class="cover-rule"></div>
+            <p class="cover-meta">Informatics Engineering graduate<br>Gunadarma University</p>
+          </div>
+          <div class="portrait-frame">
+            <img src="../images/pas%20foto.jpeg" alt="Portrait of Naufal Fikri">
+          </div>
+        </div>
+      </div>
+      <div class="cover-bottom">
+        <div class="cover-stat"><strong>04</strong><span>Full-stack projects</span></div>
+        <div class="cover-stat"><strong>03</strong><span>Core MVC ecosystems</span></div>
+        <div class="cover-stat"><strong>01</strong><span>Engineering degree</span></div>
+        <div class="cover-stat"><strong>Open</strong><span>To new opportunities</span></div>
+      </div>
+      <footer class="page-foot"><span>NAUFAL FIKRI · DEVELOPER PORTFOLIO</span><span class="page-number">01</span></footer>
+    </section>
+
+    <section class="page">
+      <header class="page-head"><div class="wordmark">NF<b>.</b> / PROFILE</div><span>01 — Approach &amp; toolkit</span></header>
+      <div style="padding-top: 12mm">
+        <p class="eyebrow">What I bring</p>
+        <h2>Thoughtful engineering,<br>from interface to data.</h2>
+        <p class="section-intro">A Gunadarma University Informatics Engineering graduate combining hands-on application development with a practical understanding of systems and technical support.</p>
+        <div class="strength-grid">
+          <article class="strength"><div class="strength-index">01 / Structure</div><h3>MVC &amp; clean code</h3><p>Separate business logic, presentation, and data access into clear, maintainable application layers.</p></article>
+          <article class="strength"><div class="strength-index">02 / Data</div><h3>Relational design</h3><p>Shape normalized schemas, relationships, and queries across PostgreSQL, MySQL, and SQL Server.</p></article>
+          <article class="strength"><div class="strength-index">03 / Delivery</div><h3>End-to-end development</h3><p>Build responsive front ends, connect REST APIs, and deliver full-stack features backed by real data.</p></article>
+          <article class="strength"><div class="strength-index">04 / Reliability</div><h3>Systems &amp; support</h3><p>Diagnose hardware, software, network, and CCTV issues with a systematic, user-focused approach.</p></article>
+        </div>
+        <div class="subsection">
+          <div class="subsection-title">Technology toolkit</div>
+          <div class="chip-list">
+            <span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">C#</span><span class="chip">ASP.NET MVC</span>
+            <span class="chip">Next.js</span><span class="chip">Express.js</span><span class="chip">JavaScript</span><span class="chip">HTML5 / CSS3</span>
+            <span class="chip">Tailwind CSS</span><span class="chip">Bootstrap</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span>
+            <span class="chip">SQL Server</span><span class="chip">Dapper</span><span class="chip">Git &amp; GitHub</span><span class="chip">Cisco Networking</span>
+            <span class="chip">REST APIs</span><span class="chip">CCTV &amp; IT diagnostics</span>
+          </div>
+        </div>
+        <div class="approach">
+          <div><div class="subsection-title">How I work</div><p>Start with clear requirements and a sound data model. Keep responsibilities separated, validate the details, and make the interface straightforward to use.</p></div>
+          <div><div class="subsection-title">What I value</div><p>Readable code, dependable systems, responsive collaboration, and solutions that make everyday work simpler.</p></div>
+        </div>
+      </div>
+      <footer class="page-foot"><span>CAPABILITIES &amp; TECHNOLOGY</span><span class="page-number">02</span></footer>
+    </section>
+
+    <section class="page">
+      <header class="page-head"><div class="wordmark">NF<b>.</b> / SELECTED WORK</div><span>02 — Full-stack applications</span></header>
+      <div style="padding-top: 11mm">
+        <p class="eyebrow">Selected work · 01–02</p>
+        <h2>Applications built<br>around real workflows.</h2>
+        <p class="section-intro">Four end-to-end projects demonstrating full-stack delivery, practical MVC structure, and relational data modelling.</p>
+        <div class="project-list">
+          <article class="project">
+            <div class="project-number">01</div>
+            <div class="project-type">Full-stack MVC · Public services</div>
+            <h3>Cibubur Local Government Information Website</h3>
+            <p>An integrated local-government information website with a Next.js front end, Express.js back end, and PostgreSQL schema for dynamic citizen-service content.</p>
+            <ul><li>Designed relational data for dynamic public-service information.</li><li>Built responsive layouts and a modular, component-based structure.</li><li>Connected the user experience to back-end service endpoints.</li></ul>
+            <div class="project-stack">NEXT.JS &nbsp;·&nbsp; EXPRESS.JS &nbsp;·&nbsp; POSTGRESQL &nbsp;·&nbsp; TAILWIND CSS</div>
+          </article>
+          <article class="project">
+            <div class="project-number">02</div>
+            <div class="project-type">Full-stack MVC · Education</div>
+            <h3>School Management System</h3>
+            <p>A school data management system using enterprise MVC architecture, with clear separation across business logic, Razor views, and the data layer.</p>
+            <ul><li>Implemented high-performance CRUD functionality for school master data using Dapper.</li><li>Designed a SQL Server relational schema with foreign-key constraints.</li><li>Organized responsibilities across controllers, views, and data access.</li></ul>
+            <div class="project-stack">C# &nbsp;·&nbsp; ASP.NET MVC &nbsp;·&nbsp; DAPPER &nbsp;·&nbsp; SQL SERVER</div>
+          </article>
+        </div>
+      </div>
+      <footer class="page-foot"><span>PROJECTS · APPLICATION DEVELOPMENT</span><span class="page-number">03</span></footer>
+    </section>
+
+    <section class="page">
+      <header class="page-head"><div class="wordmark">NF<b>.</b> / SELECTED WORK</div><span>03 — Full-stack applications</span></header>
+      <div style="padding-top: 11mm">
+        <p class="eyebrow">Selected work · 03–04</p>
+        <h2>Useful tools for<br>schools &amp; businesses.</h2>
+        <p class="section-intro">Applications that turn day-to-day operational needs into organised, database-backed workflows.</p>
+        <div class="project-list">
+          <article class="project">
+            <div class="project-number">03</div>
+            <div class="project-type">Full-stack MVC · School operations</div>
+            <h3>E-Piket: School Duty Management System</h3>
+            <p>A school duty management application built from scratch with native PHP, covering administration, duty schedules, attendance, and tardiness tracking.</p>
+            <ul><li>Delivered 5+ CRUD modules for teachers, students, classes, rooms, and academic years.</li><li>Organised weekly duty scheduling alongside absence and tardiness records.</li><li>Added an admin dashboard for monitoring school activities.</li></ul>
+            <div class="project-stack">PHP NATIVE &nbsp;·&nbsp; MYSQL &nbsp;·&nbsp; HTML5 / CSS3 &nbsp;·&nbsp; JAVASCRIPT</div>
+          </article>
+          <article class="project">
+            <div class="project-number">04</div>
+            <div class="project-type">Full-stack MVC · Retail operations</div>
+            <h3>JeWePe Building Materials Store</h3>
+            <p>A building-materials inventory and product-management application built with Laravel, supporting daily transactions and stock operations.</p>
+            <ul><li>Created a product catalogue with inventory tracking.</li><li>Implemented relational, database-backed CRUD features for daily operations.</li><li>Used Laravel MVC to separate application logic from presentation.</li></ul>
+            <div class="project-stack">LARAVEL &nbsp;·&nbsp; PHP &nbsp;·&nbsp; MYSQL &nbsp;·&nbsp; BOOTSTRAP</div>
+          </article>
+        </div>
+        <div class="approach">
+          <div><div class="subsection-title">Across the portfolio</div><p>Responsive user interfaces, structured back ends, and data models designed to support the application’s real use cases.</p></div>
+          <div><div class="subsection-title">Project focus</div><p>CRUD workflows, relational integrity, MVC separation, and maintainable full-stack implementation.</p></div>
+        </div>
+      </div>
+      <footer class="page-foot"><span>PROJECTS · APPLICATION DEVELOPMENT</span><span class="page-number">04</span></footer>
+    </section>
+
+    <section class="page">
+      <header class="page-head"><div class="wordmark">NF<b>.</b> / EXPERIENCE</div><span>04 — Career, education &amp; contact</span></header>
+      <div style="padding-top: 9mm">
+        <p class="eyebrow">Beyond the code</p>
+        <h2>Experience, education<br>&amp; continued learning.</h2>
+        <div class="closing-grid">
+          <div>
+            <div class="subsection-title">Professional experience</div>
+            <div class="timeline">
+              <article class="experience"><div class="role-label">IT Support · Taman Mini Indonesia Indah</div><h3>Jagat Satwa Nusantara, TMII</h3><p>Supported hardware, software, and network stability; maintained and monitored CCTV systems; managed service requests through a ticketing system.</p></article>
+              <article class="experience"><div class="role-label">IT Support · Educational institution</div><h3>SMK Wijaya Kusuma</h3><p>Installed and maintained operating systems and applications, and documented IT assets and computer-lab configurations.</p></article>
+              <article class="experience"><div class="role-label">Quality Control · Manufacturing</div><h3>PT Serena Indopangan</h3><p>Conducted on-site quality inspections to ensure products met specifications.</p></article>
+            </div>
+            <div class="subsection-title" style="margin-top: 6mm">Education</div>
+            <div class="education-card"><div class="school">GUNADARMA UNIVERSITY · BACHELOR'S DEGREE</div><h3>Informatics Engineering</h3><p>Focus: web application development, relational databases, software engineering, and IT systems support.</p></div>
+          </div>
+          <div>
+            <div class="subsection-title">Certifications</div>
+            <div class="cert-list">
+              <div class="cert">JavaScript Programming Fundamental<span>Core JS, logic, DOM, and async concepts</span></div>
+              <div class="cert">Building Website HTML5 &amp; Web App Design<span>Modern layouts, semantic web, and responsive UI</span></div>
+              <div class="cert">SQL Server for Beginner<span>Queries, tables, and relational integrity</span></div>
+              <div class="cert">WAN Cisco Router (Intermediate) &amp; LAN Cisco Router<span>Routing, IP subnetting, and troubleshooting</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-panel">
+          <h3>Let’s build something useful.</h3>
+          <div class="contact-grid">
+            <div><b>Email</b><br><a class="contact-link" href="mailto:naufalfik777@gmail.com">naufalfik777@gmail.com</a></div>
+            <div><b>Phone / WhatsApp</b><br><a class="contact-link" href="https://wa.me/6287773862920">+62 877-7386-2920</a></div>
+            <div><b>LinkedIn</b><br><a class="contact-link" href="https://linkedin.com/in/naufal-fikri-0500r">linkedin.com/in/naufal-fikri-0500r</a></div>
+            <div><b>GitHub</b><br><a class="contact-link" href="https://github.com/opangganteng">github.com/opangganteng</a></div>
+          </div>
+        </div>
+        <p class="closing-note">Based in Cibinong, Bogor Regency, West Java · Available for on-site, remote, or hybrid opportunities.</p>
+      </div>
+      <footer class="page-foot"><span>THANK YOU · NAUFAL FIKRI</span><span class="page-number">05</span></footer>
+    </section>
+  </main>
+</body>
+</html>

@@ -81,8 +81,10 @@
   <div class="text-slate-400 pl-4">• Memberikan dukungan teknis untuk masalah perangkat keras, perangkat lunak, dan jaringan, termasuk pemeliharaan sistem CCTV.</div>
   <div class="text-slate-400 pl-4">• Menangani permintaan dukungan dan sistem tiket untuk menjaga keandalan sistem.</div>
   <div class="text-slate-400 pl-4">• Bekerja sama dengan tim TI untuk menyelesaikan masalah perangkat keras, perangkat lunak, dan jaringan.</div>
+  <div class="text-slate-400 pl-4">• Mempelajari dan menerapkan prinsip dasar K3 saat melakukan pekerjaan teknis di area operasional.</div>
   <div class="mt-1">💼 <span class="text-amber-400 font-semibold">Pengendalian Mutu (Lapangan)</span> — PT Serena Indopangan (Oktober 2025 – Februari 2026)</div>
   <div class="text-slate-400 pl-4">• Melakukan pemeriksaan mutu di lokasi untuk memastikan produk memenuhi standar perusahaan.</div>
+  <div class="text-slate-400 pl-4">• Mempelajari penerapan prinsip K3 dan menjaga keselamatan kerja saat melakukan pemeriksaan mutu di area produksi.</div>
   <div class="mt-1">💼 <span class="text-cyan-400 font-semibold">Dukungan TI (Lepas)</span> — SMK Wijaya Kusuma (Maret 2023 – Juni 2025)</div>
   <div class="text-slate-400 pl-4">• Memasang, mengonfigurasi, dan memperbarui sistem operasi serta aplikasi untuk menjaga stabilitas sistem.</div>
   <div class="text-slate-400 pl-4">• Memelihara dokumentasi aset TI dan konfigurasi sistem.</div>

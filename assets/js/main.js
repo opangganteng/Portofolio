@@ -52,7 +52,7 @@ const PROJECTS_DATA = [
   {
     id: 3,
     title: "Situs Informasi Kelurahan Cibubur",
-    period: "September 2025 – Desember 2025",
+    period: "September 2025 – November 2025",
     type: "Proyek Mandiri",
     category: "fullstack",
     categoryLabel: "Next.js · React · Express.js · PostgreSQL",
@@ -313,11 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const typewriterEl = document.getElementById('typewriter-text');
   if (typewriterEl) {
     const roles = [
-      "Spesialis Dukungan TI",
-      "Lulusan Teknik Informatika",
-      "Infrastruktur TI & Diagnostik Perangkat Keras",
-      "Pemeliharaan Jaringan & Routing Cisco",
-      "Pengembang Aplikasi Web (Keahlian Sekunder)"
+      "Lulusan Baru Teknik Informatika",
+      "Teknologi Informasi & Sistem",
+      "Pengembangan Aplikasi & Basis Data",
+      "Operasional & Dukungan Teknis",
+      "Siap Belajar dan Berkembang"
     ];
 
     let roleIdx = 0;
@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.openProjectModalByIndex = openProjectModal;
 
-  document.querySelectorAll('.open-modal-trigger').forEach(btn => {
+  document.querySelectorAll('.open-project-modal-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const pId = parseInt(btn.getAttribute('data-project-id'), 10);
@@ -530,19 +530,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile Menu Toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileNav = document.getElementById('mobile-nav');
+  const mobileNav = document.getElementById('mobile-menu');
 
   if (mobileMenuBtn && mobileNav) {
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+
     mobileMenuBtn.addEventListener('click', () => {
       sfx.click();
       mobileNav.classList.toggle('hidden');
+      const isOpen = !mobileNav.classList.contains('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+      if (hamburgerIcon) {
+        hamburgerIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+        if (window.lucide) window.lucide.createIcons();
+      }
     });
 
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileNav.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-label', 'Buka menu navigasi');
+        if (hamburgerIcon) {
+          hamburgerIcon.setAttribute('data-lucide', 'menu');
+          if (window.lucide) window.lucide.createIcons();
+        }
       });
     });
+  }
+
+  const navLinks = document.querySelectorAll('.navbar-links a[href^="#"], .mobile-nav-link[href^="#"]');
+  const navSections = Array.from(navLinks)
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && navSections.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+      const visibleEntry = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visibleEntry) return;
+
+      navLinks.forEach(link => {
+        link.classList.toggle('nav-active', link.getAttribute('href') === `#${visibleEntry.target.id}`);
+      });
+    }, {
+      rootMargin: '-18% 0px -62% 0px',
+      threshold: [0.05, 0.25, 0.5]
+    });
+
+    navSections.forEach(section => navObserver.observe(section));
   }
 
   // Toast System

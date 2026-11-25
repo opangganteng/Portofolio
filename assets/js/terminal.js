@@ -51,26 +51,26 @@
   <span class="text-cyan-400">clear</span>           - Bersihkan terminal`,
 
     about: `<div class="space-y-1">
-  <div class="text-cyan-400 font-bold">NAUFAL FIKRI — Dukungan TI | Lulusan Teknik Informatika</div>
+  <div class="text-cyan-400 font-bold">NAUFAL FIKRI — Lulusan Baru Teknik Informatika</div>
   <div>📍 Cibinong, Bogor, Jawa Barat, Indonesia</div>
-  <div class="text-emerald-400 font-semibold mt-1">"Memberikan dukungan teknis, merawat sistem, dan menyelesaikan tantangan TI."</div>
-  <div class="text-slate-300 mt-1">Lulusan Teknik Informatika Universitas Gunadarma (2026) dengan pengalaman langsung di bidang dukungan TI dan pengembangan aplikasi web. Berpengalaman menangani masalah perangkat keras, perangkat lunak, dan jaringan, merawat CCTV, mengelola tiket dukungan, serta membangun empat aplikasi web berbasis basis data menggunakan C# ASP.NET MVC, PHP/Laravel, dan Next.js/Express.js dengan SQL Server, MySQL, dan PostgreSQL.</div>
+  <div class="text-emerald-400 font-semibold mt-1">"Siap belajar, beradaptasi, dan berkontribusi melalui kemampuan teknis serta pengalaman kerja lintas bidang."</div>
+  <div class="text-slate-300 mt-1">Lulusan baru Teknik Informatika Universitas Gunadarma dengan pengalaman di bidang teknologi informasi, operasional lapangan, pengendalian mutu, dan pengembangan aplikasi. Memiliki pemahaman dalam pemecahan masalah teknis, pemeliharaan perangkat, kerja tim, serta pengembangan aplikasi web.</div>
   <div class="text-cyan-300 font-mono text-xs mt-1">Status: Bersedia Relokasi | Terbuka untuk Bekerja di Kantor (WFO)</div>
 </div>`,
 
     skills: `<div class="space-y-1">
   <div class="text-cyan-400 font-bold">Keahlian Teknis:</div>
-  <div><span class="text-cyan-300 font-semibold">[Dukungan TI & Jaringan - Utama]</span> Pemecahan Masalah Perangkat Keras, Pemecahan Masalah Perangkat Lunak, Instalasi & Konfigurasi Sistem Operasi, Sistem Tiket, Pemeliharaan Jaringan, Cisco LAN/WAN, Pemeliharaan CCTV, Dokumentasi Aset TI</div>
+  <div><span class="text-cyan-300 font-semibold">[Infrastruktur & Dukungan Teknis]</span> Pemecahan Masalah Perangkat Keras, Pemecahan Masalah Perangkat Lunak, Instalasi & Konfigurasi Sistem Operasi, Sistem Tiket, Pemeliharaan Jaringan, Cisco LAN/WAN, Pemeliharaan CCTV, Dokumentasi Aset TI</div>
   <div class="mt-1"><span class="text-blue-300 font-semibold">[Pemrograman & Pengembangan Web]</span> C#, PHP, JavaScript, SQL, ASP.NET MVC, Laravel, Node.js, Express.js, Next.js, React, REST API, HTML5, CSS3, Desain Responsif</div>
   <div class="mt-1"><span class="text-emerald-300 font-semibold">[Basis Data]</span> SQL Server, MySQL, PostgreSQL, Desain Basis Data Relasional</div>
-  <div class="mt-1"><span class="text-purple-300 font-semibold">[Perangkat & Lainnya]</span> Git, GitHub, Penerapan, Pengujian Manual, Debugging, Claude AI (Pembuatan Kode, Debugging, dan Peninjauan Kode)</div>
+  <div class="mt-1"><span class="text-purple-300 font-semibold">[Perangkat & Lainnya]</span> Git, GitHub, AnyDesk, TeamViewer, Visual Studio, Visual Studio Code, XAMPP, Pengujian Manual, Debugging, Deployment</div>
 </div>`,
 
     projects: `<div class="space-y-1">
   <div class="text-cyan-400 font-bold">Proyek Pilihan:</div>
   <div>1. <span class="text-cyan-300 font-semibold">Sistem Pengelolaan Piket Sekolah (E-Piket)</span> [PHP, MySQL, HTML5, CSS3, JavaScript] (Juli 2026 – September 2026)</div>
   <div>2. <span class="text-cyan-300 font-semibold">Toko Bahan Bangunan JeWePe</span> [PHP, Laravel, MySQL] (Mei 2026 – Juni 2026)</div>
-  <div>3. <span class="text-cyan-300 font-semibold">Situs Informasi Kelurahan Cibubur</span> [Next.js, React, Express.js, Node.js, PostgreSQL] (September 2025 – Desember 2025)</div>
+  <div>3. <span class="text-cyan-300 font-semibold">Situs Informasi Kelurahan Cibubur</span> [Next.js, React, Express.js, Node.js, PostgreSQL] (September 2025 – November 2025)</div>
   <div>4. <span class="text-cyan-300 font-semibold">Sistem Manajemen Sekolah</span> [C#, ASP.NET MVC, Dapper, SQL Server] (Juli 2025 – September 2025)</div>
   <div class="text-slate-400 mt-1">Catatan: Ketik <span class="text-amber-400">project 1</span> (atau 2, 3, 4) untuk membuka detail proyek interaktif!</div>
 </div>`,
@@ -79,16 +79,16 @@
   <div class="text-cyan-400 font-bold">Pengalaman Kerja:</div>
   <div>💼 <span class="text-emerald-400 font-semibold">Dukungan TI</span> — Jagat Satwa Nusantara, TMII (Mei 2026 – Juli 2026)</div>
   <div class="text-slate-400 pl-4">• Memberikan dukungan teknis untuk masalah perangkat keras, perangkat lunak, dan jaringan, termasuk pemeliharaan sistem CCTV.</div>
-  <div class="text-slate-400 pl-4">• Menangani permintaan dukungan dan sistem tiket untuk menjaga keandalan sistem.</div>
-  <div class="text-slate-400 pl-4">• Bekerja sama dengan tim TI untuk menyelesaikan masalah perangkat keras, perangkat lunak, dan jaringan.</div>
-  <div class="text-slate-400 pl-4">• Mempelajari dan menerapkan prinsip dasar K3 saat melakukan pekerjaan teknis di area operasional.</div>
+  <div class="text-slate-400 pl-4">• Memasang, mengonfigurasi, dan memelihara komputer serta perangkat TI.</div>
+  <div class="text-slate-400 pl-4">• Membantu pemeliharaan dan pemantauan sistem CCTV.</div>
+  <div class="text-slate-400 pl-4">• Mendukung pelaporan masalah dan penanganan tiket dukungan TI, serta menerapkan prosedur keselamatan kerja.</div>
   <div class="mt-1">💼 <span class="text-amber-400 font-semibold">Pengendalian Mutu (Lapangan)</span> — PT Serena Indopangan (Oktober 2025 – Februari 2026)</div>
-  <div class="text-slate-400 pl-4">• Melakukan pemeriksaan mutu di lokasi untuk memastikan produk memenuhi standar perusahaan.</div>
-  <div class="text-slate-400 pl-4">• Mempelajari penerapan prinsip K3 dan menjaga keselamatan kerja saat melakukan pemeriksaan mutu di area produksi.</div>
+  <div class="text-slate-400 pl-4">• Melakukan inspeksi bahan baku, proses produksi, dan produk jadi sesuai standar mutu.</div>
+  <div class="text-slate-400 pl-4">• Memantau kebersihan produksi, mendokumentasikan ketidaksesuaian mutu, dan mengikuti SOP keselamatan kerja.</div>
   <div class="mt-1">💼 <span class="text-cyan-400 font-semibold">Dukungan TI (Lepas)</span> — SMK Wijaya Kusuma (Maret 2023 – Juni 2025)</div>
-  <div class="text-slate-400 pl-4">• Memasang, mengonfigurasi, dan memperbarui sistem operasi serta aplikasi untuk menjaga stabilitas sistem.</div>
-  <div class="text-slate-400 pl-4">• Memelihara dokumentasi aset TI dan konfigurasi sistem.</div>
-  <div class="text-slate-400 pl-4">• Berkolaborasi dengan anggota tim TI dalam dukungan dan pemeliharaan sehari-hari.</div>
+  <div class="text-slate-400 pl-4">• Memasang, mengonfigurasi, dan memperbarui sistem operasi serta aplikasi.</div>
+  <div class="text-slate-400 pl-4">• Memelihara dokumentasi aset TI dan mendukung pemeliharaan perangkat untuk kegiatan sekolah serta ujian.</div>
+  <div class="text-slate-400 pl-4">• Berkoordinasi dengan tim TI untuk membantu ketersediaan perangkat sekolah.</div>
 </div>`,
 
     education: `<div class="space-y-1">
@@ -101,6 +101,9 @@
 
     certs: `<div class="space-y-1">
   <div class="text-cyan-400 font-bold">Lisensi & Sertifikasi:</div>
+  <div>📜 Sertifikasi Junior Web Programmer</div>
+  <div>📜 Professional IT Support Certificate</div>
+  <div>📜 Sertifikat Ahli K3 Umum</div>
   <div>📜 Dasar-Dasar Pemrograman JavaScript</div>
   <div>📜 Membangun Situs Web dengan HTML5</div>
   <div>📜 Dasar-Dasar Desain Aplikasi Web</div>
@@ -139,10 +142,10 @@
   </div>
   <div class="space-y-0.5 text-slate-300">
     <div><span class="text-cyan-400 font-bold">Identitas:</span> Naufal Fikri</div>
-    <div><span class="text-cyan-400 font-bold">Jabatan:</span> Dukungan TI | Lulusan Teknik Informatika</div>
+      <div><span class="text-cyan-400 font-bold">Profil:</span> Lulusan Baru Teknik Informatika</div>
     <div><span class="text-cyan-400 font-bold">Pendidikan:</span> Universitas Gunadarma (IPK: 3,21)</div>
-    <div><span class="text-cyan-400 font-bold">Fokus Utama:</span> Perangkat Keras, Sistem Operasi, Pemeliharaan Jaringan, CCTV, Sistem Tiket</div>
-    <div><span class="text-cyan-400 font-bold">Fokus Sekunder:</span> Pengembangan Aplikasi Web (ASP.NET MVC, Laravel, Next.js)</div>
+      <div><span class="text-cyan-400 font-bold">Pendidikan Menengah:</span> SMAN 1 Cibinong, MIPA (Nilai Akhir: 89,90/100)</div>
+      <div><span class="text-cyan-400 font-bold">Bidang Kompetensi:</span> Teknologi Informasi, Dukungan Teknis, Pengembangan Aplikasi, dan Basis Data</div>
     <div><span class="text-cyan-400 font-bold">Basis Data:</span> SQL Server, MySQL, PostgreSQL</div>
     <div><span class="text-cyan-400 font-bold">Ketersediaan:</span> <span class="text-emerald-400 font-bold">Bersedia Relokasi | Terbuka untuk Bekerja di Kantor</span></div>
     <div><span class="text-cyan-400 font-bold">Lokasi:</span> Cibinong, Bogor, Jawa Barat, Indonesia</div>
@@ -151,12 +154,13 @@
 
     catcv: `<div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 text-xs font-mono space-y-2 text-slate-300">
   <div class="text-cyan-400 font-bold border-b border-slate-700 pb-1">=== DAFTAR RIWAYAT HIDUP: NAUFAL FIKRI ===</div>
-  <div><strong>Jabatan:</strong> Dukungan TI | Lulusan Teknik Informatika</div>
+  <div><strong>Profil:</strong> Lulusan Baru Teknik Informatika</div>
   <div><strong>Kontak:</strong> +62 877-7386-2920 | naufalfik777@gmail.com</div>
   <div><strong>Lokasi:</strong> Cibinong, Bogor, Jawa Barat, Indonesia</div>
-  <div><strong>Ketersediaan:</strong> Bersedia Relokasi | Terbuka untuk Bekerja di Kantor</div>
+  <div><strong>Ketersediaan:</strong> Bersedia bekerja di kantor dan relokasi sesuai kebutuhan perusahaan</div>
   <div class="mt-2 text-cyan-300 font-semibold">[Pendidikan]</div>
   <div>• Sarjana Teknik Informatika — Universitas Gunadarma (September 2022 – Agustus 2026, IPK: 3,21)</div>
+  <div>• MIPA — SMAN 1 Cibinong (Agustus 2019 – April 2022, Nilai Akhir: 89,90/100)</div>
   <div class="mt-2 text-cyan-300 font-semibold">[Pengalaman Kerja]</div>
   <div>• Dukungan TI — Jagat Satwa Nusantara, TMII (Mei 2026 – Juli 2026)</div>
   <div>• Pengendalian Mutu (Lapangan) — PT Serena Indopangan (Oktober 2025 – Februari 2026)</div>
@@ -423,8 +427,8 @@
     if (cmd === 'download' || cmd === 'cv' || cmd === 'resume') {
       appendLine('<span class="text-emerald-400">📥 Memulai pengunduhan CV...</span>');
       const link = document.createElement('a');
-      link.href = 'assets/docs/Naufal_Fikri_CV.pdf?v=20261031';
-      link.download = 'Naufal_Fikri_CV.pdf';
+      link.href = 'assets/docs/Naufal_Fikri_CV_ATS.pdf?v=20261125-2324';
+      link.download = 'Naufal_Fikri_CV_ATS.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

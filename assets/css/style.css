@@ -91,6 +91,71 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid var(--border-dark);
 }
 
+.navbar-inner {
+  min-width: 0;
+}
+
+.nav-brand {
+  max-width: 260px;
+}
+
+.navbar-links {
+  white-space: nowrap;
+}
+
+.navbar-links a.nav-active {
+  color: #ffffff;
+}
+
+.navbar-links a.nav-active::after,
+.mobile-nav-link.nav-active {
+  color: #ffffff;
+}
+
+.navbar-links a.nav-active::after {
+  transform: scaleX(1);
+  background: #06B6D4;
+}
+
+.mobile-nav-link.nav-active {
+  background: rgba(23, 36, 58, 0.9);
+  box-shadow: inset 3px 0 0 #06B6D4;
+}
+
+.navbar-links a {
+  position: relative;
+  padding: 0.55rem 0.1rem;
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.15rem;
+  height: 2px;
+  border-radius: 999px;
+  background: #2563EB;
+  transform: scaleX(0);
+  transition: transform 180ms ease;
+}
+
+.navbar-links a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 1399px) {
+  .nav-skl {
+    display: none;
+  }
+}
+
+@media (max-width: 1279px) {
+  .nav-brand {
+    max-width: none;
+  }
+}
+
 /* Hero Section with Enterprise Datacenter Background */
 .hero-corporate-container {
   position: relative;

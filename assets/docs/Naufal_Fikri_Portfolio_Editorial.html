@@ -308,6 +308,17 @@
     .contact-grid b { color: #fff; }
     .contact-link { color: #fff; }
     .closing-note { margin-top: 4mm; color: var(--muted); font-size: 8pt; }
+    .page:last-child .closing-grid { gap: 6mm; margin-top: 5mm; }
+    .page:last-child .timeline { gap: 2mm; }
+    .page:last-child .experience { padding: 2mm 3mm; }
+    .page:last-child .experience p { font-size: 7.8pt; line-height: 1.35; }
+    .page:last-child .education-card, .page:last-child .cert-list { padding: 2mm; }
+    .page:last-child .education-card h3 { margin: 1mm 0; font-size: 12pt; }
+    .page:last-child .education-card p { font-size: 7.8pt; }
+    .page:last-child .contact-panel { margin-top: 4mm; padding: 3mm 5mm; }
+    .page:last-child .contact-panel h3 { margin-bottom: 2mm; font-size: 14pt; }
+    .page:last-child .contact-grid { gap: 1mm 5mm; }
+    .page:last-child .closing-note { margin-top: 2mm; }
 
     @page { size: A4; margin: 0; }
     @media print {
@@ -326,14 +337,14 @@
         <span>Selected work &amp; experience</span>
       </header>
       <div class="cover-main">
-        <p class="eyebrow">Full-stack developer · Cibinong, Indonesia</p>
+        <p class="eyebrow">Informatics Engineering graduate · Cibinong, Indonesia</p>
         <div class="cover-grid">
           <div>
             <h1>Naufal<br><span>Fikri.</span></h1>
-            <p class="role">Junior Full Stack Developer<br>&amp; Web Engineer</p>
-            <p class="intro">I build practical web applications with clear MVC architecture, thoughtful database design, and a focus on the people who use them.</p>
+            <p class="role">Informatics Engineering Graduate<br>&amp; Early-Career Candidate</p>
+            <p class="intro">A recent graduate with experience in IT support, operations, quality control, and web application development. Open to entry-level opportunities that match my education and skills.</p>
             <div class="cover-rule"></div>
-            <p class="cover-meta">Informatics Engineering graduate<br>Gunadarma University</p>
+            <p class="cover-meta">Gunadarma University · GPA 3.21/4.00<br>Available for on-site work and relocation</p>
           </div>
           <div class="portrait-frame">
             <img src="../images/naufal-fikri-formal.png" alt="Portrait of Naufal Fikri">
@@ -341,12 +352,12 @@
         </div>
       </div>
       <div class="cover-bottom">
-        <div class="cover-stat"><strong>04</strong><span>Full-stack projects</span></div>
-        <div class="cover-stat"><strong>03</strong><span>Core MVC ecosystems</span></div>
-        <div class="cover-stat"><strong>01</strong><span>Engineering degree</span></div>
+        <div class="cover-stat"><strong>04</strong><span>Application projects</span></div>
+        <div class="cover-stat"><strong>03</strong><span>Work experiences</span></div>
+        <div class="cover-stat"><strong>3.21</strong><span>GPA / 4.00</span></div>
         <div class="cover-stat"><strong>Open</strong><span>To new opportunities</span></div>
       </div>
-      <footer class="page-foot"><span>NAUFAL FIKRI · DEVELOPER PORTFOLIO</span><span class="page-number">01</span></footer>
+      <footer class="page-foot"><span>NAUFAL FIKRI · PROFESSIONAL PORTFOLIO</span><span class="page-number">01</span></footer>
     </section>
 
     <section class="page">
@@ -380,27 +391,27 @@
     </section>
 
     <section class="page">
-      <header class="page-head"><div class="wordmark">NF<b>.</b> / SELECTED WORK</div><span>02 — Full-stack applications</span></header>
+      <header class="page-head"><div class="wordmark">NF<b>.</b> / SELECTED WORK</div><span>02 — School &amp; retail applications</span></header>
       <div style="padding-top: 11mm">
         <p class="eyebrow">Selected work · 01–02</p>
         <h2>Applications built<br>around real workflows.</h2>
-        <p class="section-intro">Four end-to-end projects demonstrating full-stack delivery, practical MVC structure, and relational data modelling.</p>
+        <p class="section-intro">Projects focused on school administration, attendance, inventory, and practical database-backed workflows.</p>
         <div class="project-list">
           <article class="project">
             <div class="project-number">01</div>
-            <div class="project-type">Full-stack MVC · Public services</div>
-            <h3>Cibubur Local Government Information Website</h3>
-            <p>An integrated local-government information website with a Next.js front end, Express.js back end, and PostgreSQL schema for dynamic citizen-service content.</p>
-            <ul><li>Designed relational data for dynamic public-service information.</li><li>Built responsive layouts and a modular, component-based structure.</li><li>Connected the user experience to back-end service endpoints.</li></ul>
-            <div class="project-stack">NEXT.JS &nbsp;·&nbsp; EXPRESS.JS &nbsp;·&nbsp; POSTGRESQL &nbsp;·&nbsp; TAILWIND CSS</div>
+            <div class="project-type">Independent project · July–September 2026</div>
+            <h3>School Duty Management System (E-Piket)</h3>
+            <p>A web application for managing school duty schedules and student attendance, built with native PHP and MySQL.</p>
+            <ul><li>Implemented more than five management modules for teachers, students, classes, rooms, and academic years.</li><li>Added attendance, absence, and lateness tracking with an administrative dashboard.</li><li>Tested, debugged, and deployed the application.</li></ul>
+            <div class="project-stack">PHP NATIVE &nbsp;·&nbsp; MYSQL &nbsp;·&nbsp; HTML5 / CSS3 &nbsp;·&nbsp; JAVASCRIPT</div>
           </article>
           <article class="project">
             <div class="project-number">02</div>
-            <div class="project-type">Full-stack MVC · Education</div>
-            <h3>School Management System</h3>
-            <p>A school data management system using enterprise MVC architecture, with clear separation across business logic, Razor views, and the data layer.</p>
-            <ul><li>Implemented high-performance CRUD functionality for school master data using Dapper.</li><li>Designed a SQL Server relational schema with foreign-key constraints.</li><li>Organized responsibilities across controllers, views, and data access.</li></ul>
-            <div class="project-stack">C# &nbsp;·&nbsp; ASP.NET MVC &nbsp;·&nbsp; DAPPER &nbsp;·&nbsp; SQL SERVER</div>
+            <div class="project-type">Independent project · May–June 2026</div>
+            <h3>JeWePe Building Materials Store</h3>
+            <p>A web application for managing building material products and inventory using Laravel and MySQL.</p>
+            <ul><li>Implemented CRUD functionality for product and inventory data.</li><li>Used Laravel MVC architecture with MySQL database integration.</li></ul>
+            <div class="project-stack">PHP &nbsp;·&nbsp; LARAVEL &nbsp;·&nbsp; MYSQL</div>
           </article>
         </div>
       </div>
@@ -408,27 +419,27 @@
     </section>
 
     <section class="page">
-      <header class="page-head"><div class="wordmark">NF<b>.</b> / SELECTED WORK</div><span>03 — Full-stack applications</span></header>
+      <header class="page-head"><div class="wordmark">NF<b>.</b> / SELECTED WORK</div><span>03 — Information &amp; management systems</span></header>
       <div style="padding-top: 11mm">
         <p class="eyebrow">Selected work · 03–04</p>
-        <h2>Useful tools for<br>schools &amp; businesses.</h2>
-        <p class="section-intro">Applications that turn day-to-day operational needs into organised, database-backed workflows.</p>
+        <h2>Useful tools for<br>communities &amp; schools.</h2>
+        <p class="section-intro">Web and desktop applications built for information access and organised school data management.</p>
         <div class="project-list">
           <article class="project">
             <div class="project-number">03</div>
-            <div class="project-type">Full-stack MVC · School operations</div>
-            <h3>E-Piket: School Duty Management System</h3>
-            <p>A school duty management application built from scratch with native PHP, covering administration, duty schedules, attendance, and tardiness tracking.</p>
-            <ul><li>Delivered 5+ CRUD modules for teachers, students, classes, rooms, and academic years.</li><li>Organised weekly duty scheduling alongside absence and tardiness records.</li><li>Added an admin dashboard for monitoring school activities.</li></ul>
-            <div class="project-stack">PHP NATIVE &nbsp;·&nbsp; MYSQL &nbsp;·&nbsp; HTML5 / CSS3 &nbsp;·&nbsp; JAVASCRIPT</div>
+            <div class="project-type">Full-stack project · September–November 2025</div>
+            <h3>Kelurahan Cibubur Information Website</h3>
+            <p>A responsive village information website with backend services and REST API integration.</p>
+            <ul><li>Built the frontend with Next.js and React.</li><li>Developed backend services using Express.js and Node.js.</li><li>Designed a PostgreSQL database and tested, debugged, and deployed the application.</li></ul>
+            <div class="project-stack">NEXT.JS &nbsp;·&nbsp; REACT &nbsp;·&nbsp; EXPRESS.JS &nbsp;·&nbsp; NODE.JS &nbsp;·&nbsp; POSTGRESQL</div>
           </article>
           <article class="project">
             <div class="project-number">04</div>
-            <div class="project-type">Full-stack MVC · Retail operations</div>
-            <h3>JeWePe Building Materials Store</h3>
-            <p>A building-materials inventory and product-management application built with Laravel, supporting daily transactions and stock operations.</p>
-            <ul><li>Created a product catalogue with inventory tracking.</li><li>Implemented relational, database-backed CRUD features for daily operations.</li><li>Used Laravel MVC to separate application logic from presentation.</li></ul>
-            <div class="project-stack">LARAVEL &nbsp;·&nbsp; PHP &nbsp;·&nbsp; MYSQL &nbsp;·&nbsp; BOOTSTRAP</div>
+            <div class="project-type">Independent project · July–September 2025</div>
+            <h3>School Management System</h3>
+            <p>A school management application developed with C# and ASP.NET MVC, using Dapper and SQL Server.</p>
+            <ul><li>Implemented school information management functionality.</li><li>Designed relational database structures and tested and debugged the application.</li></ul>
+            <div class="project-stack">C# &nbsp;·&nbsp; ASP.NET MVC &nbsp;·&nbsp; DAPPER &nbsp;·&nbsp; SQL SERVER</div>
           </article>
         </div>
         <div class="approach">
@@ -448,20 +459,24 @@
           <div>
             <div class="subsection-title">Professional experience</div>
             <div class="timeline">
-              <article class="experience"><div class="role-label">IT Support · Taman Mini Indonesia Indah</div><h3>Jagat Satwa Nusantara, TMII</h3><p>Supported hardware, software, and network stability; maintained and monitored CCTV systems; managed service requests through a ticketing system; learned and applied basic occupational health and safety (K3) principles in operational areas.</p></article>
-              <article class="experience"><div class="role-label">IT Support · Educational institution</div><h3>SMK Wijaya Kusuma</h3><p>Installed and maintained operating systems and applications, and documented IT assets and computer-lab configurations.</p></article>
-              <article class="experience"><div class="role-label">Quality Control · Manufacturing</div><h3>PT Serena Indopangan</h3><p>Conducted on-site quality inspections to ensure products met specifications, while learning and applying basic occupational health and safety (K3) principles in the production area.</p></article>
+              <article class="experience"><div class="role-label">IT Support Intern · May–July 2026</div><h3>Jagat Satwa Nusantara, TMII</h3><p>Troubleshot hardware, software, and network issues; maintained IT equipment; supported CCTV monitoring, user requests, and issue reporting.</p></article>
+              <article class="experience"><div class="role-label">Field Quality Control · October 2025–February 2026</div><h3>PT Serena Indopangan</h3><p>Inspected raw materials, production, and finished products; monitored cleanliness and documented quality issues for supervisor follow-up.</p></article>
+              <article class="experience"><div class="role-label">Freelance IT Support · March 2023–June 2025</div><h3>SMK Wijaya Kusuma</h3><p>Installed operating systems and apps; troubleshot PCs, printers, and networks; prepared IT equipment and maintained asset records.</p></article>
             </div>
             <div class="subsection-title" style="margin-top: 6mm">Education</div>
-            <div class="education-card"><div class="school">GUNADARMA UNIVERSITY · BACHELOR'S DEGREE</div><h3>Informatics Engineering</h3><p>Focus: web application development, relational databases, software engineering, and IT systems support.</p></div>
+            <div class="education-card"><div class="school">GUNADARMA UNIVERSITY · BACHELOR'S DEGREE</div><h3>Informatics Engineering</h3><p>September 2022–August 2026 · GPA 3.21/4.00</p></div>
+            <div class="education-card"><div class="school">SMAN 1 CIBINONG · SENIOR HIGH SCHOOL</div><h3>Science (MIPA)</h3><p>August 2019–April 2022 · Final score 89.90</p></div>
           </div>
           <div>
             <div class="subsection-title">Certifications</div>
             <div class="cert-list">
-              <div class="cert">JavaScript Programming Fundamental<span>Core JS, logic, DOM, and async concepts</span></div>
-              <div class="cert">Building Website HTML5 &amp; Web App Design<span>Modern layouts, semantic web, and responsive UI</span></div>
-              <div class="cert">SQL Server for Beginner<span>Queries, tables, and relational integrity</span></div>
-              <div class="cert">WAN Cisco Router (Intermediate) &amp; LAN Cisco Router<span>Routing, IP subnetting, and troubleshooting</span></div>
+              <div class="cert">Junior Web Programmer Certification<span>LSP Universitas Gunadarma / BNSP · 15 July 2026 · Valid 3 years</span></div>
+              <div class="cert">Professional IT Support Certificate<span>Jagat Satwa Nusantara · IT internship, May–July 2026</span></div>
+              <div class="cert">General OHS (K3) Training Certificate · Beginner<span>PT MITA Indonesia Berdaya · 22 November 2026</span></div>
+              <div class="cert">JavaScript Programming Fundamental<span>Gunadarma University / Lepkom</span></div>
+              <div class="cert">Basic Web Application Development, Web Design &amp; HTML5<span>Gunadarma University / Lepkom</span></div>
+              <div class="cert">SQL Server Beginner &amp; Intermediate<span>Gunadarma University / Lepkom</span></div>
+              <div class="cert">Cisco LAN &amp; WAN Router Training<span>Gunadarma University / Lepkom · WAN Intermediate</span></div>
             </div>
           </div>
         </div>
@@ -474,7 +489,7 @@
             <div><b>GitHub</b><br><a class="contact-link" href="https://github.com/opangganteng">github.com/opangganteng</a></div>
           </div>
         </div>
-        <p class="closing-note">Based in Cibinong, Bogor Regency, West Java · Available for on-site, remote, or hybrid opportunities.</p>
+        <p class="closing-note">Based in Cibinong, Bogor Regency, West Java · Willing to work on-site and relocate based on company requirements.</p>
       </div>
       <footer class="page-foot"><span>THANK YOU · NAUFAL FIKRI</span><span class="page-number">05</span></footer>
     </section>
